@@ -319,7 +319,7 @@
 
 .quickActionBtn:hover {
   background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-  border-color: #6366f1;
+  border-color: #1e40af;
   color: #4f46e5;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);

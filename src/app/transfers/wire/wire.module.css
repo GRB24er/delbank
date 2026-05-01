@@ -4,7 +4,7 @@
 .wrapper {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   position: relative;
 }
 
@@ -19,7 +19,7 @@
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   padding: 40px 40px 20px;
   color: white;
   margin-bottom: 30px;
@@ -108,13 +108,13 @@
 
 .step.completed .stepNumber {
   background: white;
-  color: #667eea;
+  color: #1e40af;
   border-color: white;
 }
 
 .step.active .stepNumber {
   background: rgba(255, 255, 255, 0.9);
-  color: #667eea;
+  color: #1e40af;
   border-color: white;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
 }
@@ -211,7 +211,7 @@
 .formField select:focus,
 .formField textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -246,19 +246,19 @@
 }
 
 .radioOption:hover {
-  border-color: #667eea;
+  border-color: #1e40af;
   background: rgba(102, 126, 234, 0.05);
 }
 
 .radioOption input[type="radio"] {
   width: 18px;
   height: 18px;
-  accent-color: #667eea;
+  accent-color: #1e40af;
 }
 
 .radioOption input[type="radio"]:checked + span {
   font-weight: 500;
-  color: #667eea;
+  color: #1e40af;
 }
 
 /* Amount Input */
@@ -286,7 +286,7 @@
 }
 
 .amountInput:focus-within {
-  border-color: #667eea;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -326,7 +326,7 @@
 .infoContent strong {
   display: block;
   margin-bottom: 4px;
-  color: #667eea;
+  color: #1e40af;
 }
 
 .infoContent p {
@@ -384,7 +384,7 @@
 .checkboxField input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: #667eea;
+  accent-color: #1e40af;
 }
 
 .checkboxField label {
@@ -414,7 +414,7 @@
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
 }
 
@@ -452,7 +452,7 @@
 .reviewSection h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #667eea;
+  color: #1e40af;
   margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 2px solid #f0f0f0;
@@ -529,7 +529,7 @@
   margin-top: 2px;
   width: 18px;
   height: 18px;
-  accent-color: #667eea;
+  accent-color: #1e40af;
 }
 
 .agreementBox label {
@@ -657,7 +657,7 @@
 .helpItem p {
   margin: 0;
   font-size: 13px;
-  color: #667eea;
+  color: #1e40af;
   font-weight: 500;
 }
 

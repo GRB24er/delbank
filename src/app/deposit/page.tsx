@@ -40,11 +40,11 @@ export default function FundAccountPage() {
   // UPDATE THESE WITH YOUR ACTUAL BANK DETAILS
   // ============================================
   const bankDetails = {
-    bankName: "ZentriBank Capital",
-    accountName: "ZentriBank Capital LLC",
+    bankName: "Sovereign Trust Bank",
+    accountName: "Sovereign Trust Bank LLC",
     accountNumber: "8934567821",
     routingNumber: "021000021",
-    swiftCode: "ZBNKUS33",
+    swiftCode: "STBKUS33",
     bankAddress: "100 Wall Street, New York, NY 10005"
   };
 
@@ -166,7 +166,7 @@ export default function FundAccountPage() {
         <main className={styles.content}>
           <div className={styles.pageHeader}>
             <h1>Fund Your Account</h1>
-            <p>Add funds to your ZentriBank account securely</p>
+            <p>Add funds to your Sovereign Trust Bank account securely</p>
           </div>
 
           {/* Pending Deposits Alert */}
@@ -230,7 +230,7 @@ export default function FundAccountPage() {
                     <p>Transfer from your bank account</p>
                     <ul className={styles.methodDetails}>
                       <li>Processing: 1-3 business days</li>
-                      <li>No fees from ZentriBank</li>
+                      <li>No fees from Sovereign Trust Bank</li>
                       <li>Minimum: $100</li>
                     </ul>
                   </div>

@@ -33,7 +33,7 @@
 }
 
 .securityScoreCard {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   padding: 1.5rem 2rem;
   border-radius: 12px;
@@ -116,8 +116,8 @@
 
 .manageBtn {
   background: white;
-  color: #6366f1;
-  border: 1px solid #6366f1;
+  color: #1e40af;
+  border: 1px solid #1e40af;
 }
 
 .updateBtn {
@@ -251,7 +251,7 @@ input:checked + .slider:before {
 .viewAllBtn {
   padding: 0.5rem 1rem;
   background: white;
-  color: #6366f1;
+  color: #1e40af;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   font-weight: 600;

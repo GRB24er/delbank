@@ -128,7 +128,7 @@ export default function LandingPage() {
             
             <div className={styles.modalHeader}>
               <div className={styles.modalIcon}>🎉</div>
-              <h2 className={styles.modalTitle}>Welcome to ZentriBank</h2>
+              <h2 className={styles.modalTitle}>Welcome to Sovereign Trust Bank</h2>
               <p className={styles.modalSubtitle}>Banking Made Simple</p>
             </div>
             
@@ -198,7 +198,7 @@ export default function LandingPage() {
               <Link href="/" className={styles.logo}>
                 <Image
                   src="/images/Logo.png"
-                  alt="ZentriBank Logo"
+                  alt="Sovereign Trust Bank Logo"
                   width={240}
                   height={65}
                   className={styles.logoImage}
@@ -419,7 +419,7 @@ export default function LandingPage() {
         <div className={styles.container}>
           <div className={styles.ctaContent}>
             <h2>Ready to Start Your Financial Journey?</h2>
-            <p>Join thousands of satisfied customers who trust ZentriBank</p>
+            <p>Join thousands of satisfied customers who trust Sovereign Trust Bank</p>
             <div className={styles.ctaActions}>
               <Link href="/auth/signup" className={styles.btnCtaPrimary}>
                 Open Your Account
@@ -440,7 +440,7 @@ export default function LandingPage() {
               <div className={styles.footerLogo}>
                 <Image
                   src="/images/Logo.png"
-                  alt="ZentriBank Logo"
+                  alt="Sovereign Trust Bank Logo"
                   width={220}
                   height={60}
                   className={styles.footerLogoImage}
@@ -484,7 +484,7 @@ export default function LandingPage() {
               <Link href="/disclosures">Disclosures</Link>
             </div>
             <div className={styles.footerCopy}>
-              <p>© 2024 ZentriBank. All rights reserved. Member FDIC. Equal Housing Lender.</p>
+              <p>© 2024 Sovereign Trust Bank. All rights reserved. Member FDIC. Equal Housing Lender.</p>
             </div>
           </div>
         </div>

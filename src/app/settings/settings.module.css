@@ -81,7 +81,7 @@
 }
 
 .settingsTabs button.activeTab {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
 }
 
@@ -133,14 +133,14 @@
 
 .formGroup input:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .saveBtn {
   align-self: flex-start;
   padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -235,7 +235,7 @@
 }
 
 .switch input:checked + .slider {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
 }
 
 .switch input:checked + .slider:before {

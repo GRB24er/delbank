@@ -140,7 +140,7 @@ export default function SignInContent() {
   const rightColumnStyle: React.CSSProperties = {
     flex: 1,
     position: 'relative',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    background: 'linear-gradient(135deg, #1e40af 0%, #0f172a 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -162,7 +162,7 @@ export default function SignInContent() {
   const logoIconStyle: React.CSSProperties = {
     width: '48px',
     height: '48px',
-    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+    background: 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
     borderRadius: '12px',
     display: 'flex',
     alignItems: 'center',
@@ -225,7 +225,7 @@ export default function SignInContent() {
   };
 
   const inputFocusStyle: React.CSSProperties = {
-    borderColor: '#6366F1',
+    borderColor: '#1e40af',
     boxShadow: '0 0 0 3px rgba(99, 102, 241, 0.1)',
   };
 
@@ -258,7 +258,7 @@ export default function SignInContent() {
   const checkboxStyle: React.CSSProperties = {
     width: '16px',
     height: '16px',
-    accentColor: '#6366F1',
+    accentColor: '#1e40af',
   };
 
   const checkboxLabelStyle: React.CSSProperties = {
@@ -269,7 +269,7 @@ export default function SignInContent() {
 
   const forgotPasswordStyle: React.CSSProperties = {
     fontSize: '14px',
-    color: '#6366F1',
+    color: '#1e40af',
     textDecoration: 'none',
     fontWeight: 500,
     cursor: 'pointer',
@@ -285,7 +285,7 @@ export default function SignInContent() {
     color: '#FFFFFF',
     background: isLocked 
       ? 'linear-gradient(135deg, #9CA3AF 0%, #6B7280 100%)'
-      : 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+      : 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
     border: 'none',
     borderRadius: '12px',
     cursor: loading || isLocked ? 'not-allowed' : 'pointer',
@@ -332,7 +332,7 @@ export default function SignInContent() {
   };
 
   const footerLinkStyle: React.CSSProperties = {
-    color: '#6366F1',
+    color: '#1e40af',
     textDecoration: 'none',
     fontWeight: 600,
   };
@@ -435,7 +435,7 @@ export default function SignInContent() {
           <div style={formWrapperStyle}>
             <div style={logoContainerStyle}>
               <div style={logoIconStyle}>🏦</div>
-              <span style={logoTextStyle}>ZentriBank</span>
+              <span style={logoTextStyle}>Sovereign Trust Bank</span>
             </div>
 
             <h1 style={headingStyle}>Welcome Back</h1>
@@ -585,7 +585,7 @@ export default function SignInContent() {
           <div style={rightContentStyle}>
             <h2 style={rightHeadingStyle}>Secure Banking Made Simple</h2>
             <p style={rightSubtitleStyle}>
-              Join over 100,000 customers who trust Horizon Global Capital with their financial future.
+              Join over 100,000 customers who trust Sovereign Trust Bank with their financial future.
             </p>
             <ul style={featureListStyle}>
               <li style={featureItemStyle}>
@@ -622,7 +622,7 @@ export default function SignInContent() {
             🔐 Security Tip
           </div>
           <div style={{ fontSize: '13px', lineHeight: '1.4' }}>
-            Never share your login credentials. Horizon will never ask for your password via email or phone.
+            Never share your login credentials. Sovereign Trust Bank will never ask for your password via email or phone.
           </div>
         </div>
       )}

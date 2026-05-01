@@ -28,8 +28,8 @@ const accountConfig: Record<string, {
   checking: {
     name: "Premier Checking",
     icon: "💳",
-    color: "#6366f1",
-    gradient: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+    color: "#1e40af",
+    gradient: "linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)",
     features: ["No monthly fees", "Unlimited transactions", "Free debit card", "Mobile check deposit"],
     description: "Your everyday spending account with instant access to funds."
   },

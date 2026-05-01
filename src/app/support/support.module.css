@@ -105,7 +105,7 @@
 
 .searchBtn {
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -211,7 +211,7 @@
 }
 
 .categoryFilter button.active {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border-color: transparent;
 }
@@ -354,7 +354,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border-radius: 12px 12px 0 0;
 }
@@ -411,7 +411,7 @@
 
 .message.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
 }
 
@@ -441,7 +441,7 @@
 
 .chatInput button {
   padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
   border-radius: 8px;

@@ -12,7 +12,7 @@
 
 /* Page Header */
 .pageHeader {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
   padding: 3rem 2rem 0;
   color: white;
 }
@@ -395,7 +395,7 @@
 
 .calendarDay.hasTransfer {
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
-  border-color: #8b5cf6;
+  border-color: #1e3a8a;
 }
 
 .dayNumber {
@@ -408,7 +408,7 @@
   bottom: 4px;
   width: 6px;
   height: 6px;
-  background: #8b5cf6;
+  background: #1e3a8a;
   border-radius: 50%;
 }
 
@@ -478,7 +478,7 @@
 .formField input:focus,
 .formField select:focus,
 .formField textarea:focus {
-  border-color: #8b5cf6;
+  border-color: #1e3a8a;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
@@ -561,7 +561,7 @@
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }

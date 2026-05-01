@@ -21,7 +21,7 @@
 .backBtn {
   background: none;
   border: none;
-  color: #6366f1;
+  color: #1e40af;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -64,14 +64,14 @@
 }
 
 .filterBtn:hover {
-  border-color: #6366f1;
-  color: #6366f1;
+  border-color: #1e40af;
+  color: #1e40af;
 }
 
 .filterBtn.active {
-  background: #6366f1;
+  background: #1e40af;
   color: white;
-  border-color: #6366f1;
+  border-color: #1e40af;
 }
 
 .historyList {
@@ -238,8 +238,8 @@
 }
 
 .pageBtn:not(:disabled):hover {
-  border-color: #6366f1;
-  color: #6366f1;
+  border-color: #1e40af;
+  color: #1e40af;
 }
 
 .pageInfo {

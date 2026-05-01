@@ -41,7 +41,7 @@ const CARD_TIERS: any = {
   basic: { name: 'Premium', color: '#3b82f6', icon: '💳' },
   silver: { name: 'Silver Elite', color: '#94a3b8', icon: '🥈' },
   gold: { name: 'Gold Executive', color: '#f59e0b', icon: '🥇' },
-  platinum: { name: 'Platinum Prestige', color: '#8b5cf6', icon: '💎' },
+  platinum: { name: 'Platinum Prestige', color: '#1e3a8a', icon: '💎' },
   student: { name: 'Student Plus', color: '#10b981', icon: '🎓' },
   secured: { name: 'Secured Build', color: '#64748b', icon: '🔒' },
   business: { name: 'Business Pro', color: '#ef4444', icon: '💼' }

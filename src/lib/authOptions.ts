@@ -156,8 +156,8 @@ export const authOptions: NextAuthOptions = {
                 const { sendSimpleEmail } = require('@/lib/mail');
                 const alertHtml = `
                   <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: white;">
-                    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 40px 30px; text-align: center; border-bottom: 4px solid #c9a962;">
-                      <h1 style="margin: 0; font-size: 24px; color: #c9a962;">ZENTRIBANK</h1>
+                    <div style="background: linear-gradient(135deg, #0a0a0f 0%, #1e3a8a 100%); color: white; padding: 40px 30px; text-align: center; border-bottom: 4px solid #3b82f6;">
+                      <h1 style="margin: 0; font-size: 24px; color: #ffffff; letter-spacing: 0.05em;">SOVEREIGN TRUST BANK</h1>
                       <p style="margin: 16px 0 0; font-size: 16px; opacity: 0.9;">New Device Login Alert</p>
                     </div>
                     <div style="padding: 30px;">
@@ -175,13 +175,13 @@ export const authOptions: NextAuthOptions = {
                       <p style="color: #dc2626; font-weight: 600;">If this wasn't you, please secure your account immediately by changing your password and contacting support at +1 (800) 123-4567.</p>
                     </div>
                     <div style="background: #f8fafc; padding: 20px 30px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e5e7eb;">
-                      <p>This is an automated security alert from ZentriBank Capital.</p>
+                      <p>This is an automated security alert from Sovereign Trust Bank.</p>
                     </div>
                   </div>
                 `;
                 sendSimpleEmail(
                   user.email,
-                  'ZentriBank Security Alert - New Device Login',
+                  'Sovereign Trust Bank Security Alert - New Device Login',
                   `A new device was used to sign in to your account. Device: ${parsed.browser} on ${parsed.os}. IP: ${ipAddress}. If this wasn't you, contact support immediately.`,
                   alertHtml
                 );

@@ -311,11 +311,11 @@ export async function POST(req: NextRequest) {
         <div class="statement-container">
           <div class="letterhead">
             <div class="bank-info">
-              <strong>ZENTRIBANK CAPITAL</strong>
+              <strong>SOVEREIGN TRUST BANK</strong>
               123 Financial District, Suite 500<br>
               New York, NY 10004, United States<br>
-              Tel: +1 (800) 123-4567<br>
-              www.zentribank.capital | admin@zentribank.capital
+              Tel: +1 (800) 768-3765<br>
+              www.sovereigntrustbank.com | admin@zentribank.capital
             </div>
           </div>
           
@@ -427,7 +427,7 @@ export async function POST(req: NextRequest) {
               <div class="footer-important-title">IMPORTANT NOTICE</div>
               <div class="footer-important-text">
                 Please review this statement carefully. If you notice any discrepancies or unauthorized transactions, 
-                please contact us immediately at +1 (800) 123-4567 or admin@zentribank.capital. You have 60 days from 
+                please contact us immediately at +1 (800) 768-3765 or admin@zentribank.capital. You have 60 days from
                 the statement date to report any errors.
               </div>
             </div>
@@ -435,7 +435,7 @@ export async function POST(req: NextRequest) {
             <div class="footer-contact">
               <div class="contact-item">
                 <div class="contact-label">CUSTOMER SERVICE</div>
-                +1 (800) 123-4567<br>
+                +1 (800) 768-3765<br>
                 Available 24/7
               </div>
               <div class="contact-item">
@@ -445,15 +445,15 @@ export async function POST(req: NextRequest) {
               </div>
               <div class="contact-item">
                 <div class="contact-label">ONLINE BANKING</div>
-                www.zentribank.capital<br>
+                www.sovereigntrustbank.com<br>
                 Secure access anytime
               </div>
             </div>
             
             <div class="footer-legal">
               This statement is confidential and intended solely for the account holder named above. 
-              ZentriBank Capital is a member of FDIC. Deposits are insured up to $250,000 per depositor.<br>
-              © ${new Date().getFullYear()} ZentriBank Capital. All rights reserved. | Member FDIC | Equal Housing Lender
+              Sovereign Trust Bank is a member of FDIC. Deposits are insured up to $250,000 per depositor.<br>
+              © ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved. | Member FDIC | Equal Housing Lender
             </div>
           </div>
         </div>
@@ -463,7 +463,7 @@ export async function POST(req: NextRequest) {
 
     await sendSimpleEmail(
       statement.userId.email,
-      `ZentriBank Capital - Account Statement ${statementNumber}`,
+      `Sovereign Trust Bank - Account Statement ${statementNumber}`,
       `Your account statement for ${new Date(statement.startDate).toLocaleDateString()} - ${new Date(statement.endDate).toLocaleDateString()} is attached.`,
       emailHTML
     );

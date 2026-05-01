@@ -1,8 +1,8 @@
-// src/lib/mail.ts - ZENTRIBANK - NAMECHEAP PRIVATE EMAIL SMTP
+// src/lib/mail.ts - SOVEREIGN TRUST BANK - PRIVATE EMAIL SMTP
 import nodemailer, { Transporter, SentMessageInfo } from "nodemailer";
 
 /** ==============================
- * NAMECHEAP PRIVATE EMAIL SMTP CONFIGURATION
+ * PRIVATE EMAIL SMTP CONFIGURATION
  * ============================== */
 const SMTP_HOST = "smtp.hostinger.com";
 const SMTP_PORT = 465;
@@ -11,24 +11,29 @@ const SMTP_USER = "admin@zentribank.capital"
 const SMTP_PASS = "Valmont15#Benjamin2010";
 
 // Brand Configuration
-const BRAND_NAME = "ZentriBank";
-const BRAND_SHORT = "ZentriBank";
-const BRAND_DOMAIN = "Zentribank.capital";
-const BRAND_TAGLINE = "ZentriBank";
+const BRAND_NAME = "Sovereign Trust Bank";
+const BRAND_SHORT = "Sovereign Trust";
+const BRAND_DOMAIN = "sovereigntrustbank.com";
+const BRAND_TAGLINE = "Private Banking. Global Trust.";
 const BRAND_YEAR_FOUNDED = "1897";
 
-// Brand Colors
+// Brand Colors - Blue & Black Premium Palette
 const BRAND_COLORS = {
-  gold: "#c9a962",
-  goldDark: "#a8935f",
-  goldLight: "#d4b978",
-  navy: "#1a1f2e",
-  navyLight: "#252b3d",
-  cream: "#faf9f7",
+  // Blue spectrum (replacing gold accents)
+  gold: "#3b82f6",
+  goldDark: "#1e40af",
+  goldLight: "#60a5fa",
+  // Black & deep navy (replacing legacy navy)
+  navy: "#0a0a0f",
+  navyLight: "#0f172a",
+  // Light backgrounds
+  cream: "#f8fafc",
   white: "#ffffff",
-  textPrimary: "#1a1f2e",
-  textSecondary: "#5a6170",
-  textMuted: "#8a8f9c",
+  // Text
+  textPrimary: "#0f172a",
+  textSecondary: "#475569",
+  textMuted: "#64748b",
+  // Status
   success: "#10b981",
   successDark: "#047857",
   warning: "#f59e0b",

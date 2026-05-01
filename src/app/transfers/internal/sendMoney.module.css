@@ -82,7 +82,7 @@
 }
 
 .balanceSummary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   padding: 12px 24px;
   border-radius: 25px;
@@ -113,9 +113,9 @@
 }
 
 .transferTypeSelector button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
-  border-color: #667eea;
+  border-color: #1e40af;
 }
 
 .transferTypeSelector button:hover:not(.active) {
@@ -155,7 +155,7 @@
 }
 
 .step.active .stepNumber {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
 }
 
@@ -213,12 +213,12 @@
 }
 
 .accountOption:hover {
-  border-color: #667eea;
+  border-color: #1e40af;
   background: #f8f9fa;
 }
 
 .accountOption.selected {
-  border-color: #667eea;
+  border-color: #1e40af;
   background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
 }
 
@@ -288,7 +288,7 @@
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
 }
 
@@ -326,11 +326,11 @@
 }
 
 .speedOption:hover {
-  border-color: #667eea;
+  border-color: #1e40af;
 }
 
 .speedOption.selected {
-  border-color: #667eea;
+  border-color: #1e40af;
   background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
 }
 
@@ -402,7 +402,7 @@
 
 .amountField:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
 }
 
@@ -424,9 +424,9 @@
 }
 
 .quickAmountBtn:hover:not(:disabled) {
-  background: #667eea;
+  background: #1e40af;
   color: white;
-  border-color: #667eea;
+  border-color: #1e40af;
 }
 
 .quickAmountBtn:disabled {
@@ -550,7 +550,7 @@
 
 .continueButton,
 .submitButton {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   margin-left: auto;
 }

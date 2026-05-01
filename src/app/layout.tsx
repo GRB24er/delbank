@@ -5,18 +5,18 @@ import { Providers } from "@/components/Providers";
 import Chatbox from "@/components/Chatbox";
 
 export const metadata: Metadata = {
-  title: "ZentriBank",
-  description: "Your trusted banking partner",
+  title: "Sovereign Trust Bank",
+  description: "Sovereign Trust Bank - Premier private banking, wealth management, and global financial services.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "ZentriBank",
+    title: "Sovereign Trust Bank",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#10b981",
+  themeColor: "#0f172a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

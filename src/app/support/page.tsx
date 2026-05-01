@@ -54,7 +54,7 @@ export default function SupportPage() {
       title: "Phone Support", 
       desc: "Call us anytime", 
       available: "24/7", 
-      action: () => window.location.href = "tel:1800ZentriBank" 
+      action: () => window.location.href = "tel:18007683765"
     },
     { 
       icon: "📧", 
@@ -87,8 +87,8 @@ export default function SupportPage() {
             </div>
             <div className={styles.emergencyContact}>
               <span>Need urgent help?</span>
-              <a href="tel:1800ZentriBank" className={styles.phoneNumber}>
-                📞 1-800-ZentriBank
+              <a href="tel:18007683765" className={styles.phoneNumber}>
+                📞 1-800-SOVEREIGN
               </a>
             </div>
           </div>

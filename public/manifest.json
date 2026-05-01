@@ -1,11 +1,11 @@
 {
-  "name": "ZentriBank",
-  "short_name": "ZentriBank",
-  "description": "Your trusted banking partner - Secure Mobile Banking",
+  "name": "Sovereign Trust Bank",
+  "short_name": "Sovereign Trust",
+  "description": "Sovereign Trust Bank - Premier private banking and global financial services.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#10b981",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "orientation": "portrait-primary",
   "icons": [
     {
