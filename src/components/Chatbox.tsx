@@ -421,7 +421,7 @@ export default function ChatboxReal() {
                               width: '36px',
                               height: '36px',
                               borderRadius: '50%',
-                              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                              background: 'linear-gradient(135deg, #1e40af 0%, #0f172a 100%)',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',

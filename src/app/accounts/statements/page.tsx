@@ -87,7 +87,7 @@ export default function StatementsPage() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ZentriBank_Statement_${accountType}_${startDate}_${endDate}.pdf`;
+      a.download = `SovereignTrustBank_Statement_${accountType}_${startDate}_${endDate}.pdf`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

@@ -68,25 +68,25 @@ export async function POST(req: NextRequest) {
     const pageWidth = doc.internal.pageSize.getWidth();
 
     // ---- Header bar ----
-    doc.setFillColor(15, 23, 42); // navy #0f172a
+    doc.setFillColor(10, 10, 15); // jet black #0a0a0f
     doc.rect(0, 0, pageWidth, 40, 'F');
 
-    // Gold accent line
-    doc.setFillColor(201, 169, 98); // gold #c9a962
+    // Blue accent line
+    doc.setFillColor(30, 64, 175); // blue #1e40af
     doc.rect(0, 40, pageWidth, 2, 'F');
 
     // Bank name
-    doc.setTextColor(201, 169, 98);
+    doc.setTextColor(59, 130, 246); // accent blue
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
-    doc.text('ZENTRIBANK CAPITAL', 15, 18);
+    doc.text('SOVEREIGN TRUST BANK', 15, 18);
 
     // Bank address
     doc.setTextColor(200, 200, 200);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.text('123 Financial District, Suite 500 | New York, NY 10004', 15, 25);
-    doc.text('Tel: +1 (800) 123-4567 | www.zentribank.capital', 15, 30);
+    doc.text('Tel: +1 (800) 768-3765 | www.sovereigntrustbank.com', 15, 30);
 
     // ---- Statement Title ----
     let y = 52;
@@ -244,10 +244,10 @@ export async function POST(req: NextRequest) {
     }
 
     const fy = doc.internal.pageSize.getHeight() - 35;
-    doc.setFillColor(30, 41, 59);
+    doc.setFillColor(10, 10, 15); // jet black
     doc.rect(0, fy - 5, pageWidth, 40, 'F');
 
-    doc.setTextColor(201, 169, 98);
+    doc.setTextColor(59, 130, 246); // accent blue
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.text('IMPORTANT NOTICE', 15, fy + 3);
@@ -256,12 +256,12 @@ export async function POST(req: NextRequest) {
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
     doc.text(
-      'Please review this statement carefully. Report any discrepancies within 60 days to +1 (800) 123-4567.',
+      'Please review this statement carefully. Report any discrepancies within 60 days to +1 (800) 768-3765.',
       15,
       fy + 9
     );
     doc.text(
-      `© ${new Date().getFullYear()} ZentriBank Capital. All rights reserved. | Member FDIC | Equal Housing Lender`,
+      `© ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved. | Member FDIC | Equal Housing Lender`,
       15,
       fy + 15
     );
@@ -273,7 +273,7 @@ export async function POST(req: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="ZentriBank_Statement_${accountType}_${startDate}_${endDate}.pdf"`,
+        'Content-Disposition': `attachment; filename="SovereignTrustBank_Statement_${accountType}_${startDate}_${endDate}.pdf"`,
         'Content-Length': pdfBuffer.length.toString(),
       },
     });

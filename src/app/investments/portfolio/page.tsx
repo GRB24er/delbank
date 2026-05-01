@@ -70,8 +70,8 @@ export default function PortfolioPage() {
   ];
 
   const assetAllocation = [
-    { category: "Technology", value: 35, amount: 15910501.56, color: "#6366f1" },
-    { category: "Finance", value: 25, amount: 11364643.97, color: "#8b5cf6" },
+    { category: "Technology", value: 35, amount: 15910501.56, color: "#1e40af" },
+    { category: "Finance", value: 25, amount: 11364643.97, color: "#1e3a8a" },
     { category: "Healthcare", value: 20, amount: 9091715.18, color: "#10b981" },
     { category: "Consumer", value: 15, amount: 6818786.38, color: "#f59e0b" },
     { category: "Other", value: 5, amount: 2272928.79, color: "#94a3b8" }

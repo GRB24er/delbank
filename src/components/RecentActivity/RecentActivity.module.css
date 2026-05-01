@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 1.75rem 2rem 1rem;
-  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  background: linear-gradient(135deg, #1e40af15 0%, #0f172a15 100%);
   border-bottom: 1px solid rgba(102, 126, 234, 0.1);
   position: relative;
 }
@@ -29,7 +29,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #1e40af 0%, #0f172a 100%);
 }
 
 .title {
@@ -76,7 +76,7 @@
 }
 
 .buttonPrimary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
@@ -98,8 +98,8 @@
 
 .buttonSecondary:hover {
   background: #f8fafc;
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #1e40af;
+  color: #1e40af;
 }
 
 /* Filters */
@@ -135,7 +135,7 @@
 
 .search:focus,
 .select:focus {
-  border-color: #667eea;
+  border-color: #1e40af;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
   background-color: white;
 }
@@ -177,7 +177,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--stat-color, #667eea) 0%, var(--stat-color-end, #764ba2) 100%);
+  background: linear-gradient(90deg, var(--stat-color, #1e40af) 0%, var(--stat-color-end, #0f172a) 100%);
 }
 
 .statCard:nth-child(1) {

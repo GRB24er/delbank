@@ -1,25 +1,25 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.zentribank.app',
-  appName: 'ZentriBank',
+  appId: 'com.sovereigntrustbank.app',
+  appName: 'Sovereign Trust Bank',
   webDir: 'public',
   server: {
-    url: 'https://www.zentribank.capital',
+    url: 'https://www.sovereigntrustbank.com',
     cleartext: false
   },
   android: {
     allowMixedContent: false,
-    backgroundColor: '#0f172a'
+    backgroundColor: '#0a0a0f'
   },
   ios: {
     contentInset: 'automatic',
-    backgroundColor: '#0f172a'
+    backgroundColor: '#0a0a0f'
   },
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
-      backgroundColor: '#0f172a',
+      backgroundColor: '#0a0a0f',
       showSpinner: false
     }
   }

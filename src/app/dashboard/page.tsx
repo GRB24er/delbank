@@ -185,8 +185,8 @@ export default function DashboardPage() {
       balance: checkingBalance,
       available: checkingBalance,
       icon: "💳",
-      color: "#6366f1",
-      gradient: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+      color: "#1e40af",
+      gradient: "linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)",
       chartData: generateChartData(checkingBalance),
       badge: null
     },
@@ -220,7 +220,7 @@ export default function DashboardPage() {
 
   // Quick actions
   const quickActions = [
-    { icon: "↗️", title: "Transfer", desc: "Move money", link: "/transfers/internal", color: "#6366f1" },
+    { icon: "↗️", title: "Transfer", desc: "Move money", link: "/transfers/internal", color: "#1e40af" },
     { icon: "📄", title: "Pay Bills", desc: "Scheduled payments", link: "/bills", color: "#10b981" },
     { icon: "💰", title: "Deposit", desc: "Add funds", link: "/deposit", color: "#f59e0b" },
     { icon: "📊", title: "Reports", desc: "Analytics", link: "/reports", color: "#ec4899" },

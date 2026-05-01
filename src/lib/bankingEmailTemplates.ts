@@ -61,7 +61,7 @@ export function generateCreditEmail(data: BankingEmailData): string {
           box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
         .header {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
           color: white;
           padding: 30px;
           text-align: center;
@@ -159,7 +159,7 @@ export function generateCreditEmail(data: BankingEmailData): string {
         .button {
           display: inline-block;
           padding: 12px 30px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
           color: white;
           text-decoration: none;
           border-radius: 25px;
@@ -464,7 +464,7 @@ export function generateTransactionStatusEmail(
   const statusConfig = {
     approved: {
       header: 'Transaction Approved',
-      headerBg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      headerBg: 'linear-gradient(135deg, #1e40af 0%, #0f172a 100%)',
       statusColor: '#48bb78',
       statusText: 'APPROVED',
       message: 'Your transaction has been approved and will be processed shortly.'

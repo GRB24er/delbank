@@ -60,7 +60,7 @@
 }
 
 .addBtn {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
 }
@@ -105,7 +105,7 @@
 }
 
 .tabs button.activeTab {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
 }
 
@@ -129,7 +129,7 @@
 }
 
 .viewToggle button.active {
-  background: #6366f1;
+  background: #1e40af;
   color: white;
 }
 
@@ -353,7 +353,7 @@
 
 .actionBtn {
   padding: 0.375rem 0.75rem;
-  background: #6366f1;
+  background: #1e40af;
   color: white;
   border: none;
   border-radius: 6px;

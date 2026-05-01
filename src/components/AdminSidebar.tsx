@@ -115,7 +115,7 @@ export default function AdminSidebar() {
             <span className={styles.logoIcon}>🦁</span>
             {!collapsed && (
               <div className={styles.logoText}>
-                <span className={styles.bankName}>ZentriBank</span>
+                <span className={styles.bankName}>Sovereign Trust</span>
                 <span className={styles.bankTagline}>Admin Panel</span>
               </div>
             )}

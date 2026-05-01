@@ -316,7 +316,7 @@ export default function OTPModal({
   width: 64px;
   height: 64px;
   margin: 0 auto 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -384,7 +384,7 @@ export default function OTPModal({
 
 .otpInput:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -433,7 +433,7 @@ export default function OTPModal({
 .verifyBtn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -457,8 +457,8 @@ export default function OTPModal({
   width: 100%;
   padding: 12px;
   background: transparent;
-  color: #667eea;
-  border: 1px solid #667eea;
+  color: #1e40af;
+  border: 1px solid #1e40af;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
@@ -490,6 +490,6 @@ export default function OTPModal({
 
 .securityNote svg {
   flex-shrink: 0;
-  color: #667eea;
+  color: #1e40af;
 }
 */

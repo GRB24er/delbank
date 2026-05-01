@@ -16,7 +16,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -63,7 +63,7 @@
 .primaryButton {
   padding: 1rem 2rem;
   background: white;
-  color: #667eea;
+  color: #1e40af;
   border: none;
   border-radius: 12px;
   font-size: 1rem;
@@ -176,12 +176,12 @@
 }
 
 .tab:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #1e40af;
+  color: #1e40af;
 }
 
 .activeTab {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   border-color: transparent;
 }
@@ -271,7 +271,7 @@
 .linkButton {
   background: none;
   border: none;
-  color: #667eea;
+  color: #1e40af;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -360,7 +360,7 @@
 .faqQuestion::after {
   content: '+';
   font-size: 1.5rem;
-  color: #667eea;
+  color: #1e40af;
   transition: transform 0.3s;
 }
 

@@ -47,7 +47,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -136,7 +136,7 @@
 }
 
 .tabs button.activeTab {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
 }
 
@@ -240,7 +240,7 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   border-radius: 6px;
   transition: width 0.3s;
 }
@@ -297,7 +297,7 @@
 }
 
 .paymentBtn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   border: none;
 }
@@ -364,7 +364,7 @@
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: #1e40af;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
@@ -383,14 +383,14 @@
 
 .calculatorResult h2 {
   font-size: 2.5rem;
-  color: #6366f1;
+  color: #1e40af;
   margin: 0.5rem 0 0 0;
 }
 
 .applyNowBtn {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
   border-radius: 8px;

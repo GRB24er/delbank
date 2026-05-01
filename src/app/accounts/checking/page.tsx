@@ -233,7 +233,7 @@ export default function CheckingAccountPage() {
 
         {/* Benefits Section */}
         <section className={styles.benefits}>
-          <h2 className={styles.sectionTitle}>Why Choose Horizon Checking?</h2>
+          <h2 className={styles.sectionTitle}>Why Choose Sovereign Trust Checking?</h2>
           <div className={styles.benefitsGrid}>
             <div className={styles.benefitCard}>
               <div className={styles.benefitIcon}>🌍</div>

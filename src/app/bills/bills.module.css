@@ -40,7 +40,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -129,8 +129,8 @@
 }
 
 .tabs button.activeTab {
-  color: #667eea;
-  border-bottom-color: #667eea;
+  color: #1e40af;
+  border-bottom-color: #1e40af;
 }
 
 /* Selection Bar */
@@ -299,7 +299,7 @@ input:checked + .slider:before {
 
 .actionBtn {
   padding: 0.375rem 0.75rem;
-  background: #667eea;
+  background: #1e40af;
   color: white;
   border: none;
   border-radius: 6px;

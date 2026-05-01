@@ -48,7 +48,7 @@
  align-items: center;
  gap: 0.5rem;
  padding: 0.875rem 1.5rem;
- background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+ background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
  color: white;
  border: none;
  border-radius: 10px;
@@ -190,7 +190,7 @@
 }
 
 .selectorBtn.selected {
- background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+ background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
  color: white;
  border-color: transparent;
 }
@@ -271,8 +271,8 @@
 
 .actionBtn:hover {
  background: #f8fafc;
- border-color: #6366f1;
- color: #6366f1;
+ border-color: #1e40af;
+ color: #1e40af;
 }
 
 /* Activity Section */
@@ -303,7 +303,7 @@
  background: white;
  border: 1px solid #e2e8f0;
  border-radius: 6px;
- color: #6366f1;
+ color: #1e40af;
  font-size: 0.875rem;
  font-weight: 600;
  cursor: pointer;
@@ -312,7 +312,7 @@
 
 .viewAllBtn:hover {
  background: #f8fafc;
- border-color: #6366f1;
+ border-color: #1e40af;
 }
 
 /* Activity Table */

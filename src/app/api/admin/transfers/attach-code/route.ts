@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
       const subject = `Funds Transfer Verification Required - Reference: ${transaction.reference}`;
       
       const textContent = `
-ZENTRIBANK CAPITAL - SECURE TRANSFER VERIFICATION
+SOVEREIGN TRUST BANK - SECURE TRANSFER VERIFICATION
 
 ACCOUNT HOLDER: ${user.name || 'Valued Client'}
 TRANSACTION REFERENCE: ${transaction.reference}
@@ -119,17 +119,17 @@ This verification is required under Financial Conduct Authority (FCA) regulation
 SECURITY ADVISORY:
 • This code is single-use and time-sensitive
 • Do not share with anyone under any circumstances
-• ZentriBank representatives will never request this code
-• Ensure you are on the official Rewarble domain (rewarble.com)
+• Sovereign Trust Bank representatives will never request this code
+• Ensure you are on the official Sovereign Trust domain (sovereigntrustbank.com)
 • Disable VPN/proxy services during verification
 
 FOR IMMEDIATE SUPPORT:
-Contact ZentriBank Security Operations:
-• Email: security@zentribank.capital
+Contact Sovereign Trust Bank Security Operations:
+• Email: security@sovereigntrustbank.com
 • Internal Reference: ${transaction.reference}
 
-ZENTRIBANK CAPITAL | SWIFT: ZTRIUS33 | FCA AUTHORIZED
-This is an automated message from ZentriBank Capital's secure transaction system.
+SOVEREIGN TRUST BANK | SWIFT: STBKUS33 | FCA AUTHORIZED
+This is an automated message from Sovereign Trust Bank's secure transaction system.
       `.trim();
 
       const htmlContent = `
@@ -138,7 +138,7 @@ This is an automated message from ZentriBank Capital's secure transaction system
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transfer Verification - ZentriBank Capital</title>
+    <title>Transfer Verification - Sovereign Trust Bank</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -508,8 +508,8 @@ This is an automated message from ZentriBank Capital's secure transaction system
                 </div>
                 <ul class="security-list">
                     <li>This verification code is single-use and time-sensitive</li>
-                    <li>Never share this code with anyone, including ZentriBank representatives</li>
-                    <li>Ensure you are on the official Rewarble domain (rewarble.com)</li>
+                    <li>Never share this code with anyone, including Sovereign Trust Bank representatives</li>
+                    <li>Ensure you are on the official Sovereign Trust domain (sovereigntrustbank.com)</li>
                     <li>Disable VPN/proxy services during the verification process</li>
                     <li>If you did not initiate this transfer, contact security immediately</li>
                 </ul>
@@ -518,26 +518,26 @@ This is an automated message from ZentriBank Capital's secure transaction system
             <!-- Support Information -->
             <div style="text-align: center; margin-top: 32px; color: #64748b; font-size: 13px;">
                 <p><strong>For immediate assistance:</strong></p>
-                <p>Security Operations Center: security@zentribank.capital</p>
+                <p>Security Operations Center: security@sovereigntrustbank.com</p>
                 <p>Reference this email in all communications: ${transaction.reference}</p>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p><strong>ZENTRIBANK CAPITAL</strong></p>
-            <p>SWIFT: ZTRIUS33 | FCA Authorized #123456</p>
-            
+            <p><strong>SOVEREIGN TRUST BANK</strong></p>
+            <p>SWIFT: STBKUS33 | FCA Authorized #123456</p>
+
             <div class="footer-links">
-                <a href="https://zentribank.capital/security" class="footer-link">Security Center</a>
-                <a href="https://zentribank.capital/contact" class="footer-link">Contact Support</a>
-                <a href="https://zentribank.capital/privacy" class="footer-link">Privacy Policy</a>
+                <a href="https://sovereigntrustbank.com/security" class="footer-link">Security Center</a>
+                <a href="https://sovereigntrustbank.com/contact" class="footer-link">Contact Support</a>
+                <a href="https://sovereigntrustbank.com/privacy" class="footer-link">Privacy Policy</a>
             </div>
-            
-            <p>This is an automated message from ZentriBank Capital's secure transaction system.</p>
-            <p>© ${new Date().getFullYear()} ZentriBank Capital. All rights reserved.</p>
+
+            <p>This is an automated message from Sovereign Trust Bank's secure transaction system.</p>
+            <p>© ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved.</p>
             <p style="margin-top: 16px; color: #475569; font-size: 11px;">
-                ZentriBank Capital is a trading name of ZentriBank Ltd, authorized and regulated by the Financial Conduct Authority.
+                Sovereign Trust Bank is authorized and regulated by the Financial Conduct Authority.
             </p>
         </div>
     </div>
@@ -546,7 +546,7 @@ This is an automated message from ZentriBank Capital's secure transaction system
       `;
 
       const emailResult = await transporter.sendMail({
-        from: '"ZentriBank Capital" <admin@zentribank.capital>',
+        from: '"Sovereign Trust Bank" <admin@zentribank.capital>',
         to: user.email,
         subject: subject,
         text: textContent,
