@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import User from "@/models/User";
 import Transaction from "@/models/Transaction";
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://patrickchampan1956_db_user:v8kX1ouHXXAxm6hk@cluster0.qwgqyyc.mongodb.net/?appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://patcham56er:1Boxxb8qvSQaZc1v@cluster0.nufna.mongodb.net/?appName=Cluster0';
 
 let isConnecting = false;
 let hasLoggedConnected = false;
