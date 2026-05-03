@@ -210,28 +210,32 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateStep(4)) return;
-    
+
     setLoading(true);
+    setErrorMsg("");
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    
-    const data = await res.json();
-    setLoading(false);
+      const data = await res.json().catch(() => ({}));
 
-    if (!res.ok) {
-      setErrorMsg(data.message || "Registration failed. Please try again.");
-      return;
+      if (!res.ok) {
+        setLoading(false);
+        setErrorMsg(data.message || "Registration failed. Please try again.");
+        return;
+      }
+
+      router.push("/auth/signin?registered=1");
+    } catch (err) {
+      setLoading(false);
+      setErrorMsg("Network error. Please check your connection and try again.");
     }
-
-    router.push("/auth/signin?registered=1");
   };
 
   const getPasswordStrengthColor = () => {

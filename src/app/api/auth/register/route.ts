@@ -212,25 +212,26 @@ export async function POST(request: NextRequest) {
 
     console.log('User created successfully:', newUser.email);
 
-    // Send welcome email (don't fail registration if email fails)
-    try {
-      console.log('Attempting to send welcome email to:', userEmail);
-      const emailResult = await sendWelcomeEmail(userEmail, { name: fullName });
-      
-      if (emailResult.failed) {
-        console.warn('Welcome email failed but registration continues:', emailResult.error);
-      } else if (emailResult.skipped) {
-        console.log('Welcome email skipped (SMTP not configured)');
-      } else {
-        console.log('Welcome email sent successfully');
-      }
-    } catch (emailError) {
-      console.error('Welcome email error (non-fatal):', emailError);
-      // Continue with registration even if email fails
-    }
+    // Fire-and-forget welcome email - do NOT await.
+    // SMTP can take 30-90s with retries, which exceeds serverless request
+    // timeouts and causes the client to see a "Registration failed" error
+    // even though the user was created successfully.
+    sendWelcomeEmail(userEmail, { name: fullName })
+      .then((emailResult: any) => {
+        if (emailResult?.failed) {
+          console.warn('[register] Welcome email failed:', emailResult.error);
+        } else if (emailResult?.skipped) {
+          console.log('[register] Welcome email skipped (no SMTP)');
+        } else {
+          console.log('[register] Welcome email sent to', userEmail);
+        }
+      })
+      .catch((emailError: any) => {
+        console.error('[register] Welcome email error (non-fatal):', emailError);
+      });
 
-    // Return success response
-    return NextResponse.json({ 
+    // Return success response immediately
+    return NextResponse.json({
       message: 'Account created successfully! You can now sign in.',
       success: true,
       user: {
