@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import styles from "./signup.module.css";
 
 type FormData = {
@@ -684,13 +685,14 @@ export default function SignUpPage() {
         <div className={styles.sidebar}>
           <div className={styles.sidebarContent}>
             <div className={styles.brand}>
-              <svg className={styles.brandIcon} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L4 7v6c0 4.52 3.13 8.75 8 9.88 4.87-1.13 8-5.36 8-9.88V7l-8-5z"/>
-              </svg>
-              <div>
-                <div className={styles.brandName}>Sovereign Trust Bank</div>
-                <div className={styles.brandTagline}>Private Banking</div>
-              </div>
+              <Image
+                src="/images/Logo.png"
+                alt="Sovereign Trust Bank"
+                width={240}
+                height={70}
+                priority
+                style={{ height: 'auto', objectFit: 'contain', maxWidth: '100%' }}
+              />
             </div>
 
             <div className={styles.features}>

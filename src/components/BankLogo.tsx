@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 
 interface BankLogoProps {
   width?: number;
@@ -10,17 +9,14 @@ interface BankLogoProps {
 }
 
 export default function BankLogo({ width = 32, height = 32, className }: BankLogoProps) {
-  const [src, setSrc] = useState("/images/logo.png");
-
   return (
     <Image
-      src={src}
+      src="/images/Logo.png"
       alt="Sovereign Trust Bank"
       width={width}
       height={height}
       className={className}
       priority
-      onError={() => setSrc("/icons/logo.svg")} // fallback if PNG missing
     />
   );
 }

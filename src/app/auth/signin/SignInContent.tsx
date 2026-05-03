@@ -434,8 +434,14 @@ export default function SignInContent() {
         <div style={leftColumnStyle}>
           <div style={formWrapperStyle}>
             <div style={logoContainerStyle}>
-              <div style={logoIconStyle}>🏦</div>
-              <span style={logoTextStyle}>Sovereign Trust Bank</span>
+              <Image
+                src="/images/Logo.png"
+                alt="Sovereign Trust Bank"
+                width={220}
+                height={60}
+                priority
+                style={{ height: 'auto', objectFit: 'contain' }}
+              />
             </div>
 
             <h1 style={headingStyle}>Welcome Back</h1>
