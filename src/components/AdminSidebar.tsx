@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import styles from "./Sidebar.module.css";
@@ -112,12 +113,24 @@ export default function AdminSidebar() {
         {/* Logo Section */}
         <div className={styles.logoSection}>
           <div className={styles.logo}>
-            <span className={styles.logoIcon}>🦁</span>
-            {!collapsed && (
-              <div className={styles.logoText}>
-                <span className={styles.bankName}>Sovereign Trust</span>
-                <span className={styles.bankTagline}>Admin Panel</span>
-              </div>
+            {collapsed ? (
+              <Image
+                src="/images/Logo.png"
+                alt="Sovereign Trust Bank"
+                width={40}
+                height={40}
+                priority
+                style={{ objectFit: 'contain' }}
+              />
+            ) : (
+              <Image
+                src="/images/Logo.png"
+                alt="Sovereign Trust Bank"
+                width={180}
+                height={50}
+                priority
+                style={{ objectFit: 'contain', height: 'auto' }}
+              />
             )}
           </div>
           <button

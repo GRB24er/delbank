@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import styles from "./signup.module.css";
 
 type FormData = {
@@ -209,28 +210,32 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateStep(4)) return;
-    
+
     setLoading(true);
+    setErrorMsg("");
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    
-    const data = await res.json();
-    setLoading(false);
+      const data = await res.json().catch(() => ({}));
 
-    if (!res.ok) {
-      setErrorMsg(data.message || "Registration failed. Please try again.");
-      return;
+      if (!res.ok) {
+        setLoading(false);
+        setErrorMsg(data.message || "Registration failed. Please try again.");
+        return;
+      }
+
+      router.push("/auth/signin?registered=1");
+    } catch (err) {
+      setLoading(false);
+      setErrorMsg("Network error. Please check your connection and try again.");
     }
-
-    router.push("/auth/signin?registered=1");
   };
 
   const getPasswordStrengthColor = () => {
@@ -684,13 +689,14 @@ export default function SignUpPage() {
         <div className={styles.sidebar}>
           <div className={styles.sidebarContent}>
             <div className={styles.brand}>
-              <svg className={styles.brandIcon} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L4 7v6c0 4.52 3.13 8.75 8 9.88 4.87-1.13 8-5.36 8-9.88V7l-8-5z"/>
-              </svg>
-              <div>
-                <div className={styles.brandName}>Sovereign Trust Bank</div>
-                <div className={styles.brandTagline}>Private Banking</div>
-              </div>
+              <Image
+                src="/images/Logo.png"
+                alt="Sovereign Trust Bank"
+                width={240}
+                height={70}
+                priority
+                style={{ height: 'auto', objectFit: 'contain', maxWidth: '100%' }}
+              />
             </div>
 
             <div className={styles.features}>
