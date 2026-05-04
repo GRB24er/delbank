@@ -9,7 +9,7 @@ import Transaction from '@/models/Transaction';
 
 const { sendSimpleEmail } = require('@/lib/mail');
 
-const ADMIN_EMAILS = ['admin@horizonbank.com', 'admin@zentribank.capital'];
+const ADMIN_EMAILS = ['admin@horizonbank.com', 'admin@sovereigntrust.pro'];
 
 export async function POST(req: NextRequest) {
   try {
@@ -315,7 +315,7 @@ export async function POST(req: NextRequest) {
               123 Financial District, Suite 500<br>
               New York, NY 10004, United States<br>
               Tel: +1 (800) 768-3765<br>
-              www.sovereigntrustbank.com | admin@zentribank.capital
+              www.sovereigntrust.pro | admin@sovereigntrust.pro
             </div>
           </div>
           
@@ -427,7 +427,7 @@ export async function POST(req: NextRequest) {
               <div class="footer-important-title">IMPORTANT NOTICE</div>
               <div class="footer-important-text">
                 Please review this statement carefully. If you notice any discrepancies or unauthorized transactions, 
-                please contact us immediately at +1 (800) 768-3765 or admin@zentribank.capital. You have 60 days from
+                please contact us immediately at +1 (800) 768-3765 or admin@sovereigntrust.pro. You have 60 days from
                 the statement date to report any errors.
               </div>
             </div>
@@ -440,12 +440,12 @@ export async function POST(req: NextRequest) {
               </div>
               <div class="contact-item">
                 <div class="contact-label">EMAIL SUPPORT</div>
-                admin@zentribank.capital<br>
+                admin@sovereigntrust.pro<br>
                 Response within 24 hours
               </div>
               <div class="contact-item">
                 <div class="contact-label">ONLINE BANKING</div>
-                www.sovereigntrustbank.com<br>
+                www.sovereigntrust.pro<br>
                 Secure access anytime
               </div>
             </div>

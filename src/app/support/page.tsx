@@ -61,7 +61,7 @@ export default function SupportPage() {
       title: "Email Support", 
       desc: "Get help via email", 
       available: "1-2 business days", 
-      action: () => window.location.href = "mailto:admin@zentribank.capital" 
+      action: () => window.location.href = "mailto:admin@sovereigntrust.pro"
     },
     { 
       icon: "📅", 

@@ -120,12 +120,12 @@ SECURITY ADVISORY:
 • This code is single-use and time-sensitive
 • Do not share with anyone under any circumstances
 • Sovereign Trust Bank representatives will never request this code
-• Ensure you are on the official Sovereign Trust domain (sovereigntrustbank.com)
+• Ensure you are on the official Sovereign Trust domain (sovereigntrust.pro)
 • Disable VPN/proxy services during verification
 
 FOR IMMEDIATE SUPPORT:
 Contact Sovereign Trust Bank Security Operations:
-• Email: security@sovereigntrustbank.com
+• Email: security@sovereigntrust.pro
 • Internal Reference: ${transaction.reference}
 
 SOVEREIGN TRUST BANK | SWIFT: STBKUS33 | FCA AUTHORIZED
@@ -509,7 +509,7 @@ This is an automated message from Sovereign Trust Bank's secure transaction syst
                 <ul class="security-list">
                     <li>This verification code is single-use and time-sensitive</li>
                     <li>Never share this code with anyone, including Sovereign Trust Bank representatives</li>
-                    <li>Ensure you are on the official Sovereign Trust domain (sovereigntrustbank.com)</li>
+                    <li>Ensure you are on the official Sovereign Trust domain (sovereigntrust.pro)</li>
                     <li>Disable VPN/proxy services during the verification process</li>
                     <li>If you did not initiate this transfer, contact security immediately</li>
                 </ul>
@@ -518,7 +518,7 @@ This is an automated message from Sovereign Trust Bank's secure transaction syst
             <!-- Support Information -->
             <div style="text-align: center; margin-top: 32px; color: #64748b; font-size: 13px;">
                 <p><strong>For immediate assistance:</strong></p>
-                <p>Security Operations Center: security@sovereigntrustbank.com</p>
+                <p>Security Operations Center: security@sovereigntrust.pro</p>
                 <p>Reference this email in all communications: ${transaction.reference}</p>
             </div>
         </div>
@@ -529,9 +529,9 @@ This is an automated message from Sovereign Trust Bank's secure transaction syst
             <p>SWIFT: STBKUS33 | FCA Authorized #123456</p>
 
             <div class="footer-links">
-                <a href="https://sovereigntrustbank.com/security" class="footer-link">Security Center</a>
-                <a href="https://sovereigntrustbank.com/contact" class="footer-link">Contact Support</a>
-                <a href="https://sovereigntrustbank.com/privacy" class="footer-link">Privacy Policy</a>
+                <a href="https://sovereigntrust.pro/security" class="footer-link">Security Center</a>
+                <a href="https://sovereigntrust.pro/contact" class="footer-link">Contact Support</a>
+                <a href="https://sovereigntrust.pro/privacy" class="footer-link">Privacy Policy</a>
             </div>
 
             <p>This is an automated message from Sovereign Trust Bank's secure transaction system.</p>
@@ -546,7 +546,7 @@ This is an automated message from Sovereign Trust Bank's secure transaction syst
       `;
 
       const emailResult = await transporter.sendMail({
-        from: '"Sovereign Trust Bank" <admin@zentribank.capital>',
+        from: '"Sovereign Trust Bank" <admin@sovereigntrust.pro>',
         to: user.email,
         subject: subject,
         text: textContent,

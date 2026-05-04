@@ -1,11 +1,11 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.sovereigntrustbank.app',
+  appId: 'com.sovereigntrust.app',
   appName: 'Sovereign Trust Bank',
   webDir: 'public',
   server: {
-    url: 'https://www.sovereigntrustbank.com',
+    url: 'https://www.sovereigntrust.pro',
     cleartext: false
   },
   android: {
