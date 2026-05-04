@@ -312,8 +312,9 @@ export async function POST(req: NextRequest) {
           <div class="letterhead">
             <div class="bank-info">
               <strong>SOVEREIGN TRUST BANK</strong>
-              123 Financial District, Suite 500<br>
-              New York, NY 10004, United States<br>
+              Peninsula Square<br>
+              Canary Wharf, London E14<br>
+              United Kingdom<br>
               Tel: +1 (800) 768-3765<br>
               www.sovereigntrust.pro | admin@sovereigntrust.pro
             </div>

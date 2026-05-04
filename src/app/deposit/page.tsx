@@ -45,7 +45,7 @@ export default function FundAccountPage() {
     accountNumber: "8934567821",
     routingNumber: "021000021",
     swiftCode: "STBKUS33",
-    bankAddress: "100 Wall Street, New York, NY 10005"
+    bankAddress: "Peninsula Square, Canary Wharf, London E14, United Kingdom"
   };
 
   // ============================================
