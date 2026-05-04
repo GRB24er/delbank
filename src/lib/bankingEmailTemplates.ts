@@ -242,8 +242,8 @@ export function generateCreditEmail(data: BankingEmailData): string {
         
         <div class="footer">
           <p>This is an automated notification. Please do not reply to this email.</p>
-          <p>For assistance, contact our support team at support@yourbank.com</p>
-          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Your Bank. All rights reserved.</p>
+          <p>For assistance, contact our support team at support@sovereigntrust.pro</p>
+          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -437,14 +437,14 @@ export function generateDebitEmail(data: BankingEmailData): string {
           ` : ''}
           
           <div class="security-notice">
-            <strong>Important:</strong> If you did not authorize this transaction, please contact our support team immediately at 1-800-XXX-XXXX.
+            <strong>Important:</strong> If you did not authorize this transaction, please contact our support team immediately at +1 (800) 768-3765 or support@sovereigntrust.pro.
           </div>
         </div>
         
         <div class="footer">
           <p>This is an automated notification. Please do not reply to this email.</p>
-          <p>For assistance, contact our support team at support@yourbank.com</p>
-          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Your Bank. All rights reserved.</p>
+          <p>For assistance, contact our support team at support@sovereigntrust.pro</p>
+          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -589,7 +589,7 @@ export function generateTransactionStatusEmail(
         </div>
         
         <div style="background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 14px;">
-          <p>© ${new Date().getFullYear()} Your Bank. All rights reserved.</p>
+          <p>© ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved.</p>
         </div>
       </div>
     </body>
