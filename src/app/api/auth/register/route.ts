@@ -159,7 +159,6 @@ export async function POST(request: NextRequest) {
       investmentBalance: 0,
       accountNumber,
       routingNumber,
-      transactions: [],
     };
 
     // Store enhanced profile data if available
@@ -197,18 +196,6 @@ export async function POST(request: NextRequest) {
     // Create the user
     console.log('Creating user:', userEmail);
     const newUser = await User.create(userData);
-
-    // Add initial transaction
-    const initTransaction = {
-      type: 'deposit' as const,
-      amount: 0,
-      description: 'Account opened',
-      date: new Date(),
-      balanceAfter: 0,
-    };
-
-    newUser.transactions.push(initTransaction);
-    await newUser.save();
 
     console.log('User created successfully:', newUser.email);
 
