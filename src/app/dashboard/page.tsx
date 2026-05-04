@@ -105,7 +105,7 @@ export default function DashboardPage() {
         <div className={styles.loadingScreen}>
           <div className={styles.loadingContent}>
             <div className={styles.loadingLogo}>
-              <div className={styles.loadingLogoIcon}>Z</div>
+              <div className={styles.loadingLogoIcon}>S</div>
               <div className={styles.loadingPulse}></div>
             </div>
             <div className={styles.loadingText}>Loading your dashboard</div>

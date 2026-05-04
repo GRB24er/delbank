@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
     doc.setTextColor(200, 200, 200);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.text('123 Financial District, Suite 500 | New York, NY 10004', 15, 25);
+    doc.text('Peninsula Square, Canary Wharf, London E14, United Kingdom', 15, 25);
     doc.text('Tel: +1 (800) 768-3765 | www.sovereigntrust.pro', 15, 30);
 
     // ---- Statement Title ----
