@@ -3,7 +3,7 @@
    Enterprise-grade design system
    ============================================================ */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Global resets handled in globals.css */
 
 .landingPage {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
