@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import styles from "./signup.module.css";
 
 type FormData = {
@@ -177,8 +176,9 @@ export default function SignUpPage() {
           setErrorMsg("All address fields are required");
           return false;
         }
-        if (!/^\+\d{10,15}$/.test(form.phone)) {
-          setErrorMsg("Phone number must include country code (e.g., +44 for UK)");
+        const cleanPhone = form.phone.replace(/[\s\-().]/g, '');
+        if (!/^\+\d{7,15}$/.test(cleanPhone)) {
+          setErrorMsg("Phone number must include country code (e.g., +44 7911 123456 or +1 212 555 1234)");
           return false;
         }
         break;
