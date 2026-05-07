@@ -1871,7 +1871,7 @@ export default function InternationalTransferPage() {
                 </button>
                 <div className={styles.supportContact}>
                   <span>Or call:</span>
-                  <strong>1-800-HORIZON</strong>
+                  <strong>admin@strangefregetrust.com</strong>
                 </div>
                 <div className={styles.supportHours}>
                   <span>Available 24/7</span>

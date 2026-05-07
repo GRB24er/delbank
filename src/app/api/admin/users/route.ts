@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
     const formattedUsers = users.map(user => ({
       _id: user._id.toString(), // Fixed: Properly type the _id field
       name: user.name || 'Unknown User',
-      email: user.email || 'no-email@example.com',
+      email: user.email || 'no-email@strangefregetrust.com',
       checkingBalance: Number(user.checkingBalance) || 0,
       savingsBalance: Number(user.savingsBalance) || 0,
       investmentBalance: Number(user.investmentBalance) || 0,

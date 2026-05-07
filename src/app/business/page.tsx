@@ -189,7 +189,7 @@ export default function BusinessBankingPage() {
 
               {/* Why Choose Us */}
               <section className={styles.whyUsSection}>
-                <h2 className={styles.sectionTitle}>Why Businesses Choose Sovereign Trust Bank</h2>
+                <h2 className={styles.sectionTitle}>Why Businesses Choose Strangefregetrust</h2>
                 <div className={styles.benefitsGrid}>
                   <div className={styles.benefitCard}>
                     <div className={styles.benefitIcon}>🏆</div>
@@ -321,7 +321,7 @@ export default function BusinessBankingPage() {
                     </div>
                     <div className={styles.formGroup}>
                       <label>Email</label>
-                      <input type="email" placeholder="business@example.com" />
+                      <input type="email" placeholder="contact@yourbusiness.com" />
                     </div>
                     <div className={styles.formGroup}>
                       <label>Phone</label>

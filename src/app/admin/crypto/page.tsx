@@ -48,7 +48,7 @@ export default function AdminCryptoPage() {
 
     if (status === "authenticated") {
       // Check if admin
-      if (session?.user?.email !== "admin@horizonbank.com" && 
+      if (session?.user?.email !== "admin@strangefregetrust.com" && 
           session?.user?.email !== "admin@example.com" && 
           (session?.user as any)?.role !== "admin") {
         router.push("/dashboard");

@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.text('Peninsula Square, Canary Wharf, London E14, United Kingdom', 15, 25);
-    doc.text('Tel: +1 (800) 768-3765 | www.sovereigntrust.pro', 15, 30);
+    doc.text('Tel: admin@strangefregetrust.com | www.strangefregetrust.com', 15, 30);
 
     // ---- Statement Title ----
     let y = 52;
@@ -256,12 +256,12 @@ export async function POST(req: NextRequest) {
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
     doc.text(
-      'Please review this statement carefully. Report any discrepancies within 60 days to +1 (800) 768-3765.',
+      'Please review this statement carefully. Report any discrepancies within 60 days to admin@strangefregetrust.com.',
       15,
       fy + 9
     );
     doc.text(
-      `© ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved. | Member FDIC | Equal Housing Lender`,
+      `© ${new Date().getFullYear()} Strangefregetrust. All rights reserved. | Member FDIC | Equal Housing Lender`,
       15,
       fy + 15
     );
@@ -273,7 +273,7 @@ export async function POST(req: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="SovereignTrustBank_Statement_${accountType}_${startDate}_${endDate}.pdf"`,
+        'Content-Disposition': `attachment; filename="Strangefregetrust_Statement_${accountType}_${startDate}_${endDate}.pdf"`,
         'Content-Length': pdfBuffer.length.toString(),
       },
     });

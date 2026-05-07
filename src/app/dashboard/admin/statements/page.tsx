@@ -172,7 +172,7 @@ export default function AdminStatementsPage() {
                 type="email"
                 value={selectedUser}
                 onChange={(e) => setSelectedUser(e.target.value)}
-                placeholder="user@example.com"
+                placeholder="user@email.com"
                 style={{
                   width: '100%',
                   padding: '12px 16px',

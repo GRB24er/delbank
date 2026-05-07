@@ -220,7 +220,7 @@ export default function DashboardPage() {
 
   // Quick actions
   const quickActions = [
-    { icon: "↗️", title: "Transfer", desc: "Move money", link: "/transfers/internal", color: "#1e40af" },
+    { icon: "→️", title: "Transfer", desc: "Move money", link: "/transfers/internal", color: "#1e40af" },
     { icon: "📄", title: "Pay Bills", desc: "Scheduled payments", link: "/bills", color: "#10b981" },
     { icon: "💰", title: "Deposit", desc: "Add funds", link: "/deposit", color: "#f59e0b" },
     { icon: "📊", title: "Reports", desc: "Analytics", link: "/reports", color: "#ec4899" },

@@ -18,7 +18,7 @@ export const DebitCard: React.FC<DebitCardProps> = ({
   expiry,
 }) => (
   <div className={styles.card}>
-    <div className={styles.logo}>Sovereign Trust</div>
+    <div className={styles.logo}>Strangefregetrust</div>
     <div className={styles.chip} />
     <div className={styles.number}>{cardNumber}</div>
     <div className={styles.infoRow}>

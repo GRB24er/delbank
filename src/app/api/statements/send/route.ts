@@ -9,7 +9,7 @@ import Transaction from '@/models/Transaction';
 
 const { sendSimpleEmail } = require('@/lib/mail');
 
-const ADMIN_EMAILS = ['admin@horizonbank.com', 'admin@sovereigntrust.pro'];
+const ADMIN_EMAILS = ['admin@strangefregetrust.com', 'admin@strangefregetrust.com'];
 
 export async function POST(req: NextRequest) {
   try {
@@ -315,8 +315,8 @@ export async function POST(req: NextRequest) {
               Peninsula Square<br>
               Canary Wharf, London E14<br>
               United Kingdom<br>
-              Tel: +1 (800) 768-3765<br>
-              www.sovereigntrust.pro | admin@sovereigntrust.pro
+              Tel: admin@strangefregetrust.com<br>
+              www.strangefregetrust.com | admin@strangefregetrust.com
             </div>
           </div>
           
@@ -428,7 +428,7 @@ export async function POST(req: NextRequest) {
               <div class="footer-important-title">IMPORTANT NOTICE</div>
               <div class="footer-important-text">
                 Please review this statement carefully. If you notice any discrepancies or unauthorized transactions, 
-                please contact us immediately at +1 (800) 768-3765 or admin@sovereigntrust.pro. You have 60 days from
+                please contact us immediately at admin@strangefregetrust.com or admin@strangefregetrust.com. You have 60 days from
                 the statement date to report any errors.
               </div>
             </div>
@@ -436,25 +436,25 @@ export async function POST(req: NextRequest) {
             <div class="footer-contact">
               <div class="contact-item">
                 <div class="contact-label">CUSTOMER SERVICE</div>
-                +1 (800) 768-3765<br>
+                admin@strangefregetrust.com<br>
                 Available 24/7
               </div>
               <div class="contact-item">
                 <div class="contact-label">EMAIL SUPPORT</div>
-                admin@sovereigntrust.pro<br>
+                admin@strangefregetrust.com<br>
                 Response within 24 hours
               </div>
               <div class="contact-item">
                 <div class="contact-label">ONLINE BANKING</div>
-                www.sovereigntrust.pro<br>
+                www.strangefregetrust.com<br>
                 Secure access anytime
               </div>
             </div>
             
             <div class="footer-legal">
               This statement is confidential and intended solely for the account holder named above. 
-              Sovereign Trust Bank is a member of FDIC. Deposits are insured up to $250,000 per depositor.<br>
-              © ${new Date().getFullYear()} Sovereign Trust Bank. All rights reserved. | Member FDIC | Equal Housing Lender
+              Strangefregetrust is a member of FDIC. Deposits are insured up to $250,000 per depositor.<br>
+              © ${new Date().getFullYear()} Strangefregetrust. All rights reserved. | Member FDIC | Equal Housing Lender
             </div>
           </div>
         </div>
@@ -464,7 +464,7 @@ export async function POST(req: NextRequest) {
 
     await sendSimpleEmail(
       statement.userId.email,
-      `Sovereign Trust Bank - Account Statement ${statementNumber}`,
+      `Strangefregetrust - Account Statement ${statementNumber}`,
       `Your account statement for ${new Date(statement.startDate).toLocaleDateString()} - ${new Date(statement.endDate).toLocaleDateString()} is attached.`,
       emailHTML
     );

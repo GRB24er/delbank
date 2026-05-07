@@ -7,13 +7,13 @@ import nodemailer, { Transporter, SentMessageInfo } from "nodemailer";
 const SMTP_HOST = "smtp.hostinger.com";
 const SMTP_PORT = 465;
 const SMTP_SECURE = true;
-const SMTP_USER = "admin@sovereigntrust.pro"
+const SMTP_USER = "admin@strangefregetrust.com"
 const SMTP_PASS = "Valmont15#Benjamin2010";
 
 // Brand Configuration
-const BRAND_NAME = "Sovereign Trust Bank";
-const BRAND_SHORT = "Sovereign Trust";
-const BRAND_DOMAIN = "sovereigntrust.pro";
+const BRAND_NAME = "Strangefregetrust";
+const BRAND_SHORT = "Strangefregetrust";
+const BRAND_DOMAIN = "strangefregetrust.com";
 const BRAND_TAGLINE = "Private Banking. Global Trust.";
 const BRAND_YEAR_FOUNDED = "1897";
 

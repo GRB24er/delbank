@@ -1,491 +1,341 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import styles from "./landing.module.css";
 
 export default function LandingPage() {
-  const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeNav, setActiveNav] = useState<string | null>(null);
-  const router = useRouter();
+  const [count, setCount] = useState({ customers: 0, assets: 0, countries: 0 });
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowModal(true), 2000);
-    
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
 
+    // Animate counters
+    const duration = 2000;
+    const steps = 60;
+    const interval = duration / steps;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      setCount({
+        customers: Math.floor(250000 * progress),
+        assets: Math.floor(48 * progress),
+        countries: Math.floor(32 * progress),
+      });
+      if (step >= steps) clearInterval(timer);
+    }, interval);
+
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
+      clearInterval(timer);
     };
   }, []);
 
-  const accountTypes = [
-    {
-      title: "Personal Banking",
-      icon: "👤",
-      items: ["Checking Accounts", "Savings Accounts", "Credit Cards", "Personal Loans"]
-    },
-    {
-      title: "Business Banking", 
-      icon: "💼",
-      items: ["Business Checking", "Business Savings", "Business Loans", "Merchant Services"]
-    },
-    {
-      title: "Wealth Management",
-      icon: "📈", 
-      items: ["Investment Advisory", "Retirement Planning", "Trust Services", "Private Banking"]
-    }
-  ];
-
-  const products = [
-    {
-      icon: "💳",
-      title: "Checking Accounts",
-      description: "Simple, secure checking with mobile banking and fraud protection"
-    },
-    {
-      icon: "💰",
-      title: "Savings Accounts",
-      description: "Competitive rates with flexible access to your money"
-    },
-    {
-      icon: "🏠",
-      title: "Home Loans",
-      description: "Mortgages and home equity solutions for every stage of life"
-    },
-    {
-      icon: "🎓",
-      title: "Student Banking",
-      description: "Financial tools designed specifically for students"
-    }
-  ];
-
-  const features = [
-    {
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      title: "Simplified Checking and Payments",
-      description: "Seamlessly switch banks, manage direct deposit, and streamline your payment methods. Open a checking account today.",
-      cta: "Get Started",
-      link: "/auth/signup"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop",
-      title: "Advanced Security Protection",
-      description: "Two-factor authentication, biometric login, and 24/7 fraud monitoring keep your accounts secure.",
-      cta: "Learn More",
-      link: "#security"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      title: "Smart Financial Insights",
-      description: "AI-powered analytics and personalized recommendations help you achieve your financial goals.",
-      cta: "Explore Tools",
-      link: "#features"
-    }
-  ];
-
-  const services = [
-    {
-      icon: "📱",
-      title: "Mobile & Online Banking",
-      description: "Bank from anywhere with our secure mobile app and online platform",
-      link: "/banking/online"
-    },
-    {
-      icon: "☎️",
-      title: "Contact Us",
-      description: "Connect with our customer service team by phone, chat, or in person",
-      link: "/contact"
-    },
-    {
-      icon: "📍",
-      title: "Find a Branch/ATM",
-      description: "Locate our branches and fee-free ATMs near you",
-      link: "/locations"
-    },
-    {
-      icon: "🤝",
-      title: "Meet with a Banker",
-      description: "Schedule an appointment with a financial advisor",
-      link: "/appointments"
-    }
-  ];
-
   return (
     <div className={styles.landingPage}>
-      {/* Welcome Modal */}
-      {showModal && (
-        <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeModal} onClick={() => setShowModal(false)}>×</button>
-            
-            <div className={styles.modalHeader}>
-              <div className={styles.modalIcon}>🎉</div>
-              <h2 className={styles.modalTitle}>Welcome to Sovereign Trust Bank</h2>
-              <p className={styles.modalSubtitle}>Banking Made Simple</p>
-            </div>
-            
-            <div className={styles.modalBody}>
-              <div className={styles.welcomeMessage}>
-                <h3>Experience Premium Banking</h3>
-                <ul className={styles.benefitsList}>
-                  <li>✓ No monthly maintenance fees</li>
-                  <li>✓ Advanced security with 2FA</li>
-                  <li>✓ Real-time transaction alerts</li>
-                  <li>✓ 24/7 customer support</li>
-                  <li>✓ Mobile check deposit</li>
-                  <li>✓ Fee-free ATM access</li>
-                </ul>
-              </div>
-
-              <div className={styles.modalInfo}>
-                <div className={styles.infoItem}>
-                  <strong>Online Banking</strong>
-                  <p>Available 24/7</p>
-                </div>
-                <div className={styles.infoItem}>
-                  <strong>Customer Support</strong>
-                  <p>Mon-Fri: 8AM-8PM EST</p>
-                </div>
-                <div className={styles.infoItem}>
-                  <strong>Mobile App</strong>
-                  <p>iOS & Android</p>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.modalActions}>
-              <button onClick={() => {
-                setShowModal(false);
-                router.push('/auth/signup');
-              }} className={styles.btnModalPrimary}>
-                Open Account Now
-              </button>
-              <button onClick={() => setShowModal(false)} className={styles.btnModalSecondary}>
-                Continue Browsing
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Header */}
-      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-        {/* Top Bar */}
+      {/* ===== HEADER ===== */}
+      <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
         <div className={styles.topBar}>
           <div className={styles.container}>
-            <div className={styles.topBarContent}>
-              <nav className={styles.utilityNav}>
-                <Link href="/es">Español</Link>
-                <Link href="/locations">Find a Branch/ATM</Link>
-                <Link href="/contact">Customer Service</Link>
-              </nav>
+            <span>NMLS #2025001 &nbsp;|&nbsp; Member FDIC &nbsp;|&nbsp; Equal Housing Lender</span>
+            <div className={styles.topBarRight}>
+              <Link href="/locations">Branch Locator</Link>
+              <Link href="/support">Help Center</Link>
+              <a href="mailto:admin@strangefregetrust.com">admin@strangefregetrust.com</a>
             </div>
           </div>
         </div>
-
-        {/* Main Header */}
         <div className={styles.mainHeader}>
           <div className={styles.container}>
             <div className={styles.headerContent}>
-              <Link href="/" className={styles.logo}>
-                <Image
-                  src="/images/Logo.png"
-                  alt="Sovereign Trust Bank Logo"
-                  width={240}
-                  height={65}
-                  className={styles.logoImage}
-                  priority
-                />
+              <Link href="/" className={styles.logoLink}>
+                <div style={{width:"44px",height:"44px",background:"linear-gradient(135deg,#1E40AF,#1E3A8A)",borderRadius:"12px",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/><path d="M12 2L3 7l9 5 9-5-9-5z" fill="white" opacity="0.3"/></svg></div>
+                <span className={styles.logoText}>Strangefregetrust</span>
               </Link>
-
-              <nav className={styles.primaryNav}>
-                <div 
-                  className={styles.navItem}
-                  onMouseEnter={() => setActiveNav('personal')}
-                  onMouseLeave={() => setActiveNav(null)}
-                >
-                  <button className={styles.navLink}>Personal</button>
-                  {activeNav === 'personal' && (
+              <nav className={styles.mainNav}>
+                <div className={styles.navItem} onMouseEnter={() => setActiveNav("personal")} onMouseLeave={() => setActiveNav(null)}>
+                  <span>Personal</span>
+                  {activeNav === "personal" && (
                     <div className={styles.dropdown}>
-                      <Link href="/checking">Checking Accounts</Link>
-                      <Link href="/savings">Savings Accounts</Link>
-                      <Link href="/credit-cards">Credit Cards</Link>
+                      <Link href="/accounts/checking">Checking Accounts</Link>
+                      <Link href="/accounts/savings">Savings Accounts</Link>
+                      <Link href="/cards">Credit & Debit Cards</Link>
                       <Link href="/loans">Personal Loans</Link>
-                      <Link href="/mortgages">Home Loans</Link>
+                      <Link href="/deposit">Deposits</Link>
                     </div>
                   )}
                 </div>
-
-                <div 
-                  className={styles.navItem}
-                  onMouseEnter={() => setActiveNav('business')}
-                  onMouseLeave={() => setActiveNav(null)}
-                >
-                  <button className={styles.navLink}>Business</button>
-                  {activeNav === 'business' && (
+                <div className={styles.navItem} onMouseEnter={() => setActiveNav("business")} onMouseLeave={() => setActiveNav(null)}>
+                  <span>Business</span>
+                  {activeNav === "business" && (
                     <div className={styles.dropdown}>
-                      <Link href="/business/checking">Business Checking</Link>
-                      <Link href="/business/savings">Business Savings</Link>
-                      <Link href="/business/loans">Business Loans</Link>
-                      <Link href="/business/credit-cards">Business Cards</Link>
+                      <Link href="/business">Business Banking</Link>
+                      <Link href="/business">Business Loans</Link>
+                      <Link href="/business">Merchant Services</Link>
+                      <Link href="/business">Treasury Management</Link>
                     </div>
                   )}
                 </div>
-
-                <div 
-                  className={styles.navItem}
-                  onMouseEnter={() => setActiveNav('wealth')}
-                  onMouseLeave={() => setActiveNav(null)}
-                >
-                  <button className={styles.navLink}>Wealth</button>
-                  {activeNav === 'wealth' && (
+                <div className={styles.navItem} onMouseEnter={() => setActiveNav("wealth")} onMouseLeave={() => setActiveNav(null)}>
+                  <span>Wealth</span>
+                  {activeNav === "wealth" && (
                     <div className={styles.dropdown}>
-                      <Link href="/wealth/advisory">Investment Advisory</Link>
-                      <Link href="/wealth/retirement">Retirement Planning</Link>
-                      <Link href="/wealth/trust">Trust Services</Link>
-                      <Link href="/wealth/private">Private Banking</Link>
+                      <Link href="/investments">Investments</Link>
+                      <Link href="/investments/portfolio">Portfolio Management</Link>
+                      <Link href="/investments/trading">Trading</Link>
+                      <Link href="/crypto">Crypto</Link>
                     </div>
                   )}
                 </div>
-
                 <Link href="/about" className={styles.navLink}>About</Link>
               </nav>
-
               <div className={styles.headerActions}>
-                <Link href="/auth/signin" className={styles.btnLogin}>
-                  <span className={styles.lockIcon}>🔒</span>
-                  Log In
-                </Link>
+                <Link href="/auth/signin" className={styles.btnSignIn}>Sign In</Link>
+                <Link href="/auth/signup" className={styles.btnOpenAccount}>Open Account</Link>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* FDIC Badge */}
-        <div className={styles.fdicBar}>
-          <div className={styles.container}>
-            <div className={styles.fdicBadge}>
-              <span className={styles.fdicIcon}>🏛️</span>
-              <span className={styles.fdicText}>FDIC-Insured - Backed by the full faith and credit of the U.S. Government</span>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* ===== HERO ===== */}
       <section className={styles.hero}>
+        <div className={styles.heroOverlay} />
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <div className={styles.heroText}>
-              <h1 className={styles.heroTitle}>
-                Welcome to simplified checking and payments.
-              </h1>
-              <p className={styles.heroDescription}>
-                Seamlessly switch banks, manage your direct deposit, and streamline saved payment methods. Open a checking account today.
-              </p>
-              <div className={styles.heroActions}>
-                <Link href="/auth/signup" className={styles.btnPrimary}>
-                  Get Started
-                </Link>
-                <Link href="/products" className={styles.btnSecondary}>
-                  Explore Products
-                </Link>
+            <div className={styles.heroBadge}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 7v6c0 4.52 3.13 8.75 8 9.88 4.87-1.13 8-5.36 8-9.88V7l-8-5z"/></svg>
+              FDIC Insured · Member Since 2010
+            </div>
+            <h1 className={styles.heroTitle}>
+              Trust. Built<br />
+              <span className={styles.heroAccent}>Different.</span>
+            </h1>
+            <p className={styles.heroSubtitle}>
+              Enterprise-grade banking for individuals, businesses, and institutions.
+              Secure, transparent, and built for the modern world.
+            </p>
+            <div className={styles.heroActions}>
+              <Link href="/auth/signup" className={styles.btnHeroPrimary}>
+                Open a Free Account
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </Link>
+              <Link href="/about" className={styles.btnHeroSecondary}>
+                Learn More
+              </Link>
+            </div>
+            <div className={styles.heroStats}>
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNum}>{count.customers.toLocaleString()}+</span>
+                <span className={styles.heroStatLabel}>Customers Worldwide</span>
+              </div>
+              <div className={styles.heroStatDivider} />
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNum}>${count.assets}B+</span>
+                <span className={styles.heroStatLabel}>Assets Under Management</span>
+              </div>
+              <div className={styles.heroStatDivider} />
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNum}>{count.countries}</span>
+                <span className={styles.heroStatLabel}>Countries Served</span>
               </div>
             </div>
-            <div className={styles.heroImage}>
-              <Image
-                src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop"
-                alt="Modern banking on mobile device"
-                width={600}
-                height={450}
-                className={styles.heroImg}
-                priority
-              />
+          </div>
+          <div className={styles.heroCard}>
+            <div className={styles.heroCardHeader}>
+              <div className={styles.heroCardAvatar}>JD</div>
+              <div>
+                <div className={styles.heroCardName}>John Doe</div>
+                <div className={styles.heroCardAcct}>Premium Checking ···· 4821</div>
+              </div>
+              <div className={styles.heroCardLiveDot} />
+            </div>
+            <div className={styles.heroCardBalance}>
+              <div className={styles.heroCardBalLabel}>Available Balance</div>
+              <div className={styles.heroCardBalAmt}>$84,250.00</div>
+              <div className={styles.heroCardBalChange}>+2.4% this month</div>
+            </div>
+            <div className={styles.heroCardTxns}>
+              {[
+                { label: "Wire Transfer", amt: "-$12,500.00", status: "Completed", color: "#10b981" },
+                { label: "Deposit", amt: "+$25,000.00", status: "Completed", color: "#10b981" },
+                { label: "Int'l Transfer", amt: "-$3,200.00", status: "Pending", color: "#f59e0b" },
+              ].map((t, i) => (
+                <div key={i} className={styles.heroCardTxn}>
+                  <span className={styles.heroCardTxnLabel}>{t.label}</span>
+                  <span className={styles.heroCardTxnAmt}>{t.amt}</span>
+                  <span className={styles.heroCardTxnStatus} style={{ color: t.color }}>{t.status}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Products Grid */}
-      <section className={styles.productsGrid}>
-        <div className={styles.container}>
-          <div className={styles.gridRow}>
-            {products.map((product, index) => (
-              <div key={index} className={styles.productCard}>
-                <div className={styles.productIcon}>{product.icon}</div>
-                <h3 className={styles.productTitle}>{product.title}</h3>
-                <p className={styles.productDesc}>{product.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Offers */}
-      <section className={styles.featuredSection}>
-        <div className={styles.container}>
-          <div className={styles.featuresRow}>
-            {features.map((feature, index) => (
-              <div key={index} className={styles.featureCard}>
-                <div className={styles.featureImage}>
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    width={400}
-                    height={300}
-                    className={styles.featImg}
-                  />
-                </div>
-                <div className={styles.featureContent}>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                  <Link href={feature.link} className={styles.featureLink}>
-                    {feature.cta} →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Indicators */}
-      <section className={styles.trustSection}>
+      {/* ===== TRUST BAR ===== */}
+      <section className={styles.trustBar}>
         <div className={styles.container}>
           <div className={styles.trustGrid}>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}>🏛️</span>
-              <div>
-                <div className={styles.trustTitle}>FDIC</div>
-                <div className={styles.trustLabel}>Insured</div>
-              </div>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}>🔒</span>
-              <div>
-                <div className={styles.trustTitle}>256-bit SSL</div>
-                <div className={styles.trustLabel}>Encrypted</div>
-              </div>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}>✅</span>
-              <div>
-                <div className={styles.trustTitle}>SOC 2</div>
-                <div className={styles.trustLabel}>Compliant</div>
-              </div>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}>💳</span>
-              <div>
-                <div className={styles.trustTitle}>PCI DSS</div>
-                <div className={styles.trustLabel}>Certified</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className={styles.servicesSection}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2>Customer service at your fingertips</h2>
-          </div>
-          <div className={styles.servicesGrid}>
-            {services.map((service, index) => (
-              <div key={index} className={styles.serviceCard}>
-                <div className={styles.serviceIcon}>{service.icon}</div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <Link href={service.link} className={styles.serviceLink}>
-                  Learn More →
-                </Link>
+            {[
+              { icon: "M12 2L4 7v6c0 4.52 3.13 8.75 8 9.88 4.87-1.13 8-5.36 8-9.88V7l-8-5z", label: "FDIC Insured" },
+              { icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10", label: "256-bit SSL" },
+              { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", label: "SOC 2 Compliant" },
+              { icon: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z", label: "PCI DSS Certified" },
+              { icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z", label: "4.9/5 Rated" },
+              { icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6", label: "Equal Housing" },
+            ].map((b, i) => (
+              <div key={i} className={styles.trustBadge}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d={b.icon}/></svg>
+                <span>{b.label}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* ===== PRODUCTS ===== */}
+      <section className={styles.productsSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionBadge}>Our Products</span>
+            <h2 className={styles.sectionTitle}>Everything you need to manage your finances</h2>
+            <p className={styles.sectionSubtitle}>From everyday checking to global wealth management — all in one secure platform.</p>
+          </div>
+          <div className={styles.productsGrid}>
+            {[
+              { href: "/accounts/checking", icon: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z", title: "Checking Accounts", desc: "Zero-fee checking with real-time alerts, mobile deposit, and instant transfers." },
+              { href: "/accounts/savings", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", title: "Savings Accounts", desc: "High-yield savings with up to 4.85% APY and no minimum balance requirements." },
+              { href: "/loans", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", title: "Loans & Mortgages", desc: "Competitive rates on personal, auto, and home loans with flexible repayment." },
+              { href: "/investments", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6", title: "Investments", desc: "Diversified portfolios, ETFs, and stocks managed by certified advisors." },
+              { href: "/crypto", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "Crypto Banking", desc: "Buy, sell, and hold digital assets with institutional-grade security." },
+              { href: "/business", icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", title: "Business Banking", desc: "Full-suite business accounts, payroll, and treasury management solutions." },
+            ].map((p, i) => (
+              <Link key={i} href={p.href} className={styles.productCard}>
+                <div className={styles.productIcon}>
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d={p.icon}/></svg>
+                </div>
+                <h3 className={styles.productTitle}>{p.title}</h3>
+                <p className={styles.productDesc}>{p.desc}</p>
+                <span className={styles.productCta}>
+                  Learn more
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FEATURES ===== */}
+      <section className={styles.featuresSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionBadge}>Why Strangefregetrust</span>
+            <h2 className={styles.sectionTitle}>Built for security. Designed for simplicity.</h2>
+          </div>
+          <div className={styles.featuresGrid}>
+            {[
+              { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title: "Bank-Grade Security", desc: "256-bit encryption, biometric authentication, and 24/7 fraud monitoring protect every transaction." },
+              { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Instant Transfers", desc: "Send money domestically and internationally in seconds with real-time confirmation." },
+              { icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z", title: "Smart Analytics", desc: "AI-powered insights and spending reports help you make smarter financial decisions." },
+              { icon: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z", title: "Always Available", desc: "24/7 online banking, mobile app, and dedicated support whenever you need it." },
+            ].map((f, i) => (
+              <div key={i} className={styles.featureCard}>
+                <div className={styles.featureIconWrap}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d={f.icon}/></svg>
+                </div>
+                <h3 className={styles.featureTitle}>{f.title}</h3>
+                <p className={styles.featureDesc}>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== RATES BANNER ===== */}
+      <section className={styles.ratesBanner}>
+        <div className={styles.container}>
+          <div className={styles.ratesGrid}>
+            {[
+              { rate: "4.85%", label: "High-Yield Savings APY", note: "No minimum balance" },
+              { rate: "6.49%", label: "Personal Loan APR", note: "From, subject to credit" },
+              { rate: "7.25%", label: "30-Year Mortgage", note: "Fixed rate" },
+              { rate: "0%", label: "Monthly Fees", note: "On all checking accounts" },
+            ].map((r, i) => (
+              <div key={i} className={styles.rateCard}>
+                <div className={styles.rateNum}>{r.rate}</div>
+                <div className={styles.rateLabel}>{r.label}</div>
+                <div className={styles.rateNote}>{r.note}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CTA ===== */}
       <section className={styles.ctaSection}>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2>Ready to Start Your Financial Journey?</h2>
-            <p>Join thousands of satisfied customers who trust Sovereign Trust Bank</p>
+            <h2 className={styles.ctaTitle}>Ready to bank with confidence?</h2>
+            <p className={styles.ctaSubtitle}>Join over 250,000 customers who trust Strangefregetrust with their financial future.</p>
             <div className={styles.ctaActions}>
-              <Link href="/auth/signup" className={styles.btnCtaPrimary}>
-                Open Your Account
-              </Link>
-              <Link href="/contact" className={styles.btnCtaSecondary}>
-                Contact Us
-              </Link>
+              <Link href="/auth/signup" className={styles.btnCtaPrimary}>Open a Free Account</Link>
+              <Link href="/contact" className={styles.btnCtaSecondary}>Talk to an Advisor</Link>
             </div>
+            <p className={styles.ctaNote}>No credit check required to open. FDIC insured up to $250,000.</p>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ===== FOOTER ===== */}
       <footer className={styles.footer}>
         <div className={styles.container}>
           <div className={styles.footerMain}>
             <div className={styles.footerBrand}>
-              <div className={styles.footerLogo}>
-                <Image
-                  src="/images/Logo.png"
-                  alt="Sovereign Trust Bank Logo"
-                  width={220}
-                  height={60}
-                  className={styles.footerLogoImage}
-                />
+              <div className={styles.footerLogoRow}>
+                <div style={{width:"40px",height:"40px",background:"linear-gradient(135deg,#1E40AF,#1E3A8A)",borderRadius:"10px",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/></svg></div>
+                <span className={styles.footerBrandName}>Strangefregetrust</span>
               </div>
-              <p className={styles.footerTagline}>
-                Your trusted partner in financial services
-              </p>
+              <p className={styles.footerTagline}>Trust. Built Different.</p>
+              <p className={styles.footerContact}>admin@strangefregetrust.com</p>
             </div>
-
+            <div className={styles.footerColumn}>
+              <h4>Banking</h4>
+              <Link href="/accounts/checking">Checking</Link>
+              <Link href="/accounts/savings">Savings</Link>
+              <Link href="/cards">Cards</Link>
+              <Link href="/loans">Loans</Link>
+              <Link href="/deposit">Deposits</Link>
+            </div>
+            <div className={styles.footerColumn}>
+              <h4>Wealth</h4>
+              <Link href="/investments">Investments</Link>
+              <Link href="/investments/portfolio">Portfolio</Link>
+              <Link href="/investments/trading">Trading</Link>
+              <Link href="/crypto">Crypto</Link>
+            </div>
             <div className={styles.footerColumn}>
               <h4>Company</h4>
               <Link href="/about">About Us</Link>
               <Link href="/careers">Careers</Link>
-              <Link href="/newsroom">Newsroom</Link>
-              <Link href="/community">Community</Link>
-            </div>
-
-            <div className={styles.footerColumn}>
-              <h4>Help</h4>
-              <Link href="/contact">Contact Us</Link>
               <Link href="/support">Help Center</Link>
-              <Link href="/security">Security Center</Link>
+              <Link href="/security">Security</Link>
+            </div>
+            <div className={styles.footerColumn}>
+              <h4>Legal</h4>
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/terms">Terms of Service</Link>
+              <Link href="/disclosures">Disclosures</Link>
               <Link href="/accessibility">Accessibility</Link>
             </div>
-
-            <div className={styles.footerColumn}>
-              <h4>Resources</h4>
-              <Link href="/locations">Branch Locator</Link>
-              <Link href="/education">Financial Education</Link>
-              <Link href="/rates">Rates</Link>
-              <Link href="/forms">Forms & Documents</Link>
-            </div>
           </div>
-
           <div className={styles.footerBottom}>
-            <div className={styles.footerLinks}>
-              <Link href="/privacy">Privacy Rights</Link>
-              <Link href="/terms">Terms of Service</Link>
-              <Link href="/security">Security & Legal</Link>
-              <Link href="/disclosures">Disclosures</Link>
-            </div>
-            <div className={styles.footerCopy}>
-              <p>© 2024 Sovereign Trust Bank. All rights reserved. Member FDIC. Equal Housing Lender.</p>
-            </div>
+            <p>© {new Date().getFullYear()} Strangefregetrust Financial Institution. All rights reserved.</p>
+            <p className={styles.footerLegal}>Member FDIC &nbsp;·&nbsp; NMLS #2025001 &nbsp;·&nbsp; Equal Housing Lender &nbsp;·&nbsp; Deposits insured up to $250,000</p>
           </div>
         </div>
       </footer>

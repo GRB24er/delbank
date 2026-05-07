@@ -674,7 +674,7 @@ export default function SendMoneyPage() {
 
                   <div className={styles.termsBox}>
                     <p>
-                      By confirming this transfer, you authorize Sovereign Trust Bank to debit your account 
+                      By confirming this transfer, you authorize Strangefregetrust to debit your account 
                       for the total amount shown above. Transfers are subject to review and may 
                       require additional verification.
                     </p>
@@ -911,7 +911,7 @@ export default function SendMoneyPage() {
                   <span>📞</span>
                   <div>
                     <strong>Call Us</strong>
-                    <p>1-800-555-0123</p>
+                    <p>admin@strangefregetrust.com</p>
                   </div>
                 </div>
                 <div className={styles.helpItem}>

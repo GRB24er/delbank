@@ -207,10 +207,10 @@ export default function CardsPage() {
                   style={{ background: currentCard.color }}
                 >
                   <div className={styles.cardTop}>
-                    {/* Sovereign Trust Bank Logo */}
+                    {/* Strangefregetrust Logo */}
                     <img
-                      src="/images/Logo.png"
-                      alt="Sovereign Trust Bank"
+                      src="/images/logo-icon.png"
+                      alt="Strangefregetrust"
                       style={{
                         width: '100px',
                         height: 'auto',

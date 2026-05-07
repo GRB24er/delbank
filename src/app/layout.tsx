@@ -5,13 +5,13 @@ import { Providers } from "@/components/Providers";
 import Chatbox from "@/components/Chatbox";
 
 export const metadata: Metadata = {
-  title: "Sovereign Trust Bank",
-  description: "Sovereign Trust Bank - Premier private banking, wealth management, and global financial services.",
+  title: "Strangefregetrust",
+  description: "Strangefregetrust - Premier private banking, wealth management, and global financial services.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Sovereign Trust Bank",
+    title: "Strangefregetrust",
   },
 };
 
