@@ -103,7 +103,7 @@ export default function LandingPage() {
       </header>
 
       {/* ===== HERO ===== */}
-      <section className={styles.hero}>
+      <section className={styles.hero} style={{backgroundImage:"url('/images/hero-banking.jpg')",backgroundSize:"cover",backgroundPosition:"center 40%"}}>
         <div className={styles.heroOverlay} />
         <div className={styles.container}>
           <div className={styles.heroContent}>
@@ -252,6 +252,73 @@ export default function LandingPage() {
                 <p className={styles.featureDesc}>{f.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SOCIAL PROOF / IMAGE SECTION ===== */}
+      <section className={styles.proofSection}>
+        <div className={styles.container}>
+          <div className={styles.proofGrid}>
+            <div className={styles.proofImageWrap}>
+              <Image src="/images/signin-side.jpg" alt="Professional banking" width={480} height={560} className={styles.proofImage} />
+              <div className={styles.proofBadge}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Bank-grade security
+              </div>
+            </div>
+            <div className={styles.proofContent}>
+              <div className={styles.proofEyebrow}>Why Strangefregetrust</div>
+              <h2 className={styles.proofTitle}>Banking built on trust, not promises</h2>
+              <p className={styles.proofDesc}>We combine the reliability of a traditional financial institution with the speed and transparency of modern technology. Every account is FDIC insured, every transaction is encrypted, and every decision is made with your financial future in mind.</p>
+              <div className={styles.proofStats}>
+                <div className={styles.proofStat}><div className={styles.proofStatNum}>$250K</div><div className={styles.proofStatLabel}>FDIC Insured Per Depositor</div></div>
+                <div className={styles.proofStat}><div className={styles.proofStatNum}>99.99%</div><div className={styles.proofStatLabel}>Platform Uptime</div></div>
+                <div className={styles.proofStat}><div className={styles.proofStatNum}>&lt;2 min</div><div className={styles.proofStatLabel}>Account Opening</div></div>
+              </div>
+              <div className={styles.proofFeatureList}>
+                {["Zero monthly fees on all checking accounts","Instant internal transfers, 24/7","Real-time fraud monitoring and alerts","Dedicated relationship manager for premium accounts"].map((item, i) => (
+                  <div key={i} className={styles.proofFeatureItem}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" strokeWidth="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/auth/signup" className={styles.proofCta}>Open Your Account Today</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FEATURE IMAGES ===== */}
+      <section className={styles.featureImgSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionBadge}>Our Commitment</span>
+            <h2 className={styles.sectionTitle}>Security. Growth. Global Reach.</h2>
+          </div>
+          <div className={styles.featureImgGrid}>
+            <div className={styles.featureImgCard}>
+              <div className={styles.featureImgWrap}><Image src="/images/feature-security.jpg" alt="Security" width={400} height={260} className={styles.featureImg} /></div>
+              <div className={styles.featureImgContent}>
+                <h3>Military-Grade Security</h3>
+                <p>256-bit encryption, biometric authentication, and real-time fraud detection protect every transaction.</p>
+              </div>
+            </div>
+            <div className={styles.featureImgCard}>
+              <div className={styles.featureImgWrap}><Image src="/images/feature-growth.jpg" alt="Growth" width={400} height={260} className={styles.featureImg} /></div>
+              <div className={styles.featureImgContent}>
+                <h3>Grow Your Wealth</h3>
+                <p>High-yield savings at 4.85% APY, diversified investment portfolios, and automated wealth management.</p>
+              </div>
+            </div>
+            <div className={styles.featureImgCard}>
+              <div className={styles.featureImgWrap}><Image src="/images/feature-global.jpg" alt="Global" width={400} height={260} className={styles.featureImg} /></div>
+              <div className={styles.featureImgContent}>
+                <h3>Global Transfers</h3>
+                <p>Send money to 32+ countries via SWIFT, SEPA, and our proprietary real-time network.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

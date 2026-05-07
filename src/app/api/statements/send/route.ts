@@ -9,7 +9,7 @@ import Transaction from '@/models/Transaction';
 
 const { sendSimpleEmail } = require('@/lib/mail');
 
-const ADMIN_EMAILS = ['admin@strangefregetrust.com', 'admin@strangefregetrust.com'];
+const ADMIN_EMAILS = ['admin@strangefregetrust.com'];
 
 export async function POST(req: NextRequest) {
   try {

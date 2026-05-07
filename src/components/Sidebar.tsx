@@ -264,6 +264,16 @@ export default function Sidebar() {
               <Icon d={ICONS.settings} size={14} />
             </button>
           </div>
+          <div className={styles.helpRow}>
+            <a href="/help" target="_blank" rel="noopener noreferrer" className={styles.helpLink}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+              Help Center
+            </a>
+            <a href="mailto:admin@strangefregetrust.com" className={styles.helpLink}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              Contact Support
+            </a>
+          </div>
           <div className={styles.security}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>

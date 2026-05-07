@@ -93,7 +93,7 @@ export default function CheckingAccountPage() {
   const faqs = [
     {
       question: "How do I open a checking account?",
-      answer: "You can open an account online in minutes, visit any branch, or call us. You'll need a valid ID, Social Security number, and initial deposit."
+      answer: "You can open an account online in minutes, visit any branch, or contact us by email. You'll need a valid ID, Social Security number, and initial deposit."
     },
     {
       question: "What's the difference between checking accounts?",
@@ -281,7 +281,7 @@ export default function CheckingAccountPage() {
               <button className={styles.secondaryButton}>Schedule Appointment</button>
             </div>
             <p className={styles.ctaNote}>
-              Or call us at admin@strangefregetrust.com
+              Or email us at admin@strangefregetrust.com
             </p>
           </div>
         </section>
