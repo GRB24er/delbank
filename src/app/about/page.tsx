@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
 
-export const metadata = { title: 'About Us | Strangefregetrust' };
+export const metadata = { title: 'About Us | Fregetrust' };
 
 export default function AboutPage() {
   return (
@@ -9,7 +9,7 @@ export default function AboutPage() {
       <div className={styles.hero}>
         <div className={styles.heroBadge}>About Us</div>
         <h1 className={styles.heroTitle}>Built on Trust.<br />Driven by Innovation.</h1>
-        <p className={styles.heroSub}>Strangefregetrust is a modern digital bank committed to delivering enterprise-grade financial services to individuals and businesses worldwide.</p>
+        <p className={styles.heroSub}>Fregetrust is a modern digital bank committed to delivering enterprise-grade financial services to individuals and businesses worldwide.</p>
         <div className={styles.statsBar}>
           <div className={styles.stat}><div className={styles.statNum}>100K+</div><div className={styles.statLabel}>Customers Served</div></div>
           <div className={styles.stat}><div className={styles.statNum}>$2.4B+</div><div className={styles.statLabel}>Assets Under Management</div></div>
@@ -21,7 +21,7 @@ export default function AboutPage() {
         <Link href="/" className={styles.backLink}>← Back to Home</Link>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Our Mission</h2>
-          <p className={styles.sectionText}>At Strangefregetrust, our mission is simple: to make enterprise-grade banking accessible to everyone. We believe that every individual and business deserves access to powerful, secure, and transparent financial tools — regardless of size or location.</p>
+          <p className={styles.sectionText}>At Fregetrust, our mission is simple: to make enterprise-grade banking accessible to everyone. We believe that every individual and business deserves access to powerful, secure, and transparent financial tools — regardless of size or location.</p>
           <p className={styles.sectionText}>Founded on the principles of integrity, innovation, and inclusion, we have built a digital-first banking platform that combines the reliability of traditional banking with the agility of modern technology.</p>
         </div>
         <div className={styles.grid3}>
@@ -55,7 +55,7 @@ export default function AboutPage() {
         </div>
         <div className={styles.ctaSection}>
           <h2 className={styles.ctaTitle}>Ready to Get Started?</h2>
-          <p className={styles.ctaText}>Join over 100,000 customers who trust Strangefregetrust with their financial future.</p>
+          <p className={styles.ctaText}>Join over 100,000 customers who trust Fregetrust with their financial future.</p>
           <Link href="/auth/signup" className={styles.ctaBtn}>Open a Free Account →</Link>
         </div>
       </div>

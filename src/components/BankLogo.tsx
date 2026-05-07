@@ -8,7 +8,7 @@ export default function BankLogo({ size = 32 }: { size?: number }) {
           <path d="M12 2L3 7l9 5 9-5-9-5z" fill="white" opacity="0.3"/>
         </svg>
       </div>
-      <span style={{fontSize:size*0.45+"px",fontWeight:700,color:"#0F172A",letterSpacing:"-0.3px"}}>Strangefregetrust</span>
+      <span style={{fontSize:size*0.45+"px",fontWeight:700,color:"#0F172A",letterSpacing:"-0.3px"}}>Fregetrust</span>
     </div>
   );
 }

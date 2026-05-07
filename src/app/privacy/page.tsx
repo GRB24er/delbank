@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Privacy Policy | Strangefregetrust' };
+export const metadata = { title: 'Privacy Policy | Fregetrust' };
 export default function PrivacyPage() {
   return (
     <div className={styles.page}>
@@ -18,8 +18,8 @@ export default function PrivacyPage() {
           { title: '3. Information Sharing', text: 'We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our platform, conducting our business, or servicing you, as long as those parties agree to keep this information confidential.' },
           { title: '4. Data Security', text: 'We implement industry-standard security measures including 256-bit SSL encryption, multi-factor authentication, and regular security audits to protect your personal information against unauthorized access, alteration, disclosure, or destruction.' },
           { title: '5. Data Retention', text: 'We retain your personal information for as long as your account is active or as needed to provide you services. We will retain and use your information as necessary to comply with our legal obligations, resolve disputes, and enforce our agreements.' },
-          { title: '6. Your Rights', text: 'You have the right to access, update, or delete your personal information at any time through your account settings. You may also contact us at admin@strangefregetrust.com to exercise your rights or if you have any privacy concerns.' },
-          { title: '7. Contact Us', text: 'If you have any questions about this Privacy Policy, please contact our Privacy Team at admin@strangefregetrust.com. We will respond to your inquiry within 5 business days.' },
+          { title: '6. Your Rights', text: 'You have the right to access, update, or delete your personal information at any time through your account settings. You may also contact us at admin@fregetrust.com to exercise your rights or if you have any privacy concerns.' },
+          { title: '7. Contact Us', text: 'If you have any questions about this Privacy Policy, please contact our Privacy Team at admin@fregetrust.com. We will respond to your inquiry within 5 business days.' },
         ].map((s) => (
           <div key={s.title} className={styles.section}>
             <h2 className={styles.sectionTitle}>{s.title}</h2>

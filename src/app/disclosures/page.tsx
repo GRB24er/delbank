@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Disclosures | Strangefregetrust' };
+export const metadata = { title: 'Disclosures | Fregetrust' };
 export default function DisclosuresPage() {
   return (
     <div className={styles.page}>
@@ -13,7 +13,7 @@ export default function DisclosuresPage() {
         <Link href="/" className={styles.backLink}>← Back to Home</Link>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>FDIC Insurance Disclosure</h2>
-          <p className={styles.sectionText}>Strangefregetrust is a Member FDIC institution. Deposits are insured up to $250,000 per depositor, per insured bank, for each account ownership category. FDIC insurance covers checking accounts, savings accounts, money market deposit accounts, and certificates of deposit.</p>
+          <p className={styles.sectionText}>Fregetrust is a Member FDIC institution. Deposits are insured up to $250,000 per depositor, per insured bank, for each account ownership category. FDIC insurance covers checking accounts, savings accounts, money market deposit accounts, and certificates of deposit.</p>
           <div className={styles.highlight}><p className={styles.highlightText}><strong>Member FDIC · NMLS #2024001 · Equal Housing Lender</strong><br/>Deposits insured up to $250,000 per depositor per account category.</p></div>
         </div>
         <div className={styles.section}>
@@ -30,11 +30,11 @@ export default function DisclosuresPage() {
         </div>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Wire Transfer Disclosures</h2>
-          <p className={styles.sectionText}>International wire transfers are subject to applicable fees and exchange rates. Transfer times vary by destination country and correspondent bank. Strangefregetrust is not responsible for delays caused by receiving banks or intermediary institutions.</p>
+          <p className={styles.sectionText}>International wire transfers are subject to applicable fees and exchange rates. Transfer times vary by destination country and correspondent bank. Fregetrust is not responsible for delays caused by receiving banks or intermediary institutions.</p>
         </div>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Contact for Disclosures</h2>
-          <p className={styles.sectionText}>For questions about any of these disclosures, please contact us at <strong>admin@strangefregetrust.com</strong>.</p>
+          <p className={styles.sectionText}>For questions about any of these disclosures, please contact us at <strong>admin@fregetrust.com</strong>.</p>
         </div>
       </div>
     </div>

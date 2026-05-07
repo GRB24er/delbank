@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Merchant Services | Strangefregetrust' };
+export const metadata = { title: 'Merchant Services | Fregetrust' };
 export default function MerchantServicesPage() {
   return (
     <div className={styles.page}>

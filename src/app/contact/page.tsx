@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Contact Us | Strangefregetrust' };
+export const metadata = { title: 'Contact Us | Fregetrust' };
 export default function ContactPage() {
   return (
     <div className={styles.page}>
@@ -40,12 +40,12 @@ export default function ContactPage() {
               <p className={styles.sectionText}>For immediate assistance, please email our support team directly. We aim to respond to all inquiries within 2 hours.</p>
               <div className={styles.highlight}>
                 <strong style={{color:'#1E40AF',display:'block',marginBottom:6}}>Email Support</strong>
-                <a href="mailto:admin@strangefregetrust.com" style={{fontSize: '18px', fontWeight: 700, color: '#0F172A', textDecoration: 'none'}}>admin@strangefregetrust.com</a>
+                <a href="mailto:admin@fregetrust.com" style={{fontSize: '18px', fontWeight: 700, color: '#0F172A', textDecoration: 'none'}}>admin@fregetrust.com</a>
               </div>
             </div>
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Corporate Headquarters</h2>
-              <p className={styles.sectionText}>Strangefregetrust<br/>Global Operations Center</p>
+              <p className={styles.sectionText}>Fregetrust<br/>Global Operations Center</p>
               <p className={styles.sectionText} style={{fontSize: '13px', color: '#64748b', marginTop: '12px'}}>* In-person visits are by appointment only for enterprise clients.</p>
             </div>
           </div>

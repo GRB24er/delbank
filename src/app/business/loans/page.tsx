@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Business Loans | Strangefregetrust' };
+export const metadata = { title: 'Business Loans | Fregetrust' };
 export default function BusinessLoansPage() {
   return (
     <div className={styles.page}>

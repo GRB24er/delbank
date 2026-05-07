@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Careers | Strangefregetrust' };
+export const metadata = { title: 'Careers | Fregetrust' };
 export default function CareersPage() {
   return (
     <div className={styles.page}>
@@ -28,12 +28,12 @@ export default function CareersPage() {
         </div>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Open Positions</h2>
-          <p className={styles.sectionText}>We are currently building our team. To express interest in joining Strangefregetrust, please send your CV and a brief introduction to <strong>admin@strangefregetrust.com</strong> with the subject line "Career Enquiry".</p>
+          <p className={styles.sectionText}>We are currently building our team. To express interest in joining Fregetrust, please send your CV and a brief introduction to <strong>admin@fregetrust.com</strong> with the subject line "Career Enquiry".</p>
         </div>
         <div className={styles.ctaSection}>
           <h2 className={styles.ctaTitle}>Interested in Joining?</h2>
           <p className={styles.ctaText}>Send us your details and we will be in touch when a suitable role opens.</p>
-          <a href="mailto:admin@strangefregetrust.com?subject=Career Enquiry" className={styles.ctaBtn}>Send Your CV →</a>
+          <a href="mailto:admin@fregetrust.com?subject=Career Enquiry" className={styles.ctaBtn}>Send Your CV →</a>
         </div>
       </div>
     </div>

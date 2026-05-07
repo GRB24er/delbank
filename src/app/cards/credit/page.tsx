@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Credit Cards | Strangefregetrust' };
+export const metadata = { title: 'Credit Cards | Fregetrust' };
 export default function CreditCardsPage() {
   return (
     <div className={styles.page}>

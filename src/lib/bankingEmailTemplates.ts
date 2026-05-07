@@ -242,8 +242,8 @@ export function generateCreditEmail(data: BankingEmailData): string {
         
         <div class="footer">
           <p>This is an automated notification. Please do not reply to this email.</p>
-          <p>For assistance, contact our support team at admin@strangefregetrust.com</p>
-          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
+          <p>For assistance, contact our support team at admin@fregetrust.com</p>
+          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Fregetrust. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -437,14 +437,14 @@ export function generateDebitEmail(data: BankingEmailData): string {
           ` : ''}
           
           <div class="security-notice">
-            <strong>Important:</strong> If you did not authorize this transaction, please contact our support team immediately at admin@strangefregetrust.com or admin@strangefregetrust.com.
+            <strong>Important:</strong> If you did not authorize this transaction, please contact our support team immediately at admin@fregetrust.com or admin@fregetrust.com.
           </div>
         </div>
         
         <div class="footer">
           <p>This is an automated notification. Please do not reply to this email.</p>
-          <p>For assistance, contact our support team at admin@strangefregetrust.com</p>
-          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
+          <p>For assistance, contact our support team at admin@fregetrust.com</p>
+          <p style="margin-top: 20px;">© ${new Date().getFullYear()} Fregetrust. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -589,7 +589,7 @@ export function generateTransactionStatusEmail(
         </div>
         
         <div style="background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 14px;">
-          <p>© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
+          <p>© ${new Date().getFullYear()} Fregetrust. All rights reserved.</p>
         </div>
       </div>
     </body>

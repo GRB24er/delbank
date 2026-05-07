@@ -1,7 +1,7 @@
 {
-  "name": "Sovereign Trust Bank",
-  "short_name": "Sovereign Trust",
-  "description": "Sovereign Trust Bank - Premier private banking and global financial services.",
+  "name": "Fregetrust",
+  "short_name": "Fregetrust",
+  "description": "Fregetrust - Secure digital banking, wealth management, and global financial services.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",

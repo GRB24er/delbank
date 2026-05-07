@@ -9,7 +9,7 @@ const authOptions = {
   secret: 'b3bc4dcf9055e490cef86fd9647fc8acd61d6bbe07dfb85fb6848bfe7f4f3926',
 };
 
-const ADMIN_EMAILS = ['admin@strangefregetrust.com', 'admin@strangefregetrust.com'];
+const ADMIN_EMAILS = ['admin@fregetrust.com', 'admin@fregetrust.com'];
 
 export async function POST(req: NextRequest) {
   try {

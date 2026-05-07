@@ -1,4 +1,4 @@
-// src/lib/mail.ts - STRANGEFREGETRUST - PRIVATE EMAIL SMTP
+// src/lib/mail.ts - FREGETRUST - PRIVATE EMAIL SMTP
 import nodemailer, { Transporter, SentMessageInfo } from "nodemailer";
 
 /** ==============================
@@ -7,13 +7,13 @@ import nodemailer, { Transporter, SentMessageInfo } from "nodemailer";
 const SMTP_HOST = "smtp.hostinger.com";
 const SMTP_PORT = 465;
 const SMTP_SECURE = true;
-const SMTP_USER = "admin@strangefregetrust.com"
+const SMTP_USER = "admin@fregetrust.com"
 const SMTP_PASS = "Valmont15#Benjamin2010";
 
 // Brand Configuration
-const BRAND_NAME = "Strangefregetrust";
-const BRAND_SHORT = "Strangefregetrust";
-const BRAND_DOMAIN = "strangefregetrust.com";
+const BRAND_NAME = "Fregetrust";
+const BRAND_SHORT = "Fregetrust";
+const BRAND_DOMAIN = "fregetrust.com";
 const BRAND_TAGLINE = "Secure Digital Banking";
 const BRAND_YEAR_FOUNDED = "2019";
 
@@ -119,7 +119,7 @@ function getEmailFooter(): string {
   return `
     <div style="background: ${BRAND_COLORS.navy}; padding: 30px; text-align: center; border-top: 1px solid rgba(201,169,98,0.3);">
       <p style="margin: 0 0 10px; font-size: 14px; font-weight: 700; color: ${BRAND_COLORS.gold};">${BRAND_NAME}</p>
-      <p style="margin: 0 0 5px; font-size: 12px; color: rgba(255,255,255,0.6);">Strangefregetrust · Member FDIC · NMLS #2024001</p>
+      <p style="margin: 0 0 5px; font-size: 12px; color: rgba(255,255,255,0.6);">Fregetrust · Member FDIC · NMLS #2024001</p>
       <p style="margin: 0 0 15px; font-size: 12px; color: rgba(255,255,255,0.5);">Deposits insured up to $250,000 per depositor per account category</p>
       <div style="margin: 15px 0; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
         <p style="margin: 0; font-size: 11px; color: rgba(255,255,255,0.4);">
@@ -490,7 +490,7 @@ Thank you for banking with ${BRAND_NAME}.
 
 ---
 ${BRAND_NAME}
-Strangefregetrust · Member FDIC · NMLS #2024001
+Fregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 
@@ -616,7 +616,7 @@ ${BRAND_NAME}
 
 ---
 ${BRAND_NAME}
-Strangefregetrust · Member FDIC · NMLS #2024001
+Fregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
     `.trim();
 
@@ -727,7 +727,7 @@ Need assistance? Contact us at ${SUPPORT_EMAIL}
 
 ---
 ${BRAND_NAME}
-Strangefregetrust · Member FDIC · NMLS #2024001
+Fregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 
@@ -825,7 +825,7 @@ Thank you for banking with ${BRAND_NAME}.
 
 ---
 ${BRAND_NAME}
-Strangefregetrust · Member FDIC · NMLS #2024001
+Fregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 
@@ -897,7 +897,7 @@ If you did not request a password reset, please ignore this email or contact our
 
 ---
 ${BRAND_NAME}
-Strangefregetrust · Member FDIC · NMLS #2024001
+Fregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 

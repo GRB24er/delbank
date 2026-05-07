@@ -61,7 +61,7 @@ export default function TestOTP() {
       </pre>
       
       <p style={{marginTop: '2rem', color: '#64748b'}}>
-        Check email: admin@strangefregetrust.com
+        Check email: admin@fregetrust.com
       </p>
     </div>
   );

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Investments | Strangefregetrust' };
+export const metadata = { title: 'Investments | Fregetrust' };
 export default function InvestmentsPage() {
   return (
     <div className={styles.page}>
@@ -15,7 +15,7 @@ export default function InvestmentsPage() {
           {[
             { title: 'Stocks & ETFs', text: 'Trade thousands of stocks and ETFs with real-time pricing and zero commission on eligible trades.' },
             { title: 'Fixed Income', text: 'Access government and corporate bonds with competitive yields and transparent pricing.' },
-            { title: 'Crypto Assets', text: 'Buy, sell, and hold leading cryptocurrencies directly from your Strangefregetrust account.' },
+            { title: 'Crypto Assets', text: 'Buy, sell, and hold leading cryptocurrencies directly from your Fregetrust account.' },
             { title: 'Managed Portfolios', text: 'Let our algorithm build and rebalance a diversified portfolio tailored to your risk profile.' },
             { title: 'Retirement Accounts', text: 'IRA and Roth IRA accounts with tax advantages to help you plan for the future.' },
             { title: 'Research & Analytics', text: 'Access professional-grade market research, earnings reports, and portfolio analytics.' },

@@ -207,10 +207,10 @@ export default function CardsPage() {
                   style={{ background: currentCard.color }}
                 >
                   <div className={styles.cardTop}>
-                    {/* Strangefregetrust Logo */}
+                    {/* Fregetrust Logo */}
                     <img
                       src="/images/logo-icon.png"
-                      alt="Strangefregetrust"
+                      alt="Fregetrust"
                       style={{
                         width: '100px',
                         height: 'auto',

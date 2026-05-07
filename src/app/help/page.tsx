@@ -20,10 +20,10 @@ const categories = [
     title: 'Transfers & Payments',
     desc: 'Internal transfers, wire transfers, international payments, and transaction status.',
     faqs: [
-      { q: 'How long do transfers take?', a: 'Internal transfers between Strangefregetrust accounts are processed immediately. Domestic wire transfers are processed within 1 business day. International SWIFT transfers typically take 2–5 business days depending on the destination country and correspondent bank.' },
+      { q: 'How long do transfers take?', a: 'Internal transfers between Fregetrust accounts are processed immediately. Domestic wire transfers are processed within 1 business day. International SWIFT transfers typically take 2–5 business days depending on the destination country and correspondent bank.' },
       { q: 'Why is my transfer showing as Pending?', a: 'All transfers are reviewed by our compliance team before funds are released. This is a standard security measure to protect our customers from fraud. You will receive an email confirmation once your transfer is processed.' },
-      { q: 'What are the transfer limits?', a: 'Standard accounts have a daily transfer limit of $10,000 for domestic transfers and $25,000 for international transfers. Premium account holders have higher limits. Contact us at admin@strangefregetrust.com to request a limit increase.' },
-      { q: 'Can I cancel a transfer?', a: 'Transfers that are still in Pending status may be cancellable. Please contact us immediately at admin@strangefregetrust.com with your transaction reference number. Once a transfer has been processed, it cannot be reversed.' },
+      { q: 'What are the transfer limits?', a: 'Standard accounts have a daily transfer limit of $10,000 for domestic transfers and $25,000 for international transfers. Premium account holders have higher limits. Contact us at admin@fregetrust.com to request a limit increase.' },
+      { q: 'Can I cancel a transfer?', a: 'Transfers that are still in Pending status may be cancellable. Please contact us immediately at admin@fregetrust.com with your transaction reference number. Once a transfer has been processed, it cannot be reversed.' },
     ],
   },
   {
@@ -32,7 +32,7 @@ const categories = [
     desc: 'Debit cards, deposits, check deposits, and Flutterwave payments.',
     faqs: [
       { q: 'How do I fund my account?', a: 'You can fund your account via bank transfer, debit/credit card through our secure Flutterwave payment gateway, or mobile check deposit. Navigate to Fund Account in your dashboard to get started.' },
-      { q: 'How does mobile check deposit work?', a: 'Take a clear photo of the front and back of your cheque using the Strangefregetrust mobile app. Enter the amount and select your destination account. Funds are typically available within 1–2 business days after verification.' },
+      { q: 'How does mobile check deposit work?', a: 'Take a clear photo of the front and back of your cheque using the Fregetrust mobile app. Enter the amount and select your destination account. Funds are typically available within 1–2 business days after verification.' },
       { q: 'Is my card information secure?', a: 'All card transactions are processed through Flutterwave, a PCI-DSS Level 1 certified payment processor. We never store your full card number on our servers.' },
       { q: 'How do I request a physical debit card?', a: 'Navigate to Cards in your dashboard and select Request Physical Card. Cards are issued within 7–10 business days and delivered to your registered address.' },
     ],
@@ -43,7 +43,7 @@ const categories = [
     desc: 'Two-factor authentication, login alerts, device management, and data protection.',
     faqs: [
       { q: 'How do I enable two-factor authentication?', a: 'Go to Security Settings in your dashboard and toggle on Two-Factor Authentication. You can choose to receive codes via email or an authenticator app. We strongly recommend enabling 2FA on all accounts.' },
-      { q: 'I received a suspicious login alert. What should I do?', a: 'If you did not initiate the login, change your password immediately and contact us at admin@strangefregetrust.com. Do not share your password or OTP with anyone — Strangefregetrust will never ask for these via email or phone.' },
+      { q: 'I received a suspicious login alert. What should I do?', a: 'If you did not initiate the login, change your password immediately and contact us at admin@fregetrust.com. Do not share your password or OTP with anyone — Fregetrust will never ask for these via email or phone.' },
       { q: 'How is my data protected?', a: 'All data is encrypted in transit using TLS 1.3 and at rest using AES-256 encryption. We are SOC 2 Type II certified and comply with all applicable data protection regulations. See our Privacy Policy for full details.' },
       { q: 'How do I remove a trusted device?', a: 'Navigate to Security Settings > Trusted Devices in your dashboard. You can view all devices that have accessed your account and remove any that you do not recognise.' },
     ],
@@ -54,7 +54,7 @@ const categories = [
     desc: 'Loan applications, investment accounts, portfolio management, and rates.',
     faqs: [
       { q: 'How do I apply for a loan?', a: 'Navigate to Loans in your dashboard and select the loan type that suits your needs. Complete the application form and our team will review your application within 2–3 business days. Approval is subject to creditworthiness assessment.' },
-      { q: 'What investment products are available?', a: 'We offer fixed-term deposits, managed investment portfolios, and direct market access for eligible customers. Visit the Investments section of your dashboard or contact us at admin@strangefregetrust.com for a personalised consultation.' },
+      { q: 'What investment products are available?', a: 'We offer fixed-term deposits, managed investment portfolios, and direct market access for eligible customers. Visit the Investments section of your dashboard or contact us at admin@fregetrust.com for a personalised consultation.' },
       { q: 'What is the current savings APY?', a: 'Our High-Yield Savings Account currently offers 4.85% APY with no minimum balance requirement. Rates are subject to change. Visit our Rates page for the most current information.' },
     ],
   },
@@ -65,7 +65,7 @@ const categories = [
     faqs: [
       { q: 'How do I send cryptocurrency?', a: 'Navigate to Crypto in your dashboard, select Send, enter the recipient wallet address, amount, and network. All crypto transactions are reviewed by our compliance team before processing. You will receive an email confirmation once completed.' },
       { q: 'Why is my crypto transaction pending?', a: 'All crypto send and convert transactions are held for compliance review before execution. This is a standard anti-money-laundering measure. Processing typically takes 1–2 business days.' },
-      { q: 'What cryptocurrencies are supported?', a: 'We currently support Bitcoin (BTC), Ethereum (ETH), USDT (Tether), and USDC. Additional assets may be added in future. Contact us at admin@strangefregetrust.com for enquiries about specific assets.' },
+      { q: 'What cryptocurrencies are supported?', a: 'We currently support Bitcoin (BTC), Ethereum (ETH), USDT (Tether), and USDC. Additional assets may be added in future. Contact us at admin@fregetrust.com for enquiries about specific assets.' },
     ],
   },
 ];
@@ -90,7 +90,7 @@ export default function HelpPage() {
             <div className={styles.logoIcon}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/></svg>
             </div>
-            <span className={styles.logoText}>Strangefregetrust</span>
+            <span className={styles.logoText}>Fregetrust</span>
           </Link>
           <nav className={styles.headerNav}>
             <Link href="/" className={styles.navLink}>Home</Link>
@@ -109,7 +109,7 @@ export default function HelpPage() {
             Help Center
           </div>
           <h1 className={styles.heroTitle}>How can we help you?</h1>
-          <p className={styles.heroSubtitle}>Find answers to common questions or contact our team directly at <a href="mailto:admin@strangefregetrust.com" className={styles.heroEmail}>admin@strangefregetrust.com</a></p>
+          <p className={styles.heroSubtitle}>Find answers to common questions or contact our team directly at <a href="mailto:admin@fregetrust.com" className={styles.heroEmail}>admin@fregetrust.com</a></p>
         </div>
       </section>
 
@@ -144,7 +144,7 @@ export default function HelpPage() {
                 </div>
                 <h4>Still need help?</h4>
                 <p>Our support team responds within 24 business hours.</p>
-                <a href="mailto:admin@strangefregetrust.com" className={styles.contactCardBtn}>
+                <a href="mailto:admin@fregetrust.com" className={styles.contactCardBtn}>
                   Email Support
                 </a>
               </div>
@@ -184,7 +184,7 @@ export default function HelpPage() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                   Send us a message
                 </h3>
-                <p className={styles.contactSubtitle}>We typically respond within 24 business hours. For urgent matters, email us directly at <a href="mailto:admin@strangefregetrust.com">admin@strangefregetrust.com</a></p>
+                <p className={styles.contactSubtitle}>We typically respond within 24 business hours. For urgent matters, email us directly at <a href="mailto:admin@fregetrust.com">admin@fregetrust.com</a></p>
 
                 {submitted ? (
                   <div className={styles.successMsg}>
@@ -269,9 +269,9 @@ export default function HelpPage() {
             <div className={styles.footerBrand}>
               <div className={styles.footerLogoRow}>
                 <div className={styles.footerLogoIcon}><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/></svg></div>
-                <span>Strangefregetrust</span>
+                <span>Fregetrust</span>
               </div>
-              <p>admin@strangefregetrust.com</p>
+              <p>admin@fregetrust.com</p>
             </div>
             <div className={styles.footerLinks}>
               <Link href="/privacy">Privacy Policy</Link>
@@ -281,7 +281,7 @@ export default function HelpPage() {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>© {new Date().getFullYear()} Strangefregetrust Financial Institution. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Fregetrust Financial Institution. All rights reserved.</p>
             <p>Member FDIC · NMLS #2025001 · Equal Housing Lender</p>
           </div>
         </div>

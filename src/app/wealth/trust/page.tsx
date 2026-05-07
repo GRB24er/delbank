@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Trust & Estate | Strangefregetrust' };
+export const metadata = { title: 'Trust & Estate | Fregetrust' };
 export default function TrustEstatePage() {
   return (
     <div className={styles.page}>

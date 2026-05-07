@@ -1,19 +1,19 @@
 // ============================================================
-// STRANGEFREGETRUST — Central Brand Configuration
+// FREGETRUST — Central Brand Configuration
 // All brand references must be imported from this file.
 // ============================================================
 
 export const BRAND = {
-  name: 'Strangefregetrust',
-  shortName: 'SFT',
+  name: 'Fregetrust',
+  shortName: 'FGT',
   tagline: 'Trust. Built Different.',
-  fullLegalName: 'Strangefregetrust Financial Institution',
-  email: 'admin@strangefregetrust.com',
-  supportEmail: 'admin@strangefregetrust.com',
-  domain: 'strangefregetrust.com',
-  website: 'https://www.strangefregetrust.com',
+  fullLegalName: 'Fregetrust Financial Institution',
+  email: 'admin@fregetrust.com',
+  supportEmail: 'admin@fregetrust.com',
+  domain: 'fregetrust.com',
+  website: 'https://www.fregetrust.com',
   nmls: 'NMLS #2025001',
-  copyright: `© ${new Date().getFullYear()} Strangefregetrust Financial Institution. All rights reserved.`,
+  copyright: `© ${new Date().getFullYear()} Fregetrust Financial Institution. All rights reserved.`,
   address: '100 Financial District, Suite 2500, New York, NY 10005',
   colors: {
     primary: '#0F172A',    // Deep Navy

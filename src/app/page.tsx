@@ -45,7 +45,7 @@ export default function LandingPage() {
             <div className={styles.topBarRight}>
               <Link href="/locations">Branch Locator</Link>
               <Link href="/support">Help Center</Link>
-              <a href="mailto:admin@strangefregetrust.com">admin@strangefregetrust.com</a>
+              <a href="mailto:admin@fregetrust.com">admin@fregetrust.com</a>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function LandingPage() {
             <div className={styles.headerContent}>
               <Link href="/" className={styles.logoLink}>
                 <div style={{width:"44px",height:"44px",background:"linear-gradient(135deg,#1E40AF,#1E3A8A)",borderRadius:"12px",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/><path d="M12 2L3 7l9 5 9-5-9-5z" fill="white" opacity="0.3"/></svg></div>
-                <span className={styles.logoText}>Strangefregetrust</span>
+                <span className={styles.logoText}>Fregetrust</span>
               </Link>
               <nav className={styles.mainNav}>
                 <div className={styles.navItem} onMouseEnter={() => setActiveNav("personal")} onMouseLeave={() => setActiveNav(null)}>
@@ -234,7 +234,7 @@ export default function LandingPage() {
       <section className={styles.featuresSection}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Why Strangefregetrust</span>
+            <span className={styles.sectionBadge}>Why Fregetrust</span>
             <h2 className={styles.sectionTitle}>Built for security. Designed for simplicity.</h2>
           </div>
           <div className={styles.featuresGrid}>
@@ -268,7 +268,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className={styles.proofContent}>
-              <div className={styles.proofEyebrow}>Why Strangefregetrust</div>
+              <div className={styles.proofEyebrow}>Why Fregetrust</div>
               <h2 className={styles.proofTitle}>Banking built on trust, not promises</h2>
               <p className={styles.proofDesc}>We combine the reliability of a traditional financial institution with the speed and transparency of modern technology. Every account is FDIC insured, every transaction is encrypted, and every decision is made with your financial future in mind.</p>
               <div className={styles.proofStats}>
@@ -348,7 +348,7 @@ export default function LandingPage() {
         <div className={styles.container}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Ready to bank with confidence?</h2>
-            <p className={styles.ctaSubtitle}>Join over 250,000 customers who trust Strangefregetrust with their financial future.</p>
+            <p className={styles.ctaSubtitle}>Join over 250,000 customers who trust Fregetrust with their financial future.</p>
             <div className={styles.ctaActions}>
               <Link href="/auth/signup" className={styles.btnCtaPrimary}>Open a Free Account</Link>
               <Link href="/contact" className={styles.btnCtaSecondary}>Talk to an Advisor</Link>
@@ -365,10 +365,10 @@ export default function LandingPage() {
             <div className={styles.footerBrand}>
               <div className={styles.footerLogoRow}>
                 <div style={{width:"40px",height:"40px",background:"linear-gradient(135deg,#1E40AF,#1E3A8A)",borderRadius:"10px",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/></svg></div>
-                <span className={styles.footerBrandName}>Strangefregetrust</span>
+                <span className={styles.footerBrandName}>Fregetrust</span>
               </div>
               <p className={styles.footerTagline}>Trust. Built Different.</p>
-              <p className={styles.footerContact}>admin@strangefregetrust.com</p>
+              <p className={styles.footerContact}>admin@fregetrust.com</p>
             </div>
             <div className={styles.footerColumn}>
               <h4>Banking</h4>
@@ -401,7 +401,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>© {new Date().getFullYear()} Strangefregetrust Financial Institution. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Fregetrust Financial Institution. All rights reserved.</p>
             <p className={styles.footerLegal}>Member FDIC &nbsp;·&nbsp; NMLS #2025001 &nbsp;·&nbsp; Equal Housing Lender &nbsp;·&nbsp; Deposits insured up to $250,000</p>
           </div>
         </div>

@@ -40,8 +40,8 @@ export default function FundAccountPage() {
   // UPDATE THESE WITH YOUR ACTUAL BANK DETAILS
   // ============================================
   const bankDetails = {
-    bankName: "Strangefregetrust",
-    accountName: "Strangefregetrust LLC",
+    bankName: "Fregetrust",
+    accountName: "Fregetrust LLC",
     accountNumber: "8934567821",
     routingNumber: "021000021",
     swiftCode: "STBKUS33",
@@ -166,7 +166,7 @@ export default function FundAccountPage() {
         <main className={styles.content}>
           <div className={styles.pageHeader}>
             <h1>Fund Your Account</h1>
-            <p>Add funds to your Strangefregetrust account securely</p>
+            <p>Add funds to your Fregetrust account securely</p>
           </div>
 
           {/* Pending Deposits Alert */}
@@ -230,7 +230,7 @@ export default function FundAccountPage() {
                     <p>Transfer from your bank account</p>
                     <ul className={styles.methodDetails}>
                       <li>Processing: 1-3 business days</li>
-                      <li>No fees from Strangefregetrust</li>
+                      <li>No fees from Fregetrust</li>
                       <li>Minimum: $100</li>
                     </ul>
                   </div>

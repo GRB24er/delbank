@@ -9,7 +9,7 @@ async function createAdmin() {
     console.log("✅ Connected to MongoDB");
     
     // Create admin user
-    const adminEmail = "admin@strangefregetrust.com";
+    const adminEmail = "admin@fregetrust.com";
     const adminPassword = "Admin123!";
     
     // Delete existing admin
@@ -31,7 +31,7 @@ async function createAdmin() {
    
    console.log("✅ Admin user created!");
    console.log("📧 Admin credentials:");
-   console.log("   Email: admin@strangefregetrust.com");
+   console.log("   Email: admin@fregetrust.com");
    console.log("   Password: Admin123!");
    
  } catch (error) {

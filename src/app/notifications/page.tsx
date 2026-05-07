@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Notifications | Strangefregetrust' };
+export const metadata = { title: 'Notifications | Fregetrust' };
 export default function NotificationsPage() {
   return (
     <div className={styles.page}>

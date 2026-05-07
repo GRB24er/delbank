@@ -69,7 +69,7 @@ export default function SignInContent() {
             <div className={styles.logoIcon}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="currentColor" opacity="0.9"/><path d="M12 2L3 7l9 5 9-5-9-5z" fill="white" opacity="0.3"/></svg>
             </div>
-            <span className={styles.logoText}>Strangefregetrust</span>
+            <span className={styles.logoText}>Fregetrust</span>
           </Link>
 
           <div className={styles.formHeading}>
@@ -122,12 +122,12 @@ export default function SignInContent() {
             </button>
           </form>
 
-          <div className={styles.divider}><span>New to Strangefregetrust?</span></div>
+          <div className={styles.divider}><span>New to Fregetrust?</span></div>
           <Link href="/auth/signup" className={styles.createBtn}>Open a Free Account</Link>
 
           <div className={styles.securityNote}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Strangefregetrust will never ask for your password via email or phone.
+            Fregetrust will never ask for your password via email or phone.
           </div>
 
           <div className={styles.trustRow}>
@@ -142,7 +142,7 @@ export default function SignInContent() {
         <div className={styles.heroPanelInner}>
           <div className={styles.heroLogo}>
             <div className={styles.heroLogoIcon}><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/><path d="M12 2L3 7l9 5 9-5-9-5z" fill="white" opacity="0.3"/></svg></div>
-            <span className={styles.heroLogoText}>Strangefregetrust</span>
+            <span className={styles.heroLogoText}>Fregetrust</span>
           </div>
           <h2 className={styles.heroTitle}>Enterprise Banking.<br/><span className={styles.heroAccent}>Built for Everyone.</span></h2>
           <p className={styles.heroSubtitle}>Trusted by over 100,000 customers worldwide. Manage your wealth with confidence.</p>

@@ -172,16 +172,16 @@ export const authOptions: NextAuthOptions = {
                         <p style="margin: 4px 0; color: #78350f;"><strong>Location:</strong> ${location}</p>
                         <p style="margin: 4px 0; color: #78350f;"><strong>Time:</strong> ${new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</p>
                       </div>
-                      <p style="color: #dc2626; font-weight: 600;">If this wasn't you, please secure your account immediately by changing your password and contacting support at admin@strangefregetrust.com or admin@strangefregetrust.com.</p>
+                      <p style="color: #dc2626; font-weight: 600;">If this wasn't you, please secure your account immediately by changing your password and contacting support at admin@fregetrust.com or admin@fregetrust.com.</p>
                     </div>
                     <div style="background: #f8fafc; padding: 20px 30px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e5e7eb;">
-                      <p>This is an automated security alert from Strangefregetrust.</p>
+                      <p>This is an automated security alert from Fregetrust.</p>
                     </div>
                   </div>
                 `;
                 sendSimpleEmail(
                   user.email,
-                  'Strangefregetrust Security Alert - New Device Login',
+                  'Fregetrust Security Alert - New Device Login',
                   `A new device was used to sign in to your account. Device: ${parsed.browser} on ${parsed.os}. IP: ${ipAddress}. If this wasn't you, contact support immediately.`,
                   alertHtml
                 );

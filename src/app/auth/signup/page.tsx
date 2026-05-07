@@ -689,7 +689,7 @@ export default function SignUpPage() {
         <div className={styles.sidebar}>
           <div className={styles.sidebarContent}>
             <div className={styles.brand}>
-              <div style={{display:"flex",alignItems:"center",gap:"8px"}}><div style={{width:"32px",height:"32px",background:"linear-gradient(135deg,#1E40AF,#1E3A8A)",borderRadius:"8px",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/></svg></div><span style={{fontSize:"15px",fontWeight:700,color:"#0F172A"}}>Strangefregetrust</span></div>
+              <div style={{display:"flex",alignItems:"center",gap:"8px"}}><div style={{width:"32px",height:"32px",background:"linear-gradient(135deg,#1E40AF,#1E3A8A)",borderRadius:"8px",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="white" opacity="0.9"/></svg></div><span style={{fontSize:"15px",fontWeight:700,color:"#0F172A"}}>Fregetrust</span></div>
             </div>
 
             <div className={styles.features}>

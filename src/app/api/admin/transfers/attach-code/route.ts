@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
       const subject = `Funds Transfer Verification Required - Reference: ${transaction.reference}`;
       
       const textContent = `
-STRANGEFREGETRUST - SECURE TRANSFER VERIFICATION
+FREGETRUST - SECURE TRANSFER VERIFICATION
 
 ACCOUNT HOLDER: ${user.name || 'Valued Client'}
 TRANSACTION REFERENCE: ${transaction.reference}
@@ -119,17 +119,17 @@ This verification is required under applicable banking regulations and internati
 SECURITY ADVISORY:
 • This code is single-use and time-sensitive
 • Do not share with anyone under any circumstances
-• Strangefregetrust representatives will never request this code
-• Ensure you are on the official Strangefregetrust domain (strangefregetrust.com)
+• Fregetrust representatives will never request this code
+• Ensure you are on the official Fregetrust domain (fregetrust.com)
 • Disable VPN/proxy services during verification
 
 FOR IMMEDIATE SUPPORT:
-Contact Strangefregetrust Security Operations:
-• Email: admin@strangefregetrust.com
+Contact Fregetrust Security Operations:
+• Email: admin@fregetrust.com
 • Internal Reference: ${transaction.reference}
 
-STRANGEFREGETRUST | NMLS #2024001 | Member FDIC
-This is an automated message from Strangefregetrust's secure transaction system.
+FREGETRUST | NMLS #2024001 | Member FDIC
+This is an automated message from Fregetrust's secure transaction system.
       `.trim();
 
       const htmlContent = `
@@ -138,7 +138,7 @@ This is an automated message from Strangefregetrust's secure transaction system.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transfer Verification - Strangefregetrust</title>
+    <title>Transfer Verification - Fregetrust</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -508,8 +508,8 @@ This is an automated message from Strangefregetrust's secure transaction system.
                 </div>
                 <ul class="security-list">
                     <li>This verification code is single-use and time-sensitive</li>
-                    <li>Never share this code with anyone, including Strangefregetrust representatives</li>
-                    <li>Ensure you are on the official Strangefregetrust domain (strangefregetrust.com)</li>
+                    <li>Never share this code with anyone, including Fregetrust representatives</li>
+                    <li>Ensure you are on the official Fregetrust domain (fregetrust.com)</li>
                     <li>Disable VPN/proxy services during the verification process</li>
                     <li>If you did not initiate this transfer, contact security immediately</li>
                 </ul>
@@ -518,26 +518,26 @@ This is an automated message from Strangefregetrust's secure transaction system.
             <!-- Support Information -->
             <div style="text-align: center; margin-top: 32px; color: #64748b; font-size: 13px;">
                 <p><strong>For immediate assistance:</strong></p>
-                <p>Security Operations Center: admin@strangefregetrust.com</p>
+                <p>Security Operations Center: admin@fregetrust.com</p>
                 <p>Reference this email in all communications: ${transaction.reference}</p>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p><strong>STRANGEFREGETRUST</strong></p>
+            <p><strong>FREGETRUST</strong></p>
             <p>NMLS #2024001 | Member FDIC · NMLS #2024001</p>
 
             <div class="footer-links">
-                <a href="https://strangefregetrust.com/security" class="footer-link">Security Center</a>
-                <a href="https://strangefregetrust.com/contact" class="footer-link">Contact Support</a>
-                <a href="https://strangefregetrust.com/privacy" class="footer-link">Privacy Policy</a>
+                <a href="https://fregetrust.com/security" class="footer-link">Security Center</a>
+                <a href="https://fregetrust.com/contact" class="footer-link">Contact Support</a>
+                <a href="https://fregetrust.com/privacy" class="footer-link">Privacy Policy</a>
             </div>
 
-            <p>This is an automated message from Strangefregetrust's secure transaction system.</p>
-            <p>© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
+            <p>This is an automated message from Fregetrust's secure transaction system.</p>
+            <p>© ${new Date().getFullYear()} Fregetrust. All rights reserved.</p>
             <p style="margin-top: 16px; color: #475569; font-size: 11px;">
-                Strangefregetrust is a Member FDIC institution. NMLS #2024001.
+                Fregetrust is a Member FDIC institution. NMLS #2024001.
             </p>
         </div>
     </div>
@@ -546,7 +546,7 @@ This is an automated message from Strangefregetrust's secure transaction system.
       `;
 
       const emailResult = await transporter.sendMail({
-        from: '"Strangefregetrust" <admin@strangefregetrust.com>',
+        from: '"Fregetrust" <admin@fregetrust.com>',
         to: user.email,
         subject: subject,
         text: textContent,

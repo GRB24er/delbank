@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Private Banking | Strangefregetrust' };
+export const metadata = { title: 'Private Banking | Fregetrust' };
 export default function PrivateBankingPage() {
   return (
     <div className={styles.page}>

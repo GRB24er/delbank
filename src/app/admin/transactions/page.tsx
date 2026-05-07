@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Admin - Transactions | Strangefregetrust' };
+export const metadata = { title: 'Admin - Transactions | Fregetrust' };
 export default function AdminTransactionsPage() {
   return (
     <div className={styles.page}>

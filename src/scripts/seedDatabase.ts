@@ -12,7 +12,7 @@ async function seedDatabase() {
     console.log("✅ Connected to MongoDB");
 
     // Create or update demo user
-    const email = "hajand@strangefregetrust.com";
+    const email = "hajand@fregetrust.com";
     const plainPassword = "Valmont15#";
     const userName = "Hajand Morgan"; // Changed from Alexander Mitchell
     
@@ -121,7 +121,7 @@ async function seedDatabase() {
     console.log("\n✅ Database seeding completed successfully!");
     console.log("\n📧 Login credentials:");
     console.log("   Name: Hajand Morgan");
-    console.log("   Email: hajand@strangefregetrust.com");
+    console.log("   Email: hajand@fregetrust.com");
     console.log("   Password: Valmont15#");
     
   } catch (error) {

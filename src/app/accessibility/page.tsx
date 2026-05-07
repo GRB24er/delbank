@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
-export const metadata = { title: 'Accessibility | Strangefregetrust' };
+export const metadata = { title: 'Accessibility | Fregetrust' };
 export default function AccessibilityPage() {
   return (
     <div className={styles.page}>
       <div className={styles.hero}>
         <div className={styles.heroBadge}>Accessibility</div>
         <h1 className={styles.heroTitle}>Accessibility Statement</h1>
-        <p className={styles.heroSub}>Strangefregetrust is committed to ensuring digital accessibility for people of all abilities.</p>
+        <p className={styles.heroSub}>Fregetrust is committed to ensuring digital accessibility for people of all abilities.</p>
       </div>
       <div className={styles.container}>
         <Link href="/" className={styles.backLink}>← Back to Home</Link>
@@ -29,7 +29,7 @@ export default function AccessibilityPage() {
         </div>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Feedback & Contact</h2>
-          <p className={styles.sectionText}>If you experience any accessibility barriers on our platform, please contact our accessibility team at <strong>admin@strangefregetrust.com</strong>. We aim to respond to accessibility feedback within 2 business days.</p>
+          <p className={styles.sectionText}>If you experience any accessibility barriers on our platform, please contact our accessibility team at <strong>admin@fregetrust.com</strong>. We aim to respond to accessibility feedback within 2 business days.</p>
         </div>
       </div>
     </div>

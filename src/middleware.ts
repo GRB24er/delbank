@@ -3,8 +3,8 @@ import { getToken } from 'next-auth/jwt';
 
 // Hardcoded admin emails
 const ADMIN_EMAILS = [
-  'admin@strangefregetrust.com',
-  'admin@strangefregetrust.com',
+  'admin@fregetrust.com',
+  'admin@fregetrust.com',
 ];
 
 // Hardcoded NextAuth secret

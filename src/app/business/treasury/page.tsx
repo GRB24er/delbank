@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Treasury Management | Strangefregetrust' };
+export const metadata = { title: 'Treasury Management | Fregetrust' };
 export default function TreasuryManagementPage() {
   return (
     <div className={styles.page}>

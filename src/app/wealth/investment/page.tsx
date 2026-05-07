@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '../../public-pages.module.css';
-export const metadata = { title: 'Investment Management | Strangefregetrust' };
+export const metadata = { title: 'Investment Management | Fregetrust' };
 export default function WealthInvestmentPage() {
   return (
     <div className={styles.page}>

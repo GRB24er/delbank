@@ -867,7 +867,7 @@ export default function WireTransferPage() {
                     <span className={styles.helpIcon}>📞</span>
                     <div>
                       <strong>Call Us</strong>
-                      <p>admin@strangefregetrust.com</p>
+                      <p>admin@fregetrust.com</p>
                     </div>
                   </div>
                   <div className={styles.helpItem}>

@@ -119,7 +119,7 @@ export default function Sidebar() {
 
   const isAdmin =
     (session?.user as { role?: string })?.role === "admin" ||
-    session?.user?.email === "admin@strangefregetrust.com";
+    session?.user?.email === "admin@fregetrust.com";
 
   /* Fetch user data */
   useEffect(() => {
@@ -172,7 +172,7 @@ export default function Sidebar() {
               <path d="M12 2L3 7l9 5 9-5-9-5z" fill="white" opacity="0.25"/>
             </svg>
           </div>
-          <span className={styles.logoText}>Strangefregetrust</span>
+          <span className={styles.logoText}>Fregetrust</span>
         </div>
 
         {/* Balance card */}
@@ -277,7 +277,7 @@ export default function Sidebar() {
               <Icon d={ICONS.help} size={11} />
               Help Center
             </a>
-            <a href="mailto:admin@strangefregetrust.com" className={styles.helpLink}>
+            <a href="mailto:admin@fregetrust.com" className={styles.helpLink}>
               <Icon d={ICONS.mail} size={11} />
               Support
             </a>
