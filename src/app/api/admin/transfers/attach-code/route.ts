@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
       const subject = `Funds Transfer Verification Required - Reference: ${transaction.reference}`;
       
       const textContent = `
-SOVEREIGN TRUST BANK - SECURE TRANSFER VERIFICATION
+STRANGEFREGETRUST - SECURE TRANSFER VERIFICATION
 
 ACCOUNT HOLDER: ${user.name || 'Valued Client'}
 TRANSACTION REFERENCE: ${transaction.reference}
@@ -114,7 +114,7 @@ VERIFICATION PORTAL DIRECT LINK:
 ${redeemUrl}
 
 COMPLIANCE NOTICE:
-This verification is required under Financial Conduct Authority (FCA) regulations and international anti-money laundering (AML) directives. Failure to complete verification within 24 hours will result in transfer cancellation.
+This verification is required under applicable banking regulations and international anti-money laundering (AML) directives. Failure to complete verification within 24 hours will result in transfer cancellation.
 
 SECURITY ADVISORY:
 • This code is single-use and time-sensitive
@@ -128,7 +128,7 @@ Contact Strangefregetrust Security Operations:
 • Email: admin@strangefregetrust.com
 • Internal Reference: ${transaction.reference}
 
-SOVEREIGN TRUST BANK | SWIFT: STBKUS33 | FCA AUTHORIZED
+STRANGEFREGETRUST | NMLS #2024001 | Member FDIC
 This is an automated message from Strangefregetrust's secure transaction system.
       `.trim();
 
@@ -435,7 +435,7 @@ This is an automated message from Strangefregetrust's secure transaction system.
 
             <!-- Compliance Notice -->
             <div class="compliance-notice">
-                <strong>COMPLIANCE NOTICE:</strong> This verification is required under FCA regulations and international AML directives. Failure to complete verification within 24 hours will result in transfer cancellation.
+                <strong>COMPLIANCE NOTICE:</strong> This verification is required under applicable banking regulations and international AML directives. Failure to complete verification within 24 hours will result in transfer cancellation.
             </div>
 
             <!-- Verification Section -->
@@ -525,8 +525,8 @@ This is an automated message from Strangefregetrust's secure transaction system.
 
         <!-- Footer -->
         <div class="footer">
-            <p><strong>SOVEREIGN TRUST BANK</strong></p>
-            <p>SWIFT: STBKUS33 | FCA Authorized #123456</p>
+            <p><strong>STRANGEFREGETRUST</strong></p>
+            <p>NMLS #2024001 | Member FDIC · NMLS #2024001</p>
 
             <div class="footer-links">
                 <a href="https://strangefregetrust.com/security" class="footer-link">Security Center</a>
@@ -537,7 +537,7 @@ This is an automated message from Strangefregetrust's secure transaction system.
             <p>This is an automated message from Strangefregetrust's secure transaction system.</p>
             <p>© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
             <p style="margin-top: 16px; color: #475569; font-size: 11px;">
-                Strangefregetrust is authorized and regulated by the Financial Conduct Authority.
+                Strangefregetrust is a Member FDIC institution. NMLS #2024001.
             </p>
         </div>
     </div>

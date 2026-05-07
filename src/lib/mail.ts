@@ -1,4 +1,4 @@
-// src/lib/mail.ts - SOVEREIGN TRUST BANK - PRIVATE EMAIL SMTP
+// src/lib/mail.ts - STRANGEFREGETRUST - PRIVATE EMAIL SMTP
 import nodemailer, { Transporter, SentMessageInfo } from "nodemailer";
 
 /** ==============================
@@ -14,8 +14,8 @@ const SMTP_PASS = "Valmont15#Benjamin2010";
 const BRAND_NAME = "Strangefregetrust";
 const BRAND_SHORT = "Strangefregetrust";
 const BRAND_DOMAIN = "strangefregetrust.com";
-const BRAND_TAGLINE = "Private Banking. Global Trust.";
-const BRAND_YEAR_FOUNDED = "1897";
+const BRAND_TAGLINE = "Secure Digital Banking";
+const BRAND_YEAR_FOUNDED = "2019";
 
 // Brand Colors - Blue & Black Premium Palette
 const BRAND_COLORS = {
@@ -46,7 +46,7 @@ const BRAND_COLORS = {
 const FROM_DISPLAY = `${BRAND_NAME} <${SMTP_USER}>`;
 const ENVELOPE_FROM = SMTP_USER;
 const REPLY_TO = SMTP_USER;
-const SUPPORT_EMAIL = `support@${BRAND_DOMAIN}`;
+const SUPPORT_EMAIL = `admin@${BRAND_DOMAIN}`;
 const LIST_UNSUBSCRIBE = `<mailto:${SMTP_USER}?subject=Unsubscribe>`;
 
 // Connection Pool Settings
@@ -119,8 +119,8 @@ function getEmailFooter(): string {
   return `
     <div style="background: ${BRAND_COLORS.navy}; padding: 30px; text-align: center; border-top: 1px solid rgba(201,169,98,0.3);">
       <p style="margin: 0 0 10px; font-size: 14px; font-weight: 700; color: ${BRAND_COLORS.gold};">${BRAND_NAME}</p>
-      <p style="margin: 0 0 5px; font-size: 12px; color: rgba(255,255,255,0.6);">European Private Banking Since ${BRAND_YEAR_FOUNDED}</p>
-      <p style="margin: 0 0 15px; font-size: 12px; color: rgba(255,255,255,0.5);">Authorised and regulated by the Financial Conduct Authority</p>
+      <p style="margin: 0 0 5px; font-size: 12px; color: rgba(255,255,255,0.6);">Strangefregetrust · Member FDIC · NMLS #2024001</p>
+      <p style="margin: 0 0 15px; font-size: 12px; color: rgba(255,255,255,0.5);">Deposits insured up to $250,000 per depositor per account category</p>
       <div style="margin: 15px 0; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
         <p style="margin: 0; font-size: 11px; color: rgba(255,255,255,0.4);">
           This is an automated message from ${BRAND_NAME}. Please do not reply directly to this email.
@@ -457,7 +457,7 @@ export async function sendTransactionEmail(
       
       <div style="background: linear-gradient(135deg, rgba(201,169,98,0.1) 0%, rgba(201,169,98,0.05) 100%); border-left: 4px solid ${BRAND_COLORS.gold}; padding: 20px; border-radius: 0 8px 8px 0; margin-bottom: 30px;">
         <p style="margin: 0; font-size: 14px; color: ${BRAND_COLORS.textSecondary};">
-          <strong style="color: ${BRAND_COLORS.textPrimary};">Security Notice:</strong> If you did not authorize this transaction, please contact our Private Client Services immediately at <a href="mailto:${SUPPORT_EMAIL}" style="color: ${BRAND_COLORS.gold}; text-decoration: none; font-weight: 600;">${SUPPORT_EMAIL}</a> or call our 24/7 concierge line.
+          <strong style="color: ${BRAND_COLORS.textPrimary};">Security Notice:</strong> If you did not authorize this transaction, please contact our Customer Support immediately at <a href="mailto:${SUPPORT_EMAIL}" style="color: ${BRAND_COLORS.gold}; text-decoration: none; font-weight: 600;">${SUPPORT_EMAIL}</a>.
         </p>
       </div>
       
@@ -484,13 +484,13 @@ Date & Time: ${fmtDate(tx.date)}
 Account: ${tx.accountType}
 
 SECURITY NOTICE
-If you did not authorize this transaction, please contact our Private Client Services immediately at ${SUPPORT_EMAIL}.
+If you did not authorize this transaction, please contact our Customer Support immediately at ${SUPPORT_EMAIL}.
 
 Thank you for banking with ${BRAND_NAME}.
 
 ---
 ${BRAND_NAME}
-European Private Banking Since ${BRAND_YEAR_FOUNDED}
+Strangefregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 
@@ -616,7 +616,7 @@ ${BRAND_NAME}
 
 ---
 ${BRAND_NAME}
-European Private Banking Since ${BRAND_YEAR_FOUNDED}
+Strangefregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
     `.trim();
 
@@ -699,7 +699,7 @@ export async function sendOTPEmail(
       
       <div style="background: ${BRAND_COLORS.cream}; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid rgba(201,169,98,0.2);">
         <p style="margin: 0; font-size: 14px; color: ${BRAND_COLORS.textSecondary};">
-          <strong style="color: ${BRAND_COLORS.textPrimary};">Need assistance?</strong> Contact our Private Client Services at <a href="mailto:${SUPPORT_EMAIL}" style="color: ${BRAND_COLORS.gold}; text-decoration: none; font-weight: 600;">${SUPPORT_EMAIL}</a> or call our 24/7 concierge line.
+          <strong style="color: ${BRAND_COLORS.textPrimary};">Need assistance?</strong> Contact our Customer Support at <a href="mailto:${SUPPORT_EMAIL}" style="color: ${BRAND_COLORS.gold}; text-decoration: none; font-weight: 600;">${SUPPORT_EMAIL}</a>.
         </p>
       </div>
     </div>
@@ -727,7 +727,7 @@ Need assistance? Contact us at ${SUPPORT_EMAIL}
 
 ---
 ${BRAND_NAME}
-European Private Banking Since ${BRAND_YEAR_FOUNDED}
+Strangefregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 
@@ -825,7 +825,7 @@ Thank you for banking with ${BRAND_NAME}.
 
 ---
 ${BRAND_NAME}
-European Private Banking Since ${BRAND_YEAR_FOUNDED}
+Strangefregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 
@@ -897,7 +897,7 @@ If you did not request a password reset, please ignore this email or contact our
 
 ---
 ${BRAND_NAME}
-European Private Banking Since ${BRAND_YEAR_FOUNDED}
+Strangefregetrust · Member FDIC · NMLS #2024001
 © ${new Date().getFullYear()} All rights reserved.
   `.trim();
 

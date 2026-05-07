@@ -242,7 +242,7 @@ export function generateCreditEmail(data: BankingEmailData): string {
         
         <div class="footer">
           <p>This is an automated notification. Please do not reply to this email.</p>
-          <p>For assistance, contact our support team at support@strangefregetrust.com</p>
+          <p>For assistance, contact our support team at admin@strangefregetrust.com</p>
           <p style="margin-top: 20px;">© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
         </div>
       </div>
@@ -437,13 +437,13 @@ export function generateDebitEmail(data: BankingEmailData): string {
           ` : ''}
           
           <div class="security-notice">
-            <strong>Important:</strong> If you did not authorize this transaction, please contact our support team immediately at admin@strangefregetrust.com or support@strangefregetrust.com.
+            <strong>Important:</strong> If you did not authorize this transaction, please contact our support team immediately at admin@strangefregetrust.com or admin@strangefregetrust.com.
           </div>
         </div>
         
         <div class="footer">
           <p>This is an automated notification. Please do not reply to this email.</p>
-          <p>For assistance, contact our support team at support@strangefregetrust.com</p>
+          <p>For assistance, contact our support team at admin@strangefregetrust.com</p>
           <p style="margin-top: 20px;">© ${new Date().getFullYear()} Strangefregetrust. All rights reserved.</p>
         </div>
       </div>
