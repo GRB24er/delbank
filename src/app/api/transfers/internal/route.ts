@@ -1,8 +1,9 @@
 // src/app/api/transfers/internal/route.ts
-// INTERNAL TRANSFERS - CREATES PENDING TRANSACTIONS
+// INTERNAL TRANSFERS - IMMEDIATE DEDUCTION (own accounts, no approval required)
 
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import mongoose from "mongoose";
 import { authOptions } from "@/lib/authOptions";
 import connectDB from "@/lib/mongodb";
 import User from "@/models/User";
@@ -76,7 +77,7 @@ export async function POST(request: NextRequest) {
 
     console.log('[Internal Transfer] 👤 User:', user._id);
 
-    // Check current balance (just for validation - not updating yet)
+    // Resolve balance fields for both accounts
     const balanceFieldMap: { [key: string]: string } = {
       'checking': 'checkingBalance',
       'savings': 'savingsBalance',
@@ -84,17 +85,19 @@ export async function POST(request: NextRequest) {
     };
 
     const fromBalanceField = balanceFieldMap[fromAccount];
+    const toBalanceField = balanceFieldMap[toAccount];
     const currentFromBalance = Number((user as any)[fromBalanceField] || 0);
-    
+    const currentToBalance = Number((user as any)[toBalanceField] || 0);
+
     console.log('[Internal Transfer] 💰 Balance check:', {
       fromAccount,
       currentBalance: currentFromBalance,
       requiredAmount: transferAmount
     });
-    
+
     if (transferAmount > currentFromBalance) {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: "Insufficient funds",
           details: {
@@ -111,83 +114,225 @@ export async function POST(request: NextRequest) {
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.random().toString(36).substring(2, 6).toUpperCase();
     const transferRef = `INT-${timestamp}-${random}`;
-    
+
     console.log('[Internal Transfer] 📝 Reference:', transferRef);
 
-    // Create TWO PENDING transactions (debit + credit)
-    // Admin will approve both, then balances update
-    
-    const transferOutTransaction = await Transaction.create({
-      userId: user._id,
-      type: 'transfer-out',
-      currency: 'USD',
-      amount: transferAmount, // POSITIVE
-      description: description?.trim() || `Transfer to ${toAccount}`,
-      status: 'pending', // PENDING - awaits admin approval
-      accountType: fromAccount,
-      posted: false,
-      postedAt: null,
-      reference: `${transferRef}-OUT`,
-      channel: 'online',
-      origin: 'internal_transfer',
-      date: new Date(),
-      metadata: {
-        fromAccount,
-        toAccount,
-        isInternalTransfer: true,
-        linkedReference: `${transferRef}-IN`
+    const newFromBalance = currentFromBalance - transferAmount;
+    const newToBalance = currentToBalance + transferAmount;
+
+    let transferOutTransaction: any;
+    let transferInTransaction: any;
+
+    // Atomically debit + credit + record both transactions.
+    // Falls back to a non-transactional path on standalone MongoDB
+    // (replica-set / sharded clusters required for sessions).
+    const mongoSession = await mongoose.startSession();
+    let usedTransaction = true;
+    try {
+      try {
+        await mongoSession.withTransaction(async () => {
+          const updated = await User.findOneAndUpdate(
+            {
+              _id: user._id,
+              [fromBalanceField]: { $gte: transferAmount }
+            },
+            {
+              $inc: {
+                [fromBalanceField]: -transferAmount,
+                [toBalanceField]: transferAmount
+              }
+            },
+            { new: true, session: mongoSession }
+          );
+
+          if (!updated) {
+            throw new Error('Insufficient funds');
+          }
+
+          [transferOutTransaction] = await Transaction.create([{
+            userId: user._id,
+            type: 'transfer-out',
+            currency: 'USD',
+            amount: transferAmount,
+            description: description?.trim() || `Transfer to ${toAccount}`,
+            status: 'completed',
+            accountType: fromAccount,
+            posted: true,
+            postedAt: new Date(),
+            reference: `${transferRef}-OUT`,
+            channel: 'online',
+            origin: 'internal_transfer',
+            date: new Date(),
+            metadata: {
+              fromAccount,
+              toAccount,
+              isInternalTransfer: true,
+              linkedReference: `${transferRef}-IN`,
+              balanceAfter: newFromBalance
+            }
+          }], { session: mongoSession });
+
+          [transferInTransaction] = await Transaction.create([{
+            userId: user._id,
+            type: 'transfer-in',
+            currency: 'USD',
+            amount: transferAmount,
+            description: description?.trim() || `Transfer from ${fromAccount}`,
+            status: 'completed',
+            accountType: toAccount,
+            posted: true,
+            postedAt: new Date(),
+            reference: `${transferRef}-IN`,
+            channel: 'online',
+            origin: 'internal_transfer',
+            date: new Date(),
+            metadata: {
+              fromAccount,
+              toAccount,
+              isInternalTransfer: true,
+              linkedReference: `${transferRef}-OUT`,
+              balanceAfter: newToBalance
+            }
+          }], { session: mongoSession });
+        });
+      } catch (txnErr: any) {
+        const message = String(txnErr?.message || '');
+        const isUnsupported =
+          message.includes('Transaction numbers are only allowed') ||
+          message.includes('replica set') ||
+          txnErr?.code === 20 ||
+          txnErr?.codeName === 'IllegalOperation';
+
+        if (!isUnsupported) throw txnErr;
+
+        // Standalone MongoDB fallback — guarded conditional update
+        usedTransaction = false;
+        const updated = await User.findOneAndUpdate(
+          {
+            _id: user._id,
+            [fromBalanceField]: { $gte: transferAmount }
+          },
+          {
+            $inc: {
+              [fromBalanceField]: -transferAmount,
+              [toBalanceField]: transferAmount
+            }
+          },
+          { new: true }
+        );
+
+        if (!updated) {
+          throw new Error('Insufficient funds');
+        }
+
+        try {
+          transferOutTransaction = await Transaction.create({
+            userId: user._id,
+            type: 'transfer-out',
+            currency: 'USD',
+            amount: transferAmount,
+            description: description?.trim() || `Transfer to ${toAccount}`,
+            status: 'completed',
+            accountType: fromAccount,
+            posted: true,
+            postedAt: new Date(),
+            reference: `${transferRef}-OUT`,
+            channel: 'online',
+            origin: 'internal_transfer',
+            date: new Date(),
+            metadata: {
+              fromAccount,
+              toAccount,
+              isInternalTransfer: true,
+              linkedReference: `${transferRef}-IN`,
+              balanceAfter: newFromBalance
+            }
+          });
+
+          transferInTransaction = await Transaction.create({
+            userId: user._id,
+            type: 'transfer-in',
+            currency: 'USD',
+            amount: transferAmount,
+            description: description?.trim() || `Transfer from ${fromAccount}`,
+            status: 'completed',
+            accountType: toAccount,
+            posted: true,
+            postedAt: new Date(),
+            reference: `${transferRef}-IN`,
+            channel: 'online',
+            origin: 'internal_transfer',
+            date: new Date(),
+            metadata: {
+              fromAccount,
+              toAccount,
+              isInternalTransfer: true,
+              linkedReference: `${transferRef}-OUT`,
+              balanceAfter: newToBalance
+            }
+          });
+        } catch (recordErr) {
+          // Compensate the balance change if we can't persist the ledger entries
+          await User.findByIdAndUpdate(user._id, {
+            $inc: {
+              [fromBalanceField]: transferAmount,
+              [toBalanceField]: -transferAmount
+            }
+          });
+          throw recordErr;
+        }
       }
-    });
+    } catch (err: any) {
+      await mongoSession.endSession();
+      if (String(err?.message || '').includes('Insufficient funds')) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Insufficient funds",
+            details: {
+              available: currentFromBalance,
+              requested: transferAmount,
+              shortfall: transferAmount - currentFromBalance
+            }
+          },
+          { status: 400 }
+        );
+      }
+      throw err;
+    }
+    await mongoSession.endSession();
 
     console.log('[Internal Transfer] 💾 Transfer-out created:', transferOutTransaction._id);
-
-    const transferInTransaction = await Transaction.create({
-      userId: user._id,
-      type: 'transfer-in',
-      currency: 'USD',
-      amount: transferAmount, // POSITIVE
-      description: description?.trim() || `Transfer from ${fromAccount}`,
-      status: 'pending', // PENDING - awaits admin approval
-      accountType: toAccount,
-      posted: false,
-      postedAt: null,
-      reference: `${transferRef}-IN`,
-      channel: 'online',
-      origin: 'internal_transfer',
-      date: new Date(),
-      metadata: {
-        fromAccount,
-        toAccount,
-        isInternalTransfer: true,
-        linkedReference: `${transferRef}-OUT`
-      }
+    console.log('[Internal Transfer] 💾 Transfer-in created:', transferInTransaction._id);
+    console.log('[Internal Transfer] 💰 Balances updated:', {
+      [fromBalanceField]: { old: currentFromBalance, new: newFromBalance },
+      [toBalanceField]: { old: currentToBalance, new: newToBalance }
     });
 
-    console.log('[Internal Transfer] 💾 Transfer-in created:', transferInTransaction._id);
-
-    // ✅ SEND EMAILS for BOTH transactions
+    // Send confirmation emails for both legs (best-effort)
     try {
       await sendTransactionEmail(user.email, {
         name: user.name || 'Customer',
         transaction: transferOutTransaction
       });
-      
+
       await sendTransactionEmail(user.email, {
         name: user.name || 'Customer',
         transaction: transferInTransaction
       });
-      
+
       console.log('[Internal Transfer] ✅ Emails sent');
     } catch (emailError) {
       console.error('[Internal Transfer] ❌ Email failed:', emailError);
-      // Continue even if email fails
     }
 
-    console.log('[Internal Transfer] ✅ Transfer created (pending approval)');
+    console.log('[Internal Transfer] ✅ Transfer completed', {
+      atomic: usedTransaction
+    });
 
     return NextResponse.json({
       success: true,
-      message: "Transfer initiated. Awaiting admin approval.",
+      message: "Transfer completed successfully.",
       transferReference: transferRef,
       transfer: {
         type: 'internal',
@@ -196,19 +341,36 @@ export async function POST(request: NextRequest) {
         amount: transferAmount,
         description: description || 'Internal Transfer',
         reference: transferRef,
-        status: 'pending',
+        status: 'completed',
         date: new Date().toISOString()
+      },
+      balances: {
+        checking: fromAccount === 'checking'
+          ? newFromBalance
+          : toAccount === 'checking'
+            ? newToBalance
+            : Number(user.checkingBalance || 0),
+        savings: fromAccount === 'savings'
+          ? newFromBalance
+          : toAccount === 'savings'
+            ? newToBalance
+            : Number(user.savingsBalance || 0),
+        investment: fromAccount === 'investment'
+          ? newFromBalance
+          : toAccount === 'investment'
+            ? newToBalance
+            : Number(user.investmentBalance || 0)
       },
       transactions: [
         {
           id: transferOutTransaction._id,
           reference: transferOutTransaction.reference,
-          status: 'pending'
+          status: 'completed'
         },
         {
           id: transferInTransaction._id,
           reference: transferInTransaction.reference,
-          status: 'pending'
+          status: 'completed'
         }
       ]
     }, { status: 200 });
