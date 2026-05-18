@@ -206,9 +206,25 @@ export async function POST(request: NextRequest) {
     console.log('🔖 Generated reference:', intlRef);
 
     // =====================================================
-    // CREATE PENDING TRANSACTION - NO BALANCE CHANGE YET
-    // Admin will approve, then balance updates
+    // DEDUCT BALANCE IMMEDIATELY ON USER INITIATION
+    // Transaction marked posted=true so admin approval
+    // does not re-deduct; admin decline will refund.
     // =====================================================
+
+    const initiatedAt = new Date();
+    const newBalance = currentBalance - totalAmount;
+
+    await User.updateOne(
+      { _id: user._id },
+      { $set: { [fromBalanceField]: newBalance } }
+    );
+
+    console.log('💰 International balance deducted:', {
+      account: fromAccount,
+      previous: currentBalance,
+      deducted: totalAmount,
+      current: newBalance
+    });
 
     const intlTransaction = await Transaction.create({
       userId: user._id,
@@ -216,14 +232,14 @@ export async function POST(request: NextRequest) {
       currency: 'USD',
       amount: transferAmount,
       description: description?.trim() || `International transfer to ${recipientName} (${recipientCountry})`,
-      status: 'pending', // PENDING - awaits admin approval
+      status: 'pending', // Awaits admin processing
       accountType: fromAccount,
-      posted: false, // NOT posted
-      postedAt: null,
+      posted: true, // Balance already deducted
+      postedAt: initiatedAt,
       reference: intlRef,
       channel: 'online',
       origin: 'international_transfer',
-      date: new Date(),
+      date: initiatedAt,
       metadata: {
         recipientName,
         recipientAccount: recipientAccount.slice(-4),
@@ -246,7 +262,7 @@ export async function POST(request: NextRequest) {
 
     console.log('💾 International transaction saved:', intlTransaction._id);
 
-    // Create fee transaction (also pending)
+    // Create fee transaction (also posted - balance already deducted above)
     if (totalFees > 0) {
       await Transaction.create({
         userId: user._id,
@@ -254,14 +270,14 @@ export async function POST(request: NextRequest) {
         currency: 'USD',
         amount: totalFees,
         description: `International transfer fees${exchangeFee > 0 ? ' (incl. exchange)' : ''}`,
-        status: 'pending', // PENDING
+        status: 'pending',
         accountType: fromAccount,
-        posted: false,
-        postedAt: null,
+        posted: true,
+        postedAt: initiatedAt,
         reference: `${intlRef}-FEE`,
         channel: 'online',
         origin: 'international_transfer',
-        date: new Date(),
+        date: initiatedAt,
         metadata: {
           linkedReference: intlRef,
           transferFee,
@@ -272,14 +288,10 @@ export async function POST(request: NextRequest) {
       console.log('💾 Fee transaction saved');
     }
 
-    // =====================================================
-    // DO NOT UPDATE BALANCE - Admin approval will do that
-    // =====================================================
-
-    console.log('✅ International transfer created (pending approval):', {
+    console.log('✅ International transfer created (balance deducted, awaiting admin processing):', {
       reference: intlRef,
       status: 'pending',
-      currentBalance // Balance unchanged
+      newBalance
     });
 
     // Send notification email
@@ -323,8 +335,7 @@ export async function POST(request: NextRequest) {
         purposeOfTransfer,
         date: new Date().toISOString()
       },
-      // Balance NOT changed yet
-      currentBalance
+      currentBalance: newBalance
     }, { status: 200 });
 
   } catch (error: any) {

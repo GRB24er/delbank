@@ -42,6 +42,30 @@ export async function GET(
   }
 }
 
+// Whitelisted fields the admin edit form is allowed to update
+function buildUpdateData(body: any) {
+  const updateData: any = {};
+
+  if (body.amount !== undefined) updateData.amount = Number(body.amount);
+  if (body.description !== undefined) updateData.description = body.description;
+  if (body.status !== undefined) updateData.status = body.status;
+  if (body.accountType !== undefined) updateData.accountType = body.accountType;
+  if (body.type !== undefined) updateData.type = body.type;
+  if (body.reference !== undefined) updateData.reference = body.reference;
+
+  // Preserve the admin's chosen date exactly. Only update when provided
+  // and parseable; never silently fall back to "now".
+  if (body.date !== undefined && body.date !== null && body.date !== '') {
+    const parsed = new Date(body.date);
+    if (!isNaN(parsed.getTime())) {
+      updateData.date = parsed;
+      updateData.editedDateByAdmin = true;
+    }
+  }
+
+  return updateData;
+}
+
 // PATCH - Update transaction
 export async function PATCH(
   req: NextRequest,
@@ -50,35 +74,34 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await req.json();
-    
+
     await connectDB();
-    
+
+    const updateData = buildUpdateData(body);
+
     const transaction = await Transaction.findByIdAndUpdate(
       id,
-      { 
-        ...body,
-        updatedAt: new Date()
-      },
-      { new: true }
+      { $set: updateData },
+      { new: true, runValidators: true }
     );
-    
+
     if (!transaction) {
       return NextResponse.json(
         { error: 'Transaction not found' },
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json({
       success: true,
       message: 'Transaction updated successfully',
       transaction
     });
-    
+
   } catch (error: any) {
     console.error('Error updating transaction:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to update transaction',
         details: error.message
       },
@@ -95,56 +118,36 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await req.json();
-    
+
     await connectDB();
-    
+
     console.log('Updating transaction:', id, body);
-    
-    // Handle date update specifically
-    const updateData: any = {};
-    
-    if (body.amount !== undefined) updateData.amount = body.amount;
-    if (body.description !== undefined) updateData.description = body.description;
-    if (body.status !== undefined) updateData.status = body.status;
-    
-    // Handle date field - ensure it's properly formatted
-    if (body.date !== undefined) {
-      updateData.date = new Date(body.date);
-      updateData.originalDate = updateData.date; // Store the admin-edited date
-      updateData.editedDateByAdmin = true; // Mark as edited by admin
-    }
-    
-    updateData.updatedAt = new Date();
-    
+
+    const updateData = buildUpdateData(body);
+
     const transaction = await Transaction.findByIdAndUpdate(
       id,
-      updateData,
+      { $set: updateData },
       { new: true, runValidators: true }
     ).populate('userId', 'name email');
-    
+
     if (!transaction) {
       return NextResponse.json(
         { error: 'Transaction not found' },
         { status: 404 }
       );
     }
-    
-    // If status changed to approved/completed, apply balance changes
-    if (body.status && ['approved', 'completed'].includes(body.status)) {
-      // The Transaction model middleware should handle this automatically
-      console.log('Transaction status changed to:', body.status);
-    }
-    
+
     return NextResponse.json({
       success: true,
       message: 'Transaction updated successfully',
       transaction
     });
-    
+
   } catch (error: any) {
     console.error('Error updating transaction:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to update transaction',
         details: error.message
       },

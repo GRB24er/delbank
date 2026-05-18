@@ -109,42 +109,45 @@ export async function POST(
     console.log('[APPROVE] Balance field:', balanceField);
     console.log('[APPROVE] Current balance:', currentBalance);
     console.log('[APPROVE] Transaction amount:', txAmount);
+    console.log('[APPROVE] Already posted:', transaction.posted);
 
-    // Calculate new balance
     let newBalance = currentBalance;
-    
-    if (isCredit(transaction.type)) {
-      newBalance = currentBalance + txAmount;
-      console.log('[APPROVE] CREDIT:', currentBalance, '+', txAmount, '=', newBalance);
-    } else if (isDebit(transaction.type)) {
-      newBalance = currentBalance - txAmount;
-      console.log('[APPROVE] DEBIT:', currentBalance, '-', txAmount, '=', newBalance);
+
+    // Only update balance if not already posted.
+    // User-initiated transfers deduct on creation (posted=true), so
+    // approval here just marks the transaction approved without
+    // double-deducting.
+    if (transaction.posted === true) {
+      console.log('[APPROVE] Skipping balance update - already posted at creation');
     } else {
-      // Default to credit if type not recognized
-      newBalance = currentBalance + txAmount;
-      console.log('[APPROVE] DEFAULT CREDIT:', currentBalance, '+', txAmount, '=', newBalance);
+      if (isCredit(transaction.type)) {
+        newBalance = currentBalance + txAmount;
+        console.log('[APPROVE] CREDIT:', currentBalance, '+', txAmount, '=', newBalance);
+      } else if (isDebit(transaction.type)) {
+        newBalance = currentBalance - txAmount;
+        console.log('[APPROVE] DEBIT:', currentBalance, '-', txAmount, '=', newBalance);
+      } else {
+        // Default to credit if type not recognized
+        newBalance = currentBalance + txAmount;
+        console.log('[APPROVE] DEFAULT CREDIT:', currentBalance, '+', txAmount, '=', newBalance);
+      }
+
+      const userUpdateResult = await User.updateOne(
+        { _id: user._id },
+        { $set: { [balanceField]: newBalance } }
+      );
+
+      console.log('[APPROVE] User balance update result:', userUpdateResult);
     }
 
-    // Update user balance
-    const userUpdateResult = await User.updateOne(
-      { _id: user._id },
-      { 
-        $set: { 
-          [balanceField]: newBalance 
-        } 
-      }
-    );
-
-    console.log('[APPROVE] User balance update result:', userUpdateResult);
-
-    // Update transaction status
+    // Update transaction status (preserve postedAt if it was set on creation)
     const txUpdateResult = await Transaction.updateOne(
       { _id: transaction._id },
       {
         $set: {
           status: 'approved',
           posted: true,
-          postedAt: new Date(),
+          postedAt: transaction.postedAt || new Date(),
           approvedAt: new Date()
         }
       }

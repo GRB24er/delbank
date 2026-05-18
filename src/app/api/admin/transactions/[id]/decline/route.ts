@@ -5,53 +5,92 @@ import User from '@/models/User';
 import Transaction from '@/models/Transaction';
 import { sendTransactionEmail } from '@/lib/mail';
 
+const CREDIT_TYPES = ['deposit', 'transfer-in', 'interest', 'adjustment-credit'];
+const DEBIT_TYPES = ['withdraw', 'withdrawal', 'transfer-out', 'fee', 'adjustment-debit', 'payment', 'charge', 'purchase'];
+
+function getBalanceField(accountType: string): string {
+  if (accountType === 'savings') return 'savingsBalance';
+  if (accountType === 'investment') return 'investmentBalance';
+  return 'checkingBalance';
+}
+
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    
+
     // Get the transaction ID from params
     const { id: transactionId } = await params;
     const body = await req.json();
-    
-    const { 
+
+    const {
       reason,
       adminNotes,
-      adminId 
+      adminId
     } = body;
-    
+
     // Find the transaction to reject
     const transaction = await Transaction.findById(transactionId);
-    
+
     if (!transaction) {
       return NextResponse.json(
         { error: 'Transaction not found' },
         { status: 404 }
       );
     }
-    
-    // Check if already processed
-    if (transaction.status !== 'pending') {
+
+    // Check if already processed (allow pending or initiated; block already terminal states)
+    if (!['pending', 'initiated', 'processing', 'pending_verification'].includes(transaction.status)) {
       return NextResponse.json(
         { error: `Transaction already ${transaction.status}` },
         { status: 400 }
       );
     }
-    
+
     // Find the user for this transaction
     const user = await User.findById(transaction.userId);
-    
+
     if (!user) {
       return NextResponse.json(
         { error: 'User not found for this transaction' },
         { status: 404 }
       );
     }
-    
+
+    // If balance was already deducted/credited at creation, refund it
+    if (transaction.posted === true) {
+      const balanceField = getBalanceField(transaction.accountType || 'checking');
+      const currentBalance = Number((user as any)[balanceField]) || 0;
+      const txAmount = Math.abs(Number(transaction.amount));
+      let refundedBalance = currentBalance;
+
+      if (DEBIT_TYPES.includes(transaction.type)) {
+        // Was deducted, refund by adding back
+        refundedBalance = currentBalance + txAmount;
+      } else if (CREDIT_TYPES.includes(transaction.type)) {
+        // Was credited, reverse by subtracting
+        refundedBalance = currentBalance - txAmount;
+      }
+
+      await User.updateOne(
+        { _id: user._id },
+        { $set: { [balanceField]: refundedBalance } }
+      );
+
+      console.log('[DECLINE] Refunded balance:', {
+        account: transaction.accountType,
+        previous: currentBalance,
+        refunded: txAmount,
+        current: refundedBalance
+      });
+    }
+
     // Update transaction to rejected
     transaction.status = 'rejected';
+    transaction.posted = false;
+    transaction.postedAt = null;
     transaction.rejectedBy = adminId || 'admin';
     transaction.rejectedAt = new Date();
     transaction.rejectionReason = reason || 'Administrative review';

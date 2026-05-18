@@ -33,6 +33,16 @@ const getBalance = (value: number | undefined | null): number => {
   return value ?? 0;
 };
 
+// Format a Date or ISO string into the value expected by <input type="datetime-local">
+// (YYYY-MM-DDTHH:mm in the user's local timezone).
+const toDatetimeLocalValue = (value: string | Date | undefined | null): string => {
+  if (!value) return "";
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
+
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -322,7 +332,7 @@ export default function AdminDashboard() {
     setEditForm({
       amount: transaction.amount.toString(),
       description: transaction.description,
-      date: transaction.date,
+      date: toDatetimeLocalValue(transaction.date),
       status: transaction.status
     });
     setActiveTab("edit-transaction");
@@ -332,6 +342,17 @@ export default function AdminDashboard() {
   const saveEditedTransaction = async () => {
     if (!editingTransaction) return;
 
+    // editForm.date is a datetime-local value (YYYY-MM-DDTHH:mm) in the
+    // admin's local timezone. Convert to a full ISO string so the server
+    // stores the exact moment the admin chose, with no timezone drift.
+    let isoDate: string | undefined = undefined;
+    if (editForm.date) {
+      const parsed = new Date(editForm.date);
+      if (!isNaN(parsed.getTime())) {
+        isoDate = parsed.toISOString();
+      }
+    }
+
     setLoading(true);
     try {
       const response = await fetch(`/api/admin/transactions/${editingTransaction._id}`, {
@@ -340,7 +361,7 @@ export default function AdminDashboard() {
         body: JSON.stringify({
           amount: parseFloat(editForm.amount),
           description: editForm.description,
-          date: editForm.date,
+          date: isoDate,
           status: editForm.status,
           sendEmail: true,
           emailType: "update"
@@ -725,7 +746,7 @@ export default function AdminDashboard() {
                         </td>
                         <td>{tx.accountType || 'N/A'}</td>
                         <td>{tx.description || 'N/A'}</td>
-                        <td>{tx.date ? new Date(tx.date).toLocaleDateString() : 'N/A'}</td>
+                        <td>{tx.date ? new Date(tx.date).toLocaleString() : 'N/A'}</td>
                         <td>
                           <span className={`${styles.status} ${styles[tx.status] || ''}`}>
                             {tx.status || 'unknown'}

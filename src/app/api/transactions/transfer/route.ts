@@ -91,22 +91,37 @@ export async function POST(request: NextRequest) {
     });
 
     // =====================================================
-    // CREATE PENDING TRANSACTIONS - NO BALANCE CHANGES YET
-    // Admin will approve both, then balances update
+    // DEDUCT SENDER BALANCE IMMEDIATELY ON INITIATION
+    // Recipient credit stays pending until admin approval.
     // =====================================================
 
-    // Create DEBIT transaction (sender) - PENDING
+    const initiatedAt = new Date();
+    const newSenderBalance = senderBalance - transferAmount;
+
+    await User.updateOne(
+      { _id: sender._id },
+      { $set: { [senderBalanceField]: newSenderBalance } }
+    );
+
+    console.log('[P2P Transfer] Sender balance deducted:', {
+      account: accountType,
+      previous: senderBalance,
+      deducted: transferAmount,
+      current: newSenderBalance
+    });
+
+    // Create DEBIT transaction (sender) - balance already deducted
     const debitTx = await Transaction.create({
       userId: sender._id,
       type: 'transfer-out',
       amount: transferAmount,
       description: `Transfer to ${recipient.name}${description ? ': ' + description : ''}`,
       currency,
-      status: 'pending', // PENDING - awaits admin approval
+      status: 'pending', // Awaits admin processing
       accountType,
-      posted: false, // NOT posted yet
-      postedAt: null,
-      date: new Date(),
+      posted: true, // Balance already deducted
+      postedAt: initiatedAt,
+      date: initiatedAt,
       reference: `${transferRef}-OUT`,
       channel: 'online',
       origin: 'p2p_transfer',
@@ -121,7 +136,7 @@ export async function POST(request: NextRequest) {
 
     console.log('[P2P Transfer] Debit transaction created:', debitTx._id);
 
-    // Create CREDIT transaction (recipient) - PENDING
+    // Create CREDIT transaction (recipient) - PENDING (admin must approve to credit recipient)
     const creditTx = await Transaction.create({
       userId: recipient._id,
       type: 'transfer-in',
@@ -130,9 +145,9 @@ export async function POST(request: NextRequest) {
       currency,
       status: 'pending', // PENDING - awaits admin approval
       accountType: 'checking', // Credits go to recipient's checking
-      posted: false, // NOT posted yet
+      posted: false, // Recipient not credited yet
       postedAt: null,
-      date: new Date(),
+      date: initiatedAt,
       reference: `${transferRef}-IN`,
       channel: 'online',
       origin: 'p2p_transfer',
