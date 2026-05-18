@@ -141,21 +141,31 @@ export async function POST(request: NextRequest) {
     estimatedDelivery.setDate(estimatedDelivery.getDate() + estimatedDays);
 
     // =====================================================
-    // CREATE PENDING TRANSACTION
-    // NO balance deduction yet - only when admin approves
-    // User must complete verification before funds release
+    // DEDUCT BALANCE IMMEDIATELY ON USER INITIATION
+    // Transaction marked posted=true so admin approval
+    // does not re-deduct; admin decline will refund.
     // =====================================================
-
-    // ACH Settlement Simulation:
-    // External transfers start as 'initiated', then progress:
-    // initiated → processing (1 day) → completed/settled (2-3 days)
-    // This is handled by the /api/cron/ach-settlement endpoint
 
     const processingDate = new Date();
     processingDate.setDate(processingDate.getDate() + 1);
 
     const settlementDate = new Date();
     settlementDate.setDate(settlementDate.getDate() + estimatedDays);
+
+    const initiatedAt = new Date();
+    const newBalance = currentBalance - totalAmount;
+
+    await User.updateOne(
+      { _id: user._id },
+      { $set: { [balanceField]: newBalance } }
+    );
+
+    console.log('[External Transfer] Balance deducted:', {
+      account: fromAccount,
+      previous: currentBalance,
+      deducted: totalAmount,
+      current: newBalance
+    });
 
     const mainTransaction = await Transaction.create({
       userId: user._id,
@@ -165,12 +175,12 @@ export async function POST(request: NextRequest) {
       description: description || `Transfer to ${recipientName}`,
       status: 'initiated',
       accountType: fromAccount,
-      posted: false,
-      postedAt: null,
+      posted: true,
+      postedAt: initiatedAt,
       reference: transferRef,
       channel: 'online',
       origin: 'external_transfer',
-      date: new Date(),
+      date: initiatedAt,
       metadata: {
         recipientName,
         recipientAccount: recipientAccount.slice(-4).padStart(recipientAccount.length, '*'),
@@ -185,7 +195,7 @@ export async function POST(request: NextRequest) {
         estimatedDelivery: estimatedDelivery.toISOString(),
         // ACH timeline tracking
         achStatus: 'initiated',
-        achInitiatedAt: new Date().toISOString(),
+        achInitiatedAt: initiatedAt.toISOString(),
         achEstimatedProcessing: processingDate.toISOString(),
         achEstimatedSettlement: settlementDate.toISOString(),
         // Verification fields - admin will populate these
@@ -198,7 +208,7 @@ export async function POST(request: NextRequest) {
 
     console.log('[External Transfer] Main transaction created:', mainTransaction._id);
 
-    // Create fee transaction if applicable
+    // Create fee transaction if applicable (also posted, balance already deducted above)
     if (fee > 0) {
       await Transaction.create({
         userId: user._id,
@@ -208,12 +218,12 @@ export async function POST(request: NextRequest) {
         description: `${transferSpeed === 'wire' ? 'Wire' : 'Express'} transfer fee`,
         status: 'pending',
         accountType: fromAccount,
-        posted: false,
-        postedAt: null,
+        posted: true,
+        postedAt: initiatedAt,
         reference: `${transferRef}-FEE`,
         channel: 'system',
         origin: 'transfer_fee',
-        date: new Date(),
+        date: initiatedAt,
         metadata: {
           linkedReference: transferRef,
           feeType: `${transferSpeed}_transfer`

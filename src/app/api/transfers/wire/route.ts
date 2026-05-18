@@ -185,9 +185,25 @@ export async function POST(request: NextRequest) {
     console.log('🔖 Generated wire reference:', wireRef);
 
     // =====================================================
-    // CREATE PENDING TRANSACTION - NO BALANCE CHANGE YET
-    // Admin will approve, then balance updates
+    // DEDUCT BALANCE IMMEDIATELY ON USER INITIATION
+    // Transaction marked posted=true so admin approval
+    // does not re-deduct; admin decline will refund.
     // =====================================================
+
+    const initiatedAt = new Date();
+    const newBalance = currentBalance - totalAmount;
+
+    await User.updateOne(
+      { _id: user._id },
+      { $set: { [fromBalanceField]: newBalance } }
+    );
+
+    console.log('💰 Wire balance deducted:', {
+      account: fromAccount,
+      previous: currentBalance,
+      deducted: totalAmount,
+      current: newBalance
+    });
 
     const wireTransaction = await Transaction.create({
       userId: user._id,
@@ -195,14 +211,14 @@ export async function POST(request: NextRequest) {
       currency: 'USD',
       amount: transferAmount,
       description: description?.trim() || `${wireType === 'international' ? 'International' : 'Domestic'} wire transfer to ${recipientName}`,
-      status: 'pending', // PENDING - awaits admin approval
+      status: 'pending', // Awaits admin processing of the wire send
       accountType: fromAccount,
-      posted: false, // NOT posted
-      postedAt: null,
+      posted: true, // Balance already deducted
+      postedAt: initiatedAt,
       reference: wireRef,
       channel: 'online',
       origin: 'wire_transfer',
-      date: new Date(),
+      date: initiatedAt,
       metadata: {
         wireType,
         recipientName,
@@ -221,7 +237,7 @@ export async function POST(request: NextRequest) {
 
     console.log('💾 Wire transaction saved:', wireTransaction._id);
 
-    // Create fee transaction (also pending)
+    // Create fee transaction (also posted - balance already deducted above)
     if (wireFee > 0) {
       await Transaction.create({
         userId: user._id,
@@ -229,14 +245,14 @@ export async function POST(request: NextRequest) {
         currency: 'USD',
         amount: wireFee,
         description: `Wire transfer fee${urgentTransfer ? ' (urgent)' : ''}`,
-        status: 'pending', // PENDING
+        status: 'pending',
         accountType: fromAccount,
-        posted: false,
-        postedAt: null,
+        posted: true,
+        postedAt: initiatedAt,
         reference: `${wireRef}-FEE`,
         channel: 'online',
         origin: 'wire_transfer',
-        date: new Date(),
+        date: initiatedAt,
         metadata: {
           linkedReference: wireRef,
           wireType,
@@ -246,14 +262,10 @@ export async function POST(request: NextRequest) {
       console.log('💾 Fee transaction saved');
     }
 
-    // =====================================================
-    // DO NOT UPDATE BALANCE - Admin approval will do that
-    // =====================================================
-
-    console.log('✅ Wire transfer created (pending approval):', {
+    console.log('✅ Wire transfer created (balance deducted, awaiting admin processing):', {
       reference: wireRef,
       status: 'pending',
-      currentBalance // Balance unchanged
+      newBalance
     });
 
     // Send notification email
@@ -298,8 +310,7 @@ export async function POST(request: NextRequest) {
         purposeOfTransfer,
         date: new Date().toISOString()
       },
-      // Balance NOT changed yet
-      currentBalance
+      currentBalance: newBalance
     }, { status: 200 });
 
   } catch (error: any) {
