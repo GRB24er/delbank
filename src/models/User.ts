@@ -10,6 +10,12 @@ export interface IUser extends Document {
   role: 'user' | 'admin';
   verified: boolean;
 
+  // Account status / access restrictions (set by admins)
+  accountStatus: 'active' | 'frozen' | 'blocked' | 'closed';
+  statusReason?: string;
+  statusUpdatedAt?: Date;
+  statusUpdatedBy?: string;
+
   // Three separate account balances
   checkingBalance: number;
   savingsBalance: number;
@@ -82,6 +88,18 @@ const UserSchema = new Schema<IUser>({
     type: Boolean,
     default: false,
   },
+
+  // Account status / access restrictions. Anything other than "active"
+  // prevents the customer from signing in (see src/lib/authOptions.ts).
+  accountStatus: {
+    type: String,
+    enum: ['active', 'frozen', 'blocked', 'closed'],
+    default: 'active',
+    index: true,
+  },
+  statusReason: { type: String, default: '' },
+  statusUpdatedAt: { type: Date },
+  statusUpdatedBy: { type: String },
 
   // Balances
   checkingBalance: { type: Number, default: 0 },

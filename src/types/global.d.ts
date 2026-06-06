@@ -31,6 +31,12 @@ declare module '@/lib/mail' {
   export const transporter: any;
   export const sendTransactionEmail: any;
   export const sendWelcomeEmail: any;
+  export function sendSimpleEmail(
+    to: string | string[],
+    subject: string,
+    text: string,
+    html?: string
+  ): Promise<any>;
   export function sendBankStatementEmail(
     to: string,
     transactions: {

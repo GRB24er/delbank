@@ -120,6 +120,36 @@ export const authOptions: NextAuthOptions = {
 
           console.log('✅ Authentication successful for:', user.email);
 
+          // ── Account status / restrictions gate ─────────────────────────
+          // A frozen, blocked, or closed account must not be able to sign in.
+          // The admin-provided reason is surfaced to the client by throwing an
+          // error whose message encodes the status + reason — NextAuth passes
+          // the thrown message straight through to signIn()'s `error`.
+          const accountStatus = (user as any).accountStatus;
+          if (accountStatus && accountStatus !== 'active') {
+            const reason =
+              (user as any).statusReason ||
+              'Your account access has been restricted. Please contact support.';
+
+            // Record the blocked attempt for the security log (non-blocking).
+            try {
+              await LoginHistory.create({
+                userId: user._id,
+                email,
+                status: 'failed',
+                ipAddress,
+                device: parsed.device,
+                browser: parsed.browser,
+                os: parsed.os,
+                userAgent,
+                failureReason: `Account ${accountStatus}`,
+                isNewDevice: false,
+              });
+            } catch (e) { /* non-blocking */ }
+
+            throw new Error('ACCT_STATUS::' + JSON.stringify({ status: accountStatus, reason }));
+          }
+
           // Check if this is a new/unrecognized device
           const fingerprint = generateDeviceFingerprint(userAgent, ipAddress);
           let isNewDevice = false;
@@ -228,7 +258,13 @@ export const authOptions: NextAuthOptions = {
             savingsBalance: user.savingsBalance || 0,
             investmentBalance: user.investmentBalance || 0,
           };
-        } catch (error) {
+        } catch (error: any) {
+          // Account-status restrictions must reach the client with their
+          // message intact, so re-throw them instead of collapsing to null
+          // (which NextAuth would report as a generic "CredentialsSignin").
+          if (typeof error?.message === 'string' && error.message.startsWith('ACCT_STATUS::')) {
+            throw error;
+          }
           console.error('Auth error:', error);
           return null;
         }

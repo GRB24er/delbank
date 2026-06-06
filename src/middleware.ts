@@ -30,8 +30,9 @@ export async function middleware(req: NextRequest) {
       name: session?.name || 'No name'
     });
 
-    // Protect admin routes
-    if (path.startsWith('/admin')) {
+    // Protect admin routes (both the legacy /admin/* pages and the
+    // /dashboard/admin/* console). These must be admin-only.
+    if (path.startsWith('/admin') || path.startsWith('/dashboard/admin')) {
       console.log('🔐 Checking admin access...');
       
       if (!session || !session.email) {

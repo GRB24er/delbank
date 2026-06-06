@@ -42,13 +42,28 @@ const ADMIN_NAV_ITEMS: NavItem[] = [
     href: "/dashboard/admin/users", 
     icon: "👥"
   },
-  { 
-    label: "Transactions", 
-    href: "/dashboard/admin/transactions", 
+  {
+    label: "Transactions",
+    href: "/dashboard/admin/transactions",
     icon: "💸"
   },
-  { 
-    label: "KYC Verification", 
+  {
+    label: "Restrictions",
+    href: "/dashboard/admin/restrictions",
+    icon: "🚫"
+  },
+  {
+    label: "Adjustments",
+    href: "/dashboard/admin/adjustments",
+    icon: "⚖️"
+  },
+  {
+    label: "Send Email",
+    href: "/dashboard/admin/email",
+    icon: "✉️"
+  },
+  {
+    label: "KYC Verification",
     href: "/dashboard/admin/kyc", 
     icon: "✅"
   },
