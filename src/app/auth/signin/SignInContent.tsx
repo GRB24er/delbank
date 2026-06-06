@@ -4,6 +4,15 @@ import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import styles from './signin.module.css';
+import { BRAND } from '@/config/brand';
+
+type Restriction = { status: string; reason: string };
+
+const STATUS_LABELS: Record<string, string> = {
+  frozen: 'Account Frozen',
+  blocked: 'Account Blocked',
+  closed: 'Account Closed',
+};
 
 export default function SignInContent() {
   const { data: session, status } = useSession();
@@ -23,6 +32,7 @@ export default function SignInContent() {
   const [attempts, setAttempts] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
   const [lockoutTime, setLockoutTime] = useState(0);
+  const [restriction, setRestriction] = useState<Restriction | null>(null);
 
   useEffect(() => {
     if (lockoutTime > 0) {
@@ -44,12 +54,23 @@ export default function SignInContent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isLocked) { setErrorMsg(`Account temporarily locked. Try again in ${lockoutTime} seconds.`); return; }
-    setErrorMsg(''); setIsSuccess(false); setLoading(true);
+    setErrorMsg(''); setIsSuccess(false); setRestriction(null); setLoading(true);
     try {
       await new Promise(r => setTimeout(r, 1200));
       const res = await signIn('credentials', { redirect: false, email: email.trim(), password: password.trim() });
       setLoading(false);
       if (res?.error) {
+        // Account frozen/blocked/closed — the reason is encoded in the error.
+        // This is not a wrong-password attempt, so it must not trip the lockout.
+        if (res.error.startsWith('ACCT_STATUS::')) {
+          try {
+            const info = JSON.parse(res.error.slice('ACCT_STATUS::'.length));
+            setRestriction({ status: String(info.status || 'frozen'), reason: String(info.reason || '') });
+          } catch {
+            setRestriction({ status: 'frozen', reason: 'Your account access has been restricted. Please contact support.' });
+          }
+          return;
+        }
         const n = attempts + 1; setAttempts(n);
         if (n >= 5) { setIsLocked(true); setLockoutTime(300); setErrorMsg('Too many failed attempts. Account locked for 5 minutes.'); }
         else { setErrorMsg(`Invalid email or password. ${5 - n} attempt(s) remaining.`); }
@@ -76,6 +97,42 @@ export default function SignInContent() {
             <h1 className={styles.formTitle}>Welcome back</h1>
             <p className={styles.formSubtitle}>Sign in to your account to continue</p>
           </div>
+
+          {restriction && (
+            <div
+              role="alert"
+              style={{
+                display: 'flex',
+                gap: '12px',
+                alignItems: 'flex-start',
+                background: '#fef2f2',
+                border: '1px solid #fecaca',
+                borderLeft: '4px solid #dc2626',
+                borderRadius: '10px',
+                padding: '16px',
+                marginBottom: '16px',
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" style={{ flexShrink: 0, marginTop: '1px' }}>
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontWeight: 700, color: '#991b1b', fontSize: '15px', marginBottom: '4px' }}>
+                  {STATUS_LABELS[restriction.status] || 'Account Restricted'}
+                </div>
+                <div style={{ color: '#7f1d1d', fontSize: '13.5px', lineHeight: 1.5 }}>
+                  {restriction.reason || 'Your account access has been restricted.'}
+                </div>
+                <div style={{ color: '#b91c1c', fontSize: '12.5px', marginTop: '8px' }}>
+                  Need help? Contact us at{' '}
+                  <a href={`mailto:${BRAND.supportEmail}`} style={{ color: '#991b1b', fontWeight: 600 }}>
+                    {BRAND.supportEmail}
+                  </a>
+                  .
+                </div>
+              </div>
+            </div>
+          )}
 
           {errorMsg && (
             <div className={`${styles.alert} ${isSuccess ? styles.alertSuccess : styles.alertError}`}>

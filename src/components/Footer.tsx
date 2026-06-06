@@ -5,6 +5,7 @@ import { useState } from "react";
 import styles from "./Footer.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { BRAND } from "@/config/brand";
 
 const Footer = () => {
   const [emailSubscribe, setEmailSubscribe] = useState("");
@@ -34,8 +35,12 @@ const Footer = () => {
             </div>
             
             <p className={styles.brandDescription}>
-              Leading the future of wealth management with secure, innovative solutions 
+              Leading the future of wealth management with secure, innovative solutions
               that empower your financial journey. Member FDIC • Equal Housing Lender
+            </p>
+
+            <p className={styles.brandDescription} style={{ fontSize: "13px", opacity: 0.85 }}>
+              <strong>{BRAND.headOffice.label}:</strong> {BRAND.address}
             </p>
 
             {/* Newsletter */}

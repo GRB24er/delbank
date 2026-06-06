@@ -1,97 +1,96 @@
 // src/app/api/admin/users/route.ts
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/authOptions';
 import connectDB from '@/lib/mongodb';
-import mongoose from 'mongoose';
+import User from '@/models/User';
 
-// Define the User schema if not already defined
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  checkingBalance: { type: Number, default: 0 },
-  savingsBalance: { type: Number, default: 0 },
-  investmentBalance: { type: Number, default: 0 },
-  verified: { type: Boolean, default: false },
-  role: { type: String, default: 'user' },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
-});
-
-// Define User interface
-interface IUser {
-  _id: mongoose.Types.ObjectId;
-  name?: string;
-  email?: string;
-  password?: string;
-  checkingBalance?: number;
-  savingsBalance?: number;
-  investmentBalance?: number;
-  verified?: boolean;
-  role?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+// Escape user input before using it inside a RegExp so queries like "j." or
+// "a+" are treated literally instead of crashing or matching everything.
+function escapeRegex(input: string): string {
+  return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 export async function GET(req: NextRequest) {
   try {
-    console.log('Users API route called');
-    
-    // Connect to database using your existing connectDB function
+    // Customer PII is admin-only.
+    const session = await getServerSession(authOptions);
+    if (!session?.user || (session.user as any).role !== 'admin') {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized', users: [], total: 0 },
+        { status: 403 }
+      );
+    }
+
     await connectDB();
-    console.log('Connected to database');
-    
-    // Get the User model (check if it already exists first)
-    const User = mongoose.models.User || mongoose.model('User', userSchema);
-    
-    // Fetch all users without password field
-    const users = await User.find({})
-      .select('-password')
-      .sort({ createdAt: -1 })
-      .lean<IUser[]>();
-    
-    console.log(`Found ${users.length} users in database`);
-    
-    // Format the users data
-    const formattedUsers = users.map(user => ({
-      _id: user._id.toString(), // Fixed: Properly type the _id field
-      name: user.name || 'Unknown User',
-      email: user.email || 'no-email@fregetrust.com',
-      checkingBalance: Number(user.checkingBalance) || 0,
-      savingsBalance: Number(user.savingsBalance) || 0,
-      investmentBalance: Number(user.investmentBalance) || 0,
-      verified: Boolean(user.verified),
-      role: user.role || 'user',
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+
+    const { searchParams } = new URL(req.url);
+    const q = (searchParams.get('q') || '').trim();
+    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10) || 1);
+    const rawLimit = parseInt(searchParams.get('limit') || '50', 10) || 50;
+    const limit = Math.min(200, Math.max(1, rawLimit)); // cap 200, default 50
+    const skip = (page - 1) * limit;
+
+    // Build the search filter: case-insensitive match across name, email and
+    // accountNumber. Empty query returns everyone (paginated).
+    let filter: Record<string, any> = {};
+    if (q) {
+      const rx = new RegExp(escapeRegex(q), 'i');
+      filter = { $or: [{ name: rx }, { email: rx }, { accountNumber: rx }] };
+    }
+
+    const projection =
+      'name email accountNumber routingNumber role verified accountStatus statusReason ' +
+      'checkingBalance savingsBalance investmentBalance createdAt updatedAt';
+
+    const [docs, total] = await Promise.all([
+      User.find(filter)
+        .select(projection)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .lean(),
+      User.countDocuments(filter),
+    ]);
+
+    const users = docs.map((u: any) => ({
+      _id: u._id.toString(),
+      name: u.name || 'Unknown User',
+      email: u.email || '',
+      accountNumber: u.accountNumber || '',
+      routingNumber: u.routingNumber || '',
+      role: u.role || 'user',
+      verified: Boolean(u.verified),
+      accountStatus: u.accountStatus || 'active',
+      statusReason: u.statusReason || '',
+      checkingBalance: Number(u.checkingBalance) || 0,
+      savingsBalance: Number(u.savingsBalance) || 0,
+      investmentBalance: Number(u.investmentBalance) || 0,
+      createdAt: u.createdAt,
+      updatedAt: u.updatedAt,
     }));
-    
-    // Return success response with users
-    return NextResponse.json({
-      success: true,
-      users: formattedUsers,
-      total: formattedUsers.length,
-      message: `Successfully loaded ${formattedUsers.length} users`
-    }, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    
+
+    return NextResponse.json(
+      {
+        success: true,
+        users,
+        total,
+        page,
+        limit,
+        hasMore: skip + users.length < total,
+      },
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
   } catch (error: any) {
     console.error('Error in users API route:', error);
-    
-    // Return error response
-    return NextResponse.json({
-      success: false,
-      error: error.message || 'Failed to fetch users',
-      users: [],
-      total: 0
-    }, {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        error: error?.message || 'Failed to fetch users',
+        users: [],
+        total: 0,
+      },
+      { status: 500 }
+    );
   }
 }

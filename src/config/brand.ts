@@ -14,7 +14,26 @@ export const BRAND = {
   website: 'https://www.fregetrust.com',
   nmls: 'NMLS #2025001',
   copyright: `© ${new Date().getFullYear()} Fregetrust Financial Institution. All rights reserved.`,
-  address: '100 Financial District, Suite 2500, New York, NY 10005',
+
+  // Head office (registered office) shown across contact/locations/footer.
+  address: '165–167 Trongate, Glasgow, G1 5HF, United Kingdom',
+  headOffice: {
+    label: 'Head Office',
+    city: 'Glasgow, United Kingdom',
+    lines: ['165–167 Trongate', 'Glasgow', 'G1 5HF', 'United Kingdom'],
+  },
+  branches: [
+    {
+      label: 'Luxembourg Branch',
+      city: 'Luxembourg City, Luxembourg',
+      lines: ['14 Avenue du X Septembre', 'L-2550 Luxembourg', 'Luxembourg'],
+    },
+    {
+      label: 'Dubai Branch',
+      city: 'Dubai, United Arab Emirates',
+      lines: ['Bay Square, Building 3, Office 03', 'Al Asayel Street, Business Bay', 'Dubai, United Arab Emirates'],
+    },
+  ],
   colors: {
     primary: '#0F172A',    // Deep Navy
     accent: '#B8960C',     // Gold

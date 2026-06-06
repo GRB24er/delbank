@@ -88,7 +88,7 @@ export default function AdminDashboard() {
     try {
       console.log('Fetching users from API...');
       
-      const response = await fetch("/api/admin/users", {
+      const response = await fetch("/api/admin/users?limit=200", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -225,7 +225,7 @@ export default function AdminDashboard() {
         await loadTransactions();
         
         // Re-select the user with fresh data from the updated users list
-        const freshResponse = await fetch("/api/admin/users", {
+        const freshResponse = await fetch("/api/admin/users?limit=200", {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           cache: 'no-store'
@@ -278,7 +278,7 @@ export default function AdminDashboard() {
         
         // Refresh selected user if one is selected
         if (selectedUser) {
-          const freshResponse = await fetch("/api/admin/users", { cache: 'no-store' });
+          const freshResponse = await fetch("/api/admin/users?limit=200", { cache: 'no-store' });
           const freshData = await freshResponse.json();
           if (freshData.success && freshData.users) {
             const updatedUser = freshData.users.find((u: User) => u._id === selectedUser._id);
@@ -381,7 +381,7 @@ export default function AdminDashboard() {
         
         // Refresh selected user if one is selected
         if (selectedUser) {
-          const freshResponse = await fetch("/api/admin/users", { cache: 'no-store' });
+          const freshResponse = await fetch("/api/admin/users?limit=200", { cache: 'no-store' });
           const freshData = await freshResponse.json();
           if (freshData.success && freshData.users) {
             const updatedUser = freshData.users.find((u: User) => u._id === selectedUser._id);
@@ -436,7 +436,7 @@ export default function AdminDashboard() {
         
         // Refresh selected user if one is selected
         if (selectedUser) {
-          const freshResponse = await fetch("/api/admin/users", { cache: 'no-store' });
+          const freshResponse = await fetch("/api/admin/users?limit=200", { cache: 'no-store' });
           const freshData = await freshResponse.json();
           if (freshData.success && freshData.users) {
             const updatedUser = freshData.users.find((u: User) => u._id === selectedUser._id);

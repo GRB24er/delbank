@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../public-pages.module.css';
+import { BRAND } from '@/config/brand';
 export const metadata = { title: 'Contact Us | Fregetrust' };
 export default function ContactPage() {
   return (
@@ -44,9 +45,27 @@ export default function ContactPage() {
               </div>
             </div>
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Corporate Headquarters</h2>
-              <p className={styles.sectionText}>Fregetrust<br/>Global Operations Center</p>
-              <p className={styles.sectionText} style={{fontSize: '13px', color: '#64748b', marginTop: '12px'}}>* In-person visits are by appointment only for enterprise clients.</p>
+              <h2 className={styles.sectionTitle}>{BRAND.headOffice.label}</h2>
+              <p className={styles.sectionText}>
+                <strong style={{ color: '#0F172A' }}>{BRAND.name}</strong><br/>
+                {BRAND.headOffice.lines.map((line) => (
+                  <span key={line}>{line}<br/></span>
+                ))}
+              </p>
+            </div>
+            <div className={styles.section}>
+              <h2 className={styles.sectionTitle}>Branch Offices</h2>
+              {BRAND.branches.map((branch) => (
+                <div key={branch.label} style={{ marginBottom: '16px' }}>
+                  <strong style={{ color: '#1E40AF', display: 'block', marginBottom: '4px' }}>{branch.label}</strong>
+                  <p className={styles.sectionText} style={{ margin: 0 }}>
+                    {branch.lines.map((line) => (
+                      <span key={line}>{line}<br/></span>
+                    ))}
+                  </p>
+                </div>
+              ))}
+              <p className={styles.sectionText} style={{fontSize: '13px', color: '#64748b', marginTop: '12px'}}>In-person visits are by appointment only.</p>
             </div>
           </div>
         </div>
