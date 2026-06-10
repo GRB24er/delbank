@@ -967,6 +967,123 @@ export async function sendSimpleEmail(
   );
 }
 
+// 6b) Transaction Receipt Email (with PDF attachment)
+export async function sendTransactionReceiptEmail(
+  to: string,
+  args: {
+    name?: string;
+    receiptNumber: string;
+    reference?: string;
+    amountLabel: string; // already signed + formatted, e.g. "+$500.00"
+    type: string;
+    status: string;
+    date: string; // human-readable
+    isCredit?: boolean;
+    pdfBuffer: Buffer;
+    filename?: string;
+  }
+) {
+  const recipientList = [to].filter(Boolean);
+  if (recipientList.length === 0) {
+    return {
+      accepted: [],
+      rejected: [],
+      skipped: true as const,
+      messageId: "SKIPPED-NO-RECIPIENT-" + Date.now(),
+    };
+  }
+
+  const greetingName = args.name || "Valued Client";
+  const amountColor = args.isCredit ? BRAND_COLORS.success : BRAND_COLORS.error;
+  const subject = `Transaction Receipt - ${args.receiptNumber}`;
+  const filename = args.filename || `Receipt_${args.receiptNumber}.pdf`;
+
+  const content = `
+    ${getEmailHeader("Transaction Receipt", "A copy of your receipt is attached")}
+    <div style="padding: 40px 30px;">
+      <p style="margin: 0 0 20px; font-size: 16px; color: ${BRAND_COLORS.textPrimary};">Dear ${greetingName},</p>
+      <p style="margin: 0 0 30px; font-size: 15px; color: ${BRAND_COLORS.textSecondary};">
+        Please find your transaction receipt attached as a PDF. A summary is shown below for your records.
+      </p>
+
+      <div style="background: ${BRAND_COLORS.cream}; border-radius: 12px; padding: 24px; margin-bottom: 30px; border: 1px solid rgba(59,130,246,0.15);">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textMuted}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(148,163,184,0.2);">Receipt No.</td>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textPrimary}; font-weight: 600; text-align: right; border-bottom: 1px solid rgba(148,163,184,0.2);">${args.receiptNumber}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textMuted}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(148,163,184,0.2);">Type</td>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textPrimary}; font-weight: 500; text-align: right; text-transform: capitalize; border-bottom: 1px solid rgba(148,163,184,0.2);">${String(args.type).replace(/[-_]/g, " ")}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textMuted}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(148,163,184,0.2);">Amount</td>
+            <td style="padding: 10px 0; font-weight: 700; font-size: 18px; text-align: right; color: ${amountColor}; border-bottom: 1px solid rgba(148,163,184,0.2);">${args.amountLabel}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textMuted}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(148,163,184,0.2);">Status</td>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textPrimary}; font-weight: 500; text-align: right; border-bottom: 1px solid rgba(148,163,184,0.2);">${args.status}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textMuted}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">Date</td>
+            <td style="padding: 10px 0; color: ${BRAND_COLORS.textPrimary}; font-weight: 500; text-align: right;">${args.date}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.05) 100%); border-left: 4px solid ${BRAND_COLORS.gold}; padding: 20px; border-radius: 0 8px 8px 0; margin-bottom: 30px;">
+        <p style="margin: 0; font-size: 14px; color: ${BRAND_COLORS.textSecondary};">
+          <strong style="color: ${BRAND_COLORS.textPrimary};">Security Notice:</strong> If you did not authorize this transaction, contact us immediately at <a href="mailto:${SUPPORT_EMAIL}" style="color: ${BRAND_COLORS.gold}; text-decoration: none; font-weight: 600;">${SUPPORT_EMAIL}</a>.
+        </p>
+      </div>
+
+      <p style="margin: 0; font-size: 14px; color: ${BRAND_COLORS.textMuted};">Thank you for banking with ${BRAND_NAME}.</p>
+    </div>
+    ${getEmailFooter()}
+  `;
+
+  const text = `
+Dear ${greetingName},
+
+Please find your transaction receipt attached as a PDF.
+
+RECEIPT SUMMARY
+---------------
+Receipt No.: ${args.receiptNumber}
+Type: ${args.type}
+Amount: ${args.amountLabel}
+Status: ${args.status}
+Date: ${args.date}
+
+If you did not authorize this transaction, contact us immediately at ${SUPPORT_EMAIL}.
+
+Thank you for banking with ${BRAND_NAME}.
+
+---
+${BRAND_NAME}
+Fregetrust · Member FDIC
+  `.trim();
+
+  return sendWithRetry(
+    {
+      from: FROM_DISPLAY,
+      replyTo: REPLY_TO,
+      envelope: { from: ENVELOPE_FROM, to: recipientList },
+      to: recipientList,
+      subject,
+      text,
+      html: getEmailWrapper(content),
+      attachments: [{ filename, content: args.pdfBuffer }],
+      headers: {
+        "List-Unsubscribe": LIST_UNSUBSCRIBE,
+        "X-Receipt-Number": args.receiptNumber,
+        "X-Priority": "2",
+      },
+    },
+    3
+  );
+}
+
 // 7) Export Transporter Proxy
 export const transporter = {
   async sendMail(options: Parameters<Transporter["sendMail"]>[0]) {
@@ -1007,6 +1124,7 @@ export default {
   sendBankStatementEmail,
   sendPasswordResetEmail,
   sendSimpleEmail,
+  sendTransactionReceiptEmail,
   testSMTPConnection,
   transporter,
 };

@@ -37,6 +37,7 @@ declare module '@/lib/mail' {
     text: string,
     html?: string
   ): Promise<any>;
+  export function sendTransactionReceiptEmail(to: string, args: any): Promise<any>;
   export function sendBankStatementEmail(
     to: string,
     transactions: {

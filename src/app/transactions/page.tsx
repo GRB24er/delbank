@@ -8,6 +8,7 @@ import styles from "./transactions.module.css";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ReceiptModal, { ReceiptTransaction } from "@/components/ReceiptModal";
 
 interface Transaction {
   _id: string;
@@ -36,7 +37,8 @@ export default function TransactionsPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
   const [groupedTransactions, setGroupedTransactions] = useState<TransactionGroup[]>([]);
-  
+  const [receiptTx, setReceiptTx] = useState<ReceiptTransaction | null>(null);
+
   // Filter states
   const [selectedAccount, setSelectedAccount] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
@@ -468,13 +470,11 @@ export default function TransactionsPage() {
                   </div>
                   
                   {group.transactions.map((transaction) => (
-                    <div 
-                      key={transaction._id} 
+                    <div
+                      key={transaction._id}
                       className={styles.transactionItem}
-                      onClick={() => {
-                        // View transaction details
-                        console.log('View transaction:', transaction);
-                      }}
+                      onClick={() => setReceiptTx(transaction as ReceiptTransaction)}
+                      style={{ cursor: 'pointer' }}
                     >
                       <div className={styles.transactionLeft}>
                         <span className={styles.transactionIcon}>
@@ -514,6 +514,28 @@ export default function TransactionsPage() {
                             Balance: ${transaction.balanceAfter.toFixed(2)}
                           </div>
                         )}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setReceiptTx(transaction as ReceiptTransaction);
+                          }}
+                          style={{
+                            marginTop: '6px',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '5px',
+                            padding: '5px 10px',
+                            background: '#eff6ff',
+                            color: '#1d4ed8',
+                            border: '1px solid #bfdbfe',
+                            borderRadius: '8px',
+                            fontSize: '12px',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                          }}
+                        >
+                          🧾 Receipt
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -571,6 +593,14 @@ export default function TransactionsPage() {
         
         <Footer />
       </div>
+
+      {receiptTx && (
+        <ReceiptModal
+          transaction={receiptTx}
+          accountHolder={session?.user?.name || undefined}
+          onClose={() => setReceiptTx(null)}
+        />
+      )}
     </div>
   );
 }
